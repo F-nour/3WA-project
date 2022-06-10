@@ -1,0 +1,29 @@
+// accessibility
+
+@mixin link() {
+	outline: none;
+	box-shadow: var(--focusBorder), 0 0 0 1px rgba(255, 255, 255, 0.5);
+	transition: var(--transitionAll);
+}
+
+@mixin focus() {
+	:focus,
+	:focus-within,
+	&:focus,
+	&:focus-within {
+		@include link();
+	}
+}
+@mixin hover() {
+	&:hover {
+		@include link();
+	}
+}
+
+@mixin active() {
+	:active,
+	&:active {
+		background-color: var(--activeColor);
+		@include link();
+	}
+}

@@ -1,0 +1,21 @@
+// variables css
+@use './variables/colors';
+@use './variables/print';
+@use './variables/variables';
+
+// reseters for the site
+@use './reseters/common';
+
+// global
+@use './global/accessibility';
+@use './global/custom';
+@use './global/main';
+
+// components
+@use './components/menu';
+@use './components/header';
+@use './components/footer';
+
+// views
+@use './views/home';
+@use './views/legal';

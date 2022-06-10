@@ -1,0 +1,19 @@
+// display: flex;
+
+@mixin flex-column($content: center, $items: center, $gap: 0) {
+	justify-content: $content;
+	align-items: $items;
+	gap: #{$gap}px;
+}
+
+@mixin flex-row($size: 0, $gap: 0, $content) {
+	@if $size == 0 {
+		flex: 1 0;
+	} @else {
+		flex: 1 calc((100 / $size) - $gap);
+	}
+	justify-content: $content;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: #{$gap}px;
+}

@@ -1,0 +1,47 @@
+// onclick
+
+@mixin menu-onclick() {
+	background-repeat: no-repeat;
+	background-size: 3rem;
+	cursor: pointer;
+	height: 3rem;
+	background-color: initial;
+	border: none;
+}
+
+@mixin onClickBody() {
+	background-color: var(--closeColor);
+	box-shadow: var(--boxShadow);
+	&:hover,
+	&:focus {
+		.open {
+			transition: var(--transitionAll);
+			background-image: url('../svg/expand_more_hover.svg');
+			@include onClick();
+		}
+		.close {
+			transition: var(--transitionAll);
+			background-image: url('../svg/expand_less_hover.svg');
+			@include onClick();
+		}
+	}
+}
+
+@mixin onClick() {
+	@include menu-onclick();
+	width: 3rem;
+	background-attachment: local;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	z-index: 25;
+	background-color: initial;
+	position: absolute;
+}
+
+@mixin closed() {
+	overflow: hidden;
+	visibility: hidden;
+	height: 0;
+	transition: all 0.3s;
+}

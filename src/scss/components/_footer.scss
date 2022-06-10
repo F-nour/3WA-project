@@ -1,0 +1,68 @@
+@use '../mixins/flex';
+
+.footer {
+	width: var(--sizeAll);
+	bottom: 0;
+	padding: 0 0.5rem;
+	height: var(--sizeMenu);
+	position: static;
+	& span {
+		color: var(--linkColor);
+	}
+	& * {
+		font-size: 1.3rem;
+	}
+}
+
+.footer-menu {
+	@include flex.flex-row(3, 0, center);
+	& .download {
+		justify-content: center;
+	}
+	&__link img,
+	&__link {
+		height: 3rem;
+	}
+	&__social {
+		&__list {
+			@include flex.flex-row(0, 16, start);
+			flex-wrap: nowrap;
+			align-items: center;
+		}
+	}
+	&__legal {
+		@include flex.flex-row(0, 1, end);
+		& li {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			margin: 0 0.5rem;
+		}
+	}
+}
+
+@media (max-width: 1024px) {
+	.footer {
+		margin: 1rem 0 0;
+		position: static;
+		width: 100%;
+		height: -webkit-fit-content;
+		height: -moz-fit-content;
+		height: fit-content;
+		&-menu {
+			@include flex.flex-column(center, center, var(--sizeGap));
+			&__social {
+				@include flex.flex-column(end, center);
+				&__title {
+					justify-content: center;
+				}
+				&__list {
+					flex-wrap: wrap;
+				}
+			}
+			&__legal {
+				justify-content: center;
+			}
+		}
+	}
+}

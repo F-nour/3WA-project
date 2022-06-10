@@ -1,0 +1,15 @@
+@use '../mixins/elements';
+
+.main {
+	width: var(--sizeAll);
+	& > section {
+		width: var(--sizeAll);
+		height: var(--sizeAll);
+		@include elements.main();
+		@include elements.container();
+	}
+}
+
+.f18 {
+	font-size: 1.8rem;
+}

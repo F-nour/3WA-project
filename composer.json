@@ -1,0 +1,20 @@
+{
+	"name": "nour/kte",
+	"description": "Site internet de l'entreprise \"Kiff ton écharpe\"",
+	"authors": [
+		{
+			"name": "Nour-eddine FATTOUM",
+			"email": "kiffportage@gmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Library\\": "lib/",
+			"App\\": "src/"
+		}
+	},
+	"require": {
+		"altorouter/altorouter": "1.1.0",
+		"filp/whoops": "^2.14"
+	}
+}

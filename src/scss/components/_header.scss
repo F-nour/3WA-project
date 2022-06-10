@@ -1,0 +1,70 @@
+@use '../mixins/flex';
+
+.header {
+	width: 20vw;
+	height: var(--sizeAll);
+	position: fixed;
+}
+
+.logo {
+	height: var(--sizeMenu);
+	background-image: url('/images/logo/kte.svg');
+	background-repeat: no-repeat;
+	background-size: contain;
+	left: 0px;
+	top: 0px;
+	align-items: center;
+	cursor: pointer;
+	& a {
+		margin: 0 8px 0var (--sizeMenu);
+	}
+}
+
+.header-menu {
+	position: fixed;
+	background-color: var(--bgColor);
+	box-shadow: var(--boxShadow);
+	position: relative;
+	left: 0;
+	justify-content: center;
+	height: var(--sizeAll);
+
+	@include flex.flex-column(start, center, var(--sizeGap));
+	height: var(--sizeAll);
+	z-index: 100;
+	font-size: var(--menuFontSize);
+	line-height: var(--sizeMenu);
+	& > div {
+		width: var(--sizeAll);
+	}
+	&__list {
+		margin: 0;
+	}
+	&__link {
+		text-align: center;
+		width: 5rem;
+		width: var(--sizeAll);
+		& a,
+		& span {
+			padding: 0 0.5rem;
+		}
+	}
+}
+
+@media (max-width: 1024px) {
+	.header {
+		width: 300px;
+		z-index: 100;
+		transition: var(--transitionAll);
+		&-menu {
+			&__list {
+				@include flex.flex-column(end, center, var(--sizeGap));
+			}
+			&__link {
+				height: var(--sizeMenu);
+				text-align: center;
+				padding: 0;
+			}
+		}
+	}
+}

@@ -1,0 +1,32 @@
+<section class="home" id="home" name="home">
+	<div class="home__title" id="homeTitle" name="homeTitle">
+		<h1>Bienvenue sur le site de Kiff Ton Écharpe</h1>
+	</div>
+	<div class="home__content" id="homeContent" name="homeContent">
+		<p>
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae natus
+			dolores ad molestias quidem quisquam labIioriosam in unde deserunt amet.
+		</p>
+		<p>
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos numquam rerum
+			tenetur eveniet fugit, at ea consequatur veniam illo iure?
+		</p>
+	</div>
+	<div class="actuality-container">
+		<?php
+		foreach ($actuality as $actu) { ?>
+			<div class="actuality">
+				<div class="actuality__title">
+					<h2><?= $actu['title'] ?></h2>
+				</div>
+				<div class="actuality__content">
+					<p><?= $actu['content'] ?></p>
+				</div>
+				<div class="actuality__date">
+					<p>Actualité du
+						<?= date_create($actu['date'])->format('d/m/Y à H:i') ?></p>
+				</div>
+			</div>
+		<?php } ?>
+	</div>
+</section>

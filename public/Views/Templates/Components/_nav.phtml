@@ -1,0 +1,37 @@
+<nav role="navigation" class="header-menu" id="headerMenu">
+    <div class="header-menu__logo">
+        <div data-menus class="header-menu__link internal logo" id="logo">
+            <a href="/" title="Accueil" class="flex-row">
+                Kiff Ton Écharpe
+            </a>
+        </div>
+    </div>
+    <div class="header-menu__principal">
+        <ul class=" header-menu__list" id="menuList">
+            <li data-menus class="header-menu__link internal list1">
+                <a href="/products" title="Produits">Mes services</a>
+            </li>
+            <li data-menus class="header-menu__link internal list2">
+                <a href="/about" title="A propos">Mieux me connaître</a>
+            </li>
+            <?php if (isset($user)) : ?>
+                <!-- Menu pour les utilisateurs connectés -->
+                <li data-menus class="header-menu__link internal list3">
+                    <a href="/ordered" title="Commandes">Mes commandes</a>
+                </li>
+            <?php elseif (isset($admin)) : ?>
+                <!-- Menu pour les administrateurs connectés -->
+                <li data-menus class="header-menu__link internal list4">
+                    <a href="/adminOrdered" title="Administration">Gérer les commandes</a>
+                </li>
+                <li ddata-menus class="header-menu__link internal list5">
+                    <a href="/adminProducts" title="Administration">Gérer les produits</a>
+                </li>
+                <li data-menus class="header-menu__link internal list6">
+                    <a href="/adminUsers" title="Administration">Gérer les utilisateurs</a>
+                </li>
+            <?php endif; ?>
+            <!-- <li data-menus class="header-menu__link internal list3">
+                <a href="/login" title="Se connecter">Connexion / Inscription</a>
+            </li> -->
+    </div </nav>

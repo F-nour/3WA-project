@@ -1,0 +1,47 @@
+<nav role="navigation" class="flex-row header-menu">
+    <div class="flex-row header-menu__container">
+        <div class="header-menu__link flex-row logo" id="logo">
+            <a href="#home" title="Accueil" class="flex-row">
+                Kiff Ton Écharpe
+            </a>
+        </div>
+        <ul class=" flex-row header-menu__list" id="menuList">
+            <li data-menus class="header-menu__link list1">
+                <a href="#products" title="Produits">Mes services</a>
+            </li>
+            <li data-menus class="header-menu__link list2">
+                <a href="#about" title="A propos">Mieux me connaître</a>
+            </li>
+            <?php if (isset($user)) : ?>
+            <!-- Menu pour les utilisateurs connectés -->
+                <li data-menus class="header-menu__link list3">
+                    <a href="#ordered" title="Commandes">Mes commandes</a>
+                </li>
+            <?php elseif (isset($admin)) : ?>
+            <!-- Menu pour les administrateurs connectés -->
+                <li data-menus class="header-menu__link list4">
+                    <a href="#adminOrdered" title="Administration">Gérer les commandes</a>
+                </li>
+                <li ddata-menus class="header-menu__link list5">
+                    <a href="#adminProducts" title="Administration">Gérer les produits</a>
+                </li>
+                <li data-menus class="header-menu__link list6">
+                    <a href="#adminUsers" title="Administration">Gérer les utilisateurs</a>
+                </li>
+            <?php endif; ?>
+        </ul>
+    </div>
+    <div class="flex-row header-menu__connect">
+        <ul class="flex-row header-menu__list" id="menuList">
+            <li data-menus class="header-menu__link list3">
+                <a href="#login" title="Se connecter">Connexion / Inscription</a>
+            </li>
+            <?php if (isset($user) || isset($admin)) : ?>
+            <!-- Lien de déconnexion lorsqu'une session est active -->
+                <li data-menus class="header-menu__link list4">
+                    <a href="#logout" title="Se déconnecter">Déconnexion</a>
+                </li>
+            <?php endif; ?>
+        </ul>
+    </div>
+</nav>

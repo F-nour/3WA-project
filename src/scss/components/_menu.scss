@@ -1,0 +1,31 @@
+@use '../mixins/onclick';
+
+.actual {
+	background-color: var(--scrollColor);
+	&:focus,
+	&:hover {
+		background-color: var(--borderColor);
+	}
+	& a:focus,
+	& a:hover {
+		box-shadow: none;
+	}
+}
+
+@media (max-width: 1024px) {
+	.hamberger-menu {
+		position: fixed;
+		top: 0;
+		background-image: url('../svg/menu.svg');
+		background-position-x: 1rem;
+		width: 300px;
+
+		@include onclick.menu-onclick();
+		z-index: 50;
+		&:hover,
+		&:focus {
+			background-image: url('../svg/menu__hover.svg');
+			transition: var(--transitionAll);
+		}
+	}
+}

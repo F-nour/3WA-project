@@ -1,0 +1,31 @@
+{
+  "name": "3wa-project_kte",
+  "version": "1.0.0",
+  "description": "Projet de fin de formation à la 3WA. Site de l'auto-entreprise \"kiff ton écharpe\"",
+  "main": "/public/js/script.js",
+  "scripts": {
+    "test": "console.log(\"test\")"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/F-nour/3WA-project.git"
+  },
+  "keywords": [
+    "kiff",
+    "ton",
+    "écharpe",
+    "kte"
+  ],
+  "author": "Nour-eddine FATTOUM",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/F-nour/3WA-project/issues"
+  },
+  "homepage": "https://github.com/F-nour/3WA-project#readme",
+  "devDependencies": {
+    "sass": "^1.52.2"
+  },
+  "dependencies": {
+    "reseter.css": "^2.0.0"
+  }
+}

@@ -1,0 +1,10 @@
+## config database file
+lib/Database/config.php
+
+## library files
+vendor/
+node_modules/
+
+## IDE's setting file
+.idea/
+.vscode/

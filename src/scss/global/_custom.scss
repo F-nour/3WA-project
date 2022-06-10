@@ -1,0 +1,106 @@
+@use '../mixins/flex';
+
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--linkColor) var(--scrollColor);
+	&::-webkit-scrollbar {
+		width: 5px;
+		&-track {
+			background-color: var(--scrollColor);
+		}
+		&-thumb {
+			background-color: var(--linkColor);
+			border-radius: 20px;
+			border: 1px solid var(--borderColor);
+		}
+		&-corner {
+			background-color: var(--bgColor);
+		}
+	}
+}
+
+body {
+	flex: 1 0;
+	flex-direction: row;
+	height: var(--sizeAll);
+	background-color: var(--bgColor);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	color: var(--textColor);
+	box-shadow: var(--boxShadow);
+}
+
+.container {
+	@include flex.flex-column(space-between, center, 0);
+	width: var(--sizeAll);
+	padding: 0 0.5rem 0 20.5vw;
+}
+
+p {
+	margin: 0;
+}
+
+.internal,
+.internal a,
+.internal button {
+	color: var(--linkColor);
+}
+
+.external,
+.external a,
+.external button {
+	color: var(--linkExternal);
+}
+
+a {
+	text-decoration: none;
+	// color: var(--linkColor);
+	font-weight: 600;
+	&:focus,
+	&:hover {
+		color: var(--focusColor);
+		transition: var(--transitionAll);
+	}
+}
+
+button {
+	padding: 0;
+	background: none;
+	border: none;
+	text-align: center;
+	font-weight: bold;
+	&:focus,
+	&:hover {
+		color: var(--focusColor);
+		transition: var(--transitionAll);
+	}
+}
+
+h1,
+.h1 {
+	font-size: 3rem;
+	text-align: center;
+	margin-top: 2rem;
+}
+
+h2,
+.h2 {
+	font-size: 2.6rem;
+}
+
+h3,
+.h3 {
+	font-size: 2.4rem;
+}
+
+h4,
+.h4 {
+	font-size: 2.2rem;
+}
+
+h5,
+.h5 {
+	font-size: 2rem;
+}

@@ -1,0 +1,23 @@
+// HTML element mixins
+
+@mixin headerFooter() {
+
+}
+
+@mixin main() {
+	gap: 2rem;
+	// align-items: center;
+	justify-content: center;
+	padding-bottom: 2rem;
+	@media screen and (max-width: 1024px) {
+		width: var(--sizeAll);
+		height: var(--sizeAll);
+		padding: 0.5rem;
+	}
+}
+
+@mixin container() {
+	&__content {
+		gap: 1rem;
+	}
+}
