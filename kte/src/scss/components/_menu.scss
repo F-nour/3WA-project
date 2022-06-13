@@ -1,0 +1,41 @@
+@use '../mixins/menu';
+@use '../mixins/accessibility';
+
+.actual {
+	background-color: var(--actualColor);
+	@include accessibility.disabledBoxShadow();
+	&:focus,
+	&:hover {
+		background-color: var(--actualFocusColor);
+		transition: var(--transitionAll);
+		@media (max-width: 1024px) {
+			background-color: var(--actualColor);
+
+		}
+	}
+}
+
+@media (max-width: 1024px) {
+	.hamberger-menu {
+		position: fixed;
+		top: 0;
+		background-image: url('../../images/components/menu.svg');
+		background-position-x: 1rem;
+		width: var(--sizeAll);
+		@include menu.menu-onclick();
+		background-color: var(--bgColor);
+		z-index: 50;
+		&:hover,
+		&:focus {
+			background-image: url('../../images/components/menu__hover.svg');
+			transition: var(--transitionAll);
+		}
+		&:after {
+			content: 'Version mobile';
+			position: absolute;
+			color: var(--transparentColor);
+			top: 1.25rem;
+			right: 1rem;
+		}
+	}
+}
