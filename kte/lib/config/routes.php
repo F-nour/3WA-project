@@ -1,19 +1,24 @@
 <?php
 
+function url(string $path): string
+{
+    return '/kte'  . $path;
+}
+
 return [
-    '/kte/' => [
+    url('/') => [
         '\App\Controller\HomepageController',
         'index'
     ],
-    '/kte/about' => [
+    url('/about') => [
         '\App\Controller\AboutController',
         'index'
     ],
-    '/kte/legal' => [
+    url('/legal') => [
         '\App\Controller\LegalController',
         'index'
     ],
-    '/kte/login' => [
+    url('/login') => [
         '\App\Controller\LoginController',
         'index'
     ],
