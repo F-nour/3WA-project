@@ -2,6 +2,8 @@
 
 namespace App\Model\Manager;
 
+use Library\Core\AbstractManager;
+
 class UserManager extends AbstractManager
 {
 

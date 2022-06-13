@@ -4,7 +4,7 @@ namespace App\Controller;
 
 class ErrorController
 {
-    public function display()
+    public function index()
     {
         $title = 'Erreur 404 - Page introuvable';
         $template = 'Views/Templates/Pages/error.phtml';

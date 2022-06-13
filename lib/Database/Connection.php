@@ -4,7 +4,6 @@ namespace Library\Database;
 
 use PDO;
 
-$config = require 'config_3wa.php';
 
 class Connection
 {

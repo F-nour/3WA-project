@@ -3,18 +3,18 @@
 return [
     '/' => [
         '\App\Controller\HomepageController',
-        'display'
+        'index'
     ],
     '/about' => [
         '\App\Controller\AboutController',
-        'display'
+        'index'
     ],
     '/legal' => [
         '\App\Controller\LegalController',
-        'display'
+        'index'
     ],
     '/login' => [
         '\App\Controller\LoginController',
-        'display'
+        'index'
     ],
 ];

@@ -9,7 +9,7 @@ class Router
 
     public function goToRoute()
     {
-        $routes = require '../lib/Router/routes.php';
+        $routes = require '../lib/config/routes.php';
         $route = $_SERVER['REQUEST_URI'] ?? '/';
         if (isset($routes[$route])) {
             $action = $routes[$route];
@@ -22,7 +22,7 @@ class Router
         } else {
             header("HTTP/1.1 404 Not Found");
             $controller = new \App\Controller\ErrorController();
-            $controller->display();
+            $controller->index();
         }
     }
 }

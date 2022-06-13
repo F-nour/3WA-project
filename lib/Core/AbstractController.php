@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Controller;
+namespace Library\Core;
 
-use \Library\Auth\Authentifier;
+use Library\Auth\Authentifier;
 
 class AbstractController
 {
@@ -10,6 +10,8 @@ class AbstractController
     protected $admin;
     protected $userLayout = 'Views/layout.phtml';
     protected $adminLayout = '../Admin/admin_layout.phtml';
+
+    const SITE_NAME = 'Kiff ton Écharpe';
 
     protected function getConnectedUser(): ?\App\Model\Table\User
     {
@@ -23,5 +25,21 @@ class AbstractController
         }
         return $userIsConnected;
         // echo 'test'; test de la fonction getConnectedUser()
+    }
+
+    public function display(string $title, string $template, ?array $data = null)
+    {
+        extract($data);
+        $title = SELF::SITE_NAME . ' - ' . $title;
+        $template = 'Views/Templates/Pages/' . $template . '.phtml';
+        require $this->userLayout;
+    }
+
+    public function displayAdmin($title, $template, array $data = [])
+    {
+        extract($data);
+        $title = SELF::SITE_NAME . ' - Espace administrateur - ' . $title;
+        $template = '../Admin/Views/Templates/Pages/' . $template . '.phtml';
+        require $this->adminLayout;
     }
 }

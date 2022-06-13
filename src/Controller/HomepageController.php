@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use \App\Model\Manager\ActualityManager;
+use Library\Core\AbstractController;
 
 class HomepageController extends AbstractController
 {
@@ -10,17 +10,14 @@ class HomepageController extends AbstractController
 
     public function __construct()
     {
-        $this->actualityManager = new ActualityManager();
+        $this->actualityManager = new \App\Model\Manager\ActualityManager;
     }
 
-    public function display(): void
+    public function index(): void
     {
-        $title = 'accueil';
-        $connectedUser = $this->getConnectedUser();
-        $actuality = $this->getActualities();
-        $template = 'Views/Templates/Pages/homepage.phtml';
-
-        require  $this->userLayout;
+        $this->display('Accueil', 'homepage', [
+            'actuality' => $this->actualityManager->getAll(),
+        ]);
     }
 
     public function getActualities(): array

@@ -2,12 +2,10 @@
 
 namespace App\Controller;
 
-class LegalController extends AbstractController
+class LegalController extends \Library\Core\AbstractController
 {
-    public function display(): void
+    public function index(): void
     {
-        $title = 'Mentions légales';
-        $template = 'Views/Templates/Pages/legal.phtml';
-        require $this->userLayout;
+        $this->display('Mentions légales', 'legal', []);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Model\Manager;
 
-class ActualityManager extends \App\Model\Manager\AbstractManager
+class ActualityManager extends \Library\Core\AbstractManager
 {
 
     public function __construct()

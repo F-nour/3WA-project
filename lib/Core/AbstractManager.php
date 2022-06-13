@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Model\Manager;
-
-use \Library\Database\Connection;
+namespace Library\Core;
 
 abstract class AbstractManager
 {
     protected $db;
-    protected $config = '../lib/Database/config_3wa.php';
+    protected $config = '../lib/config/database_3wa.php';
 
     const ACTUALITIES = 'actualities';
     const ABOUT = 'about';
@@ -20,7 +18,7 @@ abstract class AbstractManager
     public function __construct()
     {
         $config = require $this->config;
-        $this->db = new Connection($config);
+        $this->db = new \Library\Database\Connection($config);
         // $this->db = new Connection();
     }
 }
