@@ -2,14 +2,12 @@
 
 namespace Library\Router;
 
-use AltoRouter;
-
 class Router
 {
 
     public function goToRoute()
     {
-        $routes = require '../lib/config/routes.php';
+        $routes = require '../config/routes.php';
         $route = $_SERVER['REQUEST_URI'] ?? '/';
         if (isset($routes[$route])) {
             $action = $routes[$route];

@@ -2,7 +2,7 @@
 
 .main {
 	width: var(--sizeAll);
-	padding-bottom: var(--sizeMenu);
+	padding-bottom: calc(var(--sizeMenu) + 2rem);
 	& > section {
 		width: var(--sizeAll);
 		height: var(--sizeAll);

@@ -46,7 +46,7 @@ html {
 	position: fixed;
 	font-size: 62.5%; /* 1em = 10px */
 	font-weight: normal;
-	letter-spacing: 0.1rem;
+	font-family: var(--font-family-base);
 }
 body {
 	flex: 1 0;

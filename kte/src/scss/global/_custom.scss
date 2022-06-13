@@ -30,9 +30,11 @@ body {
 	background-attachment: fixed;
 	color: var(--textColor);
 	box-shadow: var(--boxShadow);
+	letter-spacing: 0.05rem;
 	@media (max-width: 1024px) {
 		font-size: small;
 	}
+	font-family: var(--joan);
 }
 
 .container {
@@ -57,23 +59,20 @@ p {
 	color: var(--linkExternal);
 }
 
-a {
+a,
+button {
 	text-decoration: none;
 	// color: var(--linkColor);
-	font-weight: 600;
-}
-
-button {
 	padding: 0;
 	background: none;
 	border: none;
 	text-align: center;
-	font-weight: bold;
-	&:focus,
-	&:hover {
-		color: var(--focusColor);
-		transition: var(--transitionAll);
-	}
+	font-style: italic;
+	font-family: var(--abril);
+}
+
+button {
+	text-align: center;
 }
 
 h1,
@@ -87,6 +86,8 @@ h5,
 .h4,
 .h5 {
 	font-weight: 600;
+	font-style: oblique;
+	font-family: var(--gentium);
 	margin: 1em 0 0.5em;
 }
 
