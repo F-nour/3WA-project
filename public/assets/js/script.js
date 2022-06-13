@@ -1,6 +1,6 @@
 ('use strict');
-import { responsive, screenResize } from './modules/menus.js';
+import { displayMenu } from './modules/menus.js';
+import { responsive } from './modules/responsive.js';
 
+displayMenu();
 responsive();
-
-addEventListener('resize', screenResize());

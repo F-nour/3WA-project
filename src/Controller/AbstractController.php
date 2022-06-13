@@ -8,7 +8,8 @@ class AbstractController
 {
     protected $user; // 1 = admin, 2 = user
     protected $admin;
-    protected $layout = 'Views/layout.phtml';
+    protected $userLayout = 'Views/layout.phtml';
+    protected $adminLayout = '../Admin/admin_layout.phtml';
 
     protected function getConnectedUser(): ?\App\Model\Table\User
     {

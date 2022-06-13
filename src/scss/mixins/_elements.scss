@@ -1,23 +1,38 @@
 // HTML element mixins
 
-@mixin headerFooter() {
 
-}
 
 @mixin main() {
 	gap: 2rem;
-	// align-items: center;
 	justify-content: center;
-	padding-bottom: 2rem;
 	@media screen and (max-width: 1024px) {
 		width: var(--sizeAll);
 		height: var(--sizeAll);
-		padding: 0.5rem;
+		padding: 0 1rem;
+
 	}
 }
 
 @mixin container() {
 	&__content {
+		width: 90%;
+		margin: 0 auto;
 		gap: 1rem;
+		@media screen and (max-width: 1024px) {
+			width: var(--sizeAll);
+		}
+		& div {
+			gap: 1rem;
+		}
+	}
+	&__banner {
+		width: var(--sizeAll);
+		height: var(--sizeBanner);
+		background: var(--bgColor);
+		box-shadow: var(--boxShadow);
+		@media screen and (max-width: 1024px) {
+			width: var(--sizeAll);
+			height: var(--sizeAll);
+		}
 	}
 }

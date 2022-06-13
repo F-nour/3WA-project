@@ -1,35 +1,42 @@
-// onclick
+// menu
+
+@mixin headerFooter() {
+	position: fixed;
+	left: 0;
+	height: var(--sizeMenu);
+	justify-content: center;
+}
 
 @mixin menu-onclick() {
 	background-repeat: no-repeat;
-	background-size: 3rem;
+	background-size: var(--sizeMenu);
 	cursor: pointer;
-	height: 3rem;
+	height: var(--sizeMenu);
 	background-color: initial;
 	border: none;
 }
 
-@mixin onClickBody() {
+@mixin menuBody() {
 	background-color: var(--closeColor);
 	box-shadow: var(--boxShadow);
 	&:hover,
 	&:focus {
 		.open {
 			transition: var(--transitionAll);
-			background-image: url('../svg/expand_more_hover.svg');
-			@include onClick();
+			background-image: url('/public/images/components/expand_more_hover.svg');
+			@include menu();
 		}
 		.close {
 			transition: var(--transitionAll);
-			background-image: url('../svg/expand_less_hover.svg');
-			@include onClick();
+			background-image: url('/public/images/components/expand_less_hover.svg');
+			@include menu();
 		}
 	}
 }
 
-@mixin onClick() {
+@mixin menu() {
 	@include menu-onclick();
-	width: 3rem;
+	width: var(--sizeMenu);
 	background-attachment: local;
 	position: absolute;
 	bottom: 0;
@@ -44,4 +51,9 @@
 	visibility: hidden;
 	height: 0;
 	transition: all 0.3s;
+}
+
+@mixin styleMenu {
+	background-color: var(--menuColor);
+	box-shadow: var(--boxShadow);
 }

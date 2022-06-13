@@ -1,5 +1,7 @@
 ## config database file
 lib/Database/config.php
+lib/Database/config_3wa.php
+
 
 ## library files
 vendor/

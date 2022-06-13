@@ -20,7 +20,7 @@ class HomepageController extends AbstractController
         $actuality = $this->getActualities();
         $template = 'Views/Templates/Pages/homepage.phtml';
 
-        require  $this->layout;
+        require  $this->userLayout;
     }
 
     public function getActualities(): array

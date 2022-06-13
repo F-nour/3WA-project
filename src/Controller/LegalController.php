@@ -8,6 +8,6 @@ class LegalController extends AbstractController
     {
         $title = 'Mentions légales';
         $template = 'Views/Templates/Pages/legal.phtml';
-        require $this->layout;
+        require $this->userLayout;
     }
 }

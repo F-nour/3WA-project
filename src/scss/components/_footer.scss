@@ -1,11 +1,13 @@
 @use '../mixins/flex';
+@use '../mixins/accessibility';
+@use '../mixins/menu';
 
 .footer {
+	@include menu.headerFooter();
+	@include menu.styleMenu();
 	width: var(--sizeAll);
 	bottom: 0;
 	padding: 0 0.5rem;
-	height: var(--sizeMenu);
-	position: static;
 	& span {
 		color: var(--linkColor);
 	}
@@ -15,35 +17,42 @@
 }
 
 .footer-menu {
-	@include flex.flex-row(3, 0, center);
-	& .download {
-		justify-content: center;
+	@include flex.flex-row(2, 16, space-between);
+	& a:hover > img,
+	& a:focus > img {
+		height: 3.5rem;
+		transition: var(--transitionAll);
+		margin: 0 -0.5rem;
 	}
-	&__link img,
-	&__link {
-		height: 3rem;
+	&__link img {
+		height: 2.5rem;
 	}
-	&__social {
-		&__list {
-			@include flex.flex-row(0, 16, start);
-			flex-wrap: nowrap;
-			align-items: center;
+	&__list {
+		@include flex.flex-row(3, 8, end);
+		width: var(--sizeAll);
+	}
+	&__list:first-child {
+		@include flex.flex-row(3, 16, start);
+		& a,
+		& a > img {
+			@include accessibility.disabledBoxShadow();
 		}
 	}
-	&__legal {
-		@include flex.flex-row(0, 1, end);
-		& li {
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			margin: 0 0.5rem;
-		}
+	&__link,
+	&__link a {
+		display: flex;
+		height: var(--sizeMenu);
+		align-items: center;
+	}
+	&__list,
+	&__copyritght {
+		align-items: center;
 	}
 }
 
 @media (max-width: 1024px) {
 	.footer {
-		margin: 1rem 0 0;
+		padding-bottom: 1rem;
 		position: static;
 		width: 100%;
 		height: -webkit-fit-content;

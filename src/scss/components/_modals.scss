@@ -1,4 +1,4 @@
-@use '../mixins/onclick';
+@use '../mixins/menu';
 
 .shadow {
 	transition: var(--transitionAll);
@@ -13,13 +13,13 @@
 
 .close-icon {
 	position: absolute;
-	background-image: url('../svg/close.svg');
-	@include onclick.menu-onclick;
+	background-image: url('/public/images/components/close.svg');
+	@include menu.menu-onclick;
 	top: 0;
 	right: 0;
 	background-position: top 0 right 8px;
 	&:hover,
 	&:focus {
-		background-image: url('../svg/close__hover.svg');
+		background-image: url('/public/images/components/close__hover.svg');
 	}
 }

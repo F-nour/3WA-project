@@ -25,7 +25,7 @@
 
 /* fix responsive bugs */
 
-*:not(head, meta, title, link, script, table, tbody, tfoot, thead, tr, td, th, p, br, blockquote, q, code, span, strong, em, img, a, ul, ol, dl, li, dd, dt),
+*:not(head, meta, title, link, script, table, tbody, tfoot, thead, tr, td, th, p, br, hr, blockquote, q, code, span, strong, em, img, a, li, dd, dt),
 :after,
 :before,
 .flex-column {
@@ -46,6 +46,7 @@ html {
 	position: fixed;
 	font-size: 62.5%; /* 1em = 10px */
 	font-weight: normal;
+	letter-spacing: 0.1rem;
 }
 body {
 	flex: 1 0;
@@ -98,10 +99,12 @@ body {
 }
 
 .adaptive-img--cover > span > img {
+	-o-object-fit: cover;
 	object-fit: cover;
 }
 
 .adaptive-img--contain > span > img {
+	-o-object-fit: contain;
 	object-fit: contain;
 }
 

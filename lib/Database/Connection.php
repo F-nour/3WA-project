@@ -4,6 +4,8 @@ namespace Library\Database;
 
 use PDO;
 
+$config = require 'config_3wa.php';
+
 class Connection
 {
     protected PDO $pdo;
@@ -20,26 +22,6 @@ class Connection
             ]
         );
     }
-
-    // public function __construct()
-    // {
-    //     $config =
-    //         [
-    //             'db_host' => 'localhost',
-    //             'db_name' => 'kte',
-    //             'db_user' => 'root',
-    //             'db_password' => 'Devp@ss',
-    //         ];
-    //     $this->pdo = new PDO(
-    //         "mysql:host={$config['db_host']};dbname={$config['db_name']};charset=UTF8",
-    //         $config['db_user'],
-    //         $config['db_password'],
-    //         [
-    //             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    //             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-    //         ]
-    //     );
-    // }
 
     /**
      * Renvoie un tableau de résultats d'une requête SQL (SELECT)

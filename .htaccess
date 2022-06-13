@@ -1,0 +1,18 @@
+# Emplacement de l'index
+DirectoryIndex public/index.php
+
+# Interdiction d'accès à certains fichiers
+<Files *.json>
+deny from all
+</Files>
+<Files *.lock>
+deny from all
+</Files>
+<Files *.sql>
+deny from all
+</Files>
+
+# Réécriture des urls
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . public/index.php [L]

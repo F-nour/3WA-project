@@ -6,8 +6,15 @@ import {
 	keyEvent,
 	removeElement,
 	createElement,
+	cancel,
 } from '../lib/utilities.js';
-import { scrollable, closeBtn, modalFocus, createShadow } from './modals.js';
+import {
+	scrollable,
+	closeBtn,
+	modalFocus,
+	createShadow,
+	openModal,
+} from './modals.js';
 
 ('use strict');
 
@@ -19,22 +26,23 @@ const headerWidth = `300px`;
 
 // export de fonctions
 
-export function responsive() {
-	screenResize();
+export const displayMenu = () => {
 	actualLinkMenu();
-	menuIcon();
-}
+	logoEvent();
+};
 
-export const screenResize = () => {
+export const displayResponsiveMenu = () => {
 	if (window.innerWidth <= SCREENWIDTH.LARGE) {
-		visible(header, STYLES.HIDDEN);
 		size(header, '0px');
+		visible(header, STYLES.HIDDEN);
+		menuIcon();
 		closeMenu();
 	} else {
+		size(header, '');
+		visible(header, STYLES.VISIBLE);
+		visible(headerMenu, STYLES.VISIBLE);
 		removeElement(document.getElementById(ID.HAMBERGERMENU));
 		removeElement(document.getElementById(ID.CLOSEMENU));
-		visible(headerMenu, STYLES.VISIBLE);
-		size(headerMenu, '100%');
 	}
 };
 
@@ -47,43 +55,59 @@ const menuIcon = () => {
 		CLASSNAME.HAMBERGERMENU,
 		ID.HAMBERGERMENU
 	);
+	hambergerMenu.innerHTML = `<span class="sr-only">Ouvrir le menu</span>`;
 	clickEvent(hambergerMenu, openMenu);
 	keyEvent(hambergerMenu, 'Enter', openMenu);
 	return hambergerMenu;
 };
 
 const closeMenuIcon = () => {
+	const hambergerMenu = document.getElementById(ID.HAMBERGERMENU);
 	const closeMenuIcon = closeBtn(
 		headerMenu,
+		hambergerMenu,
 		`${CLASSNAME.CLOSEICON}`,
 		`${headerWidth}`,
 		ID.CLOSEMENU,
-		closeMenu
+		closeMenuAction
 	);
+	closeMenuIcon.innerHTML = `<span class="sr-only">Ouvrir le menu</span>`;
 	return closeMenuIcon;
 };
 
 // création des actions d'event
 
 const openMenu = () => {
-	size(headerMenu, headerWidth);
+	size(header, headerWidth);
+	visible(header, STYLES.VISIBLE);
 	visible(headerMenu, STYLES.VISIBLE);
-	createShadow(document.body, ID.SHADOW);
 	closeMenuIcon();
-	headerOnFocus();
-	// createShadow(HTMLELEMENTS.CONTAINER, closeMenu);
+	const hambergerMenu = document.getElementById(ID.HAMBERGERMENU);
+	openModal(hambergerMenu, closeMenuAction);
+	hambergerMenu.removeEventListener('click', openMenu);
+	headerOnFocus;
 };
 
 const closeMenu = () => {
 	const shadow = document.querySelector(`#${ID.SHADOW}`);
 	const closeBtn = document.getElementById(ID.CLOSEMENU);
 	header.classList.remove(CLASSNAME.ACTIVE);
-	size(headerMenu, '0px');
+	size(header, '0px');
+	visible(header, STYLES.HIDDEN);
 	visible(headerMenu, STYLES.HIDDEN);
 	removeElement(shadow);
 	removeElement(closeBtn);
 	scrollable(document.body, STYLES.AUTO);
 };
+
+const closeMenuAction = () => {
+	closeMenu();
+	const hambergerMenu = document.getElementById(ID.HAMBERGERMENU);
+	hambergerMenu.removeAttribute('style');
+	hambergerMenu.addEventListener('click', openMenu);
+};
+
+cancel(closeMenuAction);
 
 // garder le focus sur le menu
 
@@ -112,3 +136,15 @@ const actualLinkMenu = () => {
 	getActualClass(headerMenus, closeMenu());
 	getActualClass(footerMenu);
 };
+
+const logoEvent = () => {
+	const logo = document.querySelector('.logo');
+	clickEvent(logo, function () {
+		window.location.href = '/';
+	});
+	keyEvent(logo, 'Enter', function () {
+		window.location.href = '/';
+	});
+};
+
+cancel(closeMenuAction);

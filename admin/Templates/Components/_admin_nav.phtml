@@ -1,0 +1,26 @@
+<nav role="navigation" class="header-menu" id="headerMenu">
+    <ul class=" header-menu__list" id="menuList">
+        <li data-menus class="header-menu__link internal logo" id="logo">
+            <a href="/" title="Accueil" class="flex-row">
+                Accueil du site
+            </a>
+        </li>
+        <li data-menus class="header-menu__link internal list1">
+            <a href="/products" title="Produits">Accueil administrateur</a>
+        </li>
+        <?php if (isset($admin)) : ?>
+            <!-- Menu pour les administrateurs connectés -->
+            <li data-menus class="header-menu__link internal list6">
+                <a href="/admin/actuality" title="Administration">Gérer les actus</a>
+            </li>
+            <li ddata-menus class="header-menu__link internal list5">
+                <a href="/admin/products" title="Administration">Gérer les produits</a>
+            </li>
+            <li data-menus class="header-menu__link internal list6">
+                <a href="/admin/contacts" title="Administration">Prise de contacts</a>
+            </li>
+            <li data-menus class="header-menu__link internal list7">
+                <a href="/admin/about" title="Administration">Coordonnées</a>
+            <?php endif; ?>
+    </ul>
+</nav>

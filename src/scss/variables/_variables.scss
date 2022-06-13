@@ -2,13 +2,13 @@
 	--sizeAll: 100%;
 	--sizeMenu: 4rem;
 	--sizeGap: 8;
-	--activeHeight: height 0.3s ease-out;
-	--activeWidth: width 0.3s ease-out;
+	--activeHeight: height 0.3s ease-in-out;
+	--activeWidth: width 0.3s ease-in-out;
 	--transitionAll: all 0.3s;
 	--visible: visible;
 	--menuFontSize: 1.8rem;
 	--boxShadow: inset 0 0 8px 0 var(--borderColor);
-	--focusBorder: 0 0 0 1px var(--focusColor);
+	--focusBorder: inset 0px 2px 4px 0px var(--focusColor);
 	--noTransition: all 0.3s;
 	--minWidthMobile: 300px;
 	--modalShadow: inset 0 0 16px 8px var(--borderColor);

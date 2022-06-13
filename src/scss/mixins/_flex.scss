@@ -1,6 +1,8 @@
 // display: flex;
 
 @mixin flex-column($content: center, $items: center, $gap: 0) {
+	display: flex;
+	flex-direction: column;
 	justify-content: $content;
 	align-items: $items;
 	gap: #{$gap}px;
@@ -12,6 +14,8 @@
 	} @else {
 		flex: 1 calc((100 / $size) - $gap);
 	}
+	display: flex;
+	flex-direction: row;
 	justify-content: $content;
 	align-items: center;
 	flex-wrap: wrap;

@@ -11,22 +11,22 @@
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos numquam rerum
 			tenetur eveniet fugit, at ea consequatur veniam illo iure?
 		</p>
-	</div>
-	<div class="actuality-container">
-		<?php
-		foreach ($actuality as $actu) { ?>
-			<div class="actuality">
-				<div class="actuality__title">
-					<h2><?= $actu['title'] ?></h2>
+		<div class="actuality-container">
+			<?php
+			foreach ($actuality as $actu) { ?>
+				<div class="actuality">
+					<div class="actuality__title">
+						<h2><?= $actu['title'] ?></h2>
+					</div>
+					<div class="actuality__content">
+						<p><?= $actu['content'] ?></p>
+					</div>
+					<div class="actuality__date">
+						<p>Actualité du
+							<?= date_create($actu['date'])->format('d/m/Y à H:i') ?></p>
+					</div>
 				</div>
-				<div class="actuality__content">
-					<p><?= $actu['content'] ?></p>
-				</div>
-				<div class="actuality__date">
-					<p>Actualité du
-						<?= date_create($actu['date'])->format('d/m/Y à H:i') ?></p>
-				</div>
-			</div>
-		<?php } ?>
+			<?php } ?>
+		</div>
 	</div>
 </section>

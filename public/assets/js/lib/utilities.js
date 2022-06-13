@@ -30,6 +30,15 @@ export const keyEvent = (element, key1, key2 = '', action) => {
 	});
 };
 
+export const cancel = (action) => {
+	addEventListener('keydown', (e) => {
+		if (e.key === 'Escape') {
+			action();
+		}
+	});
+};
+
+
 // Add or remove elements or attributes
 
 export const removeElement = (element) => {

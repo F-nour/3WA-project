@@ -7,7 +7,7 @@ use \Library\Database\Connection;
 abstract class AbstractManager
 {
     protected $db;
-    protected $config = '../lib/Database/config.php';
+    protected $config = '../lib/Database/config_3wa.php';
 
     const ACTUALITIES = 'actualities';
     const ABOUT = 'about';

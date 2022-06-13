@@ -44,6 +44,6 @@
     <meta name="DC.coverage" content="World" />
     <meta name="DC.rights" content="" />
     <!-- link -->
-    <link rel="stylesheet" href="./public/css/style.css" />
+    <link rel="stylesheet" href="/public/css/style.css" />
     <script type="module" src="./public/js/script.js" async></script>
     </head>

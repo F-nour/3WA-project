@@ -1,6 +1,8 @@
 @use '../mixins/accessibility';
 
-.sr-only, .sr-only-focus:not(:focus):not(:focus-within) { // bostrap < v5.0.0
+.sr-only,
+.sr-only-focus:not(:focus):not(:focus-within) {
+	// bostrap < v5.0.0
 	position: absolute !important;
 	width: 1px !important;
 	height: 1px !important;
@@ -17,10 +19,14 @@ button,
 input,
 optgroup,
 select,
-textarea {
+textarea
+*[tabindex] {
 	@include accessibility.focus();
 	@include accessibility.hover();
 	@include accessibility.active();
+	@media (max-width: 1024px) {
+		@include accessibility.disabledBoxShadow();
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {

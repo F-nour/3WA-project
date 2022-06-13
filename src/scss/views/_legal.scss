@@ -1,6 +1,9 @@
-.legal-content {
+@use '../mixins/elements';
+
+.legal {
+    @include elements.container();
+}
+
+.legal__content {
     gap: 2em;
-    & div {
-        gap: 1rem;
-    }
 }

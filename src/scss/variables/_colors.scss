@@ -1,13 +1,14 @@
 :root {
-	--textColor: hsl(260, 40%, 20%);
-	--linkColor: hsl(260, 40%, 40%);
-	--linkExternal: hsl(260, 80%, 40%);
-	--focusColor: hsl(260, 100%, 50%);
-	--borderColor: hsla(245, 16%, 20%, 0.6);
-	--scrollColor: hsl(245, 15%, 70%);
-	--bgColor: hsl(245, 15%, 90%);
-	--transparentColor: hsla(245, 100%, 15%, 0.6);
-	// --closeColor:
-	// --openColor:
-	// --collapsColor:
+	--textColor: rgb(44, 31, 71);
+	--linkColor: rgb(88, 61, 143);
+	--linkExternal: rgb(75, 20, 184);
+	--focusColor: rgb(85, 0, 255);
+	--borderColor: rgba(44, 43, 59, 0.6);
+	--scrollColor: rgb(169, 167, 190);
+	--bgColor: rgb(226, 226, 233);
+	--transparentColor: rgba(6, 0, 77, 0.6);
+	--activeColor: rgba(168, 148, 209, 0.6);
+	--menuColor: rgb(198, 196, 212);
+	--actualColor: rgba(89, 87, 117, 0.3);
+	--actualFocusColor: rgba(150, 144, 213, 0.3);
 }

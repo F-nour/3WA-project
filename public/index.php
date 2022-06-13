@@ -1,15 +1,7 @@
 <?php
 // Autoloader
-$config = require dirname(__DIR__) . '/lib/Database//config.php';
 $autoload = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php'; // autoload composer
 require $autoload;
-
-// variables for the layout
-$title = '';
-$description = '';
-$keywords = '';
-$image = '';
-$url = '';
 
 // development mode
 $whoops = new \Whoops\Run;
@@ -22,4 +14,3 @@ use Library\Router\Router;
 
 $router = new Router();
 $router->goToRoute();
-
