@@ -4,7 +4,7 @@ namespace Library\Core;
 
 use Library\Auth\Authentifier;
 
-class AbstractController
+class Controllers
 {
     protected $user; // 1 = admin, 2 = user
     protected $admin;
@@ -13,7 +13,7 @@ class AbstractController
 
     const SITE_NAME = 'Kiff ton Écharpe';
 
-    protected function getConnectedUser(): ?\App\Model\Table\User
+    public function getConnectedUser(): ?\App\Model\Table\User
     {
         $auth = new Authentifier();
         $auth->startSession();
@@ -27,7 +27,7 @@ class AbstractController
         // echo 'test'; test de la fonction getConnectedUser()
     }
 
-    public function display(string $title, string $template, ?array $data = null)
+    public function display(string $title, string $template, ?array $data = []): void
     {
         extract($data);
         $title = SELF::SITE_NAME . ' - ' . $title;
@@ -35,7 +35,7 @@ class AbstractController
         require $this->userLayout;
     }
 
-    public function displayAdmin($title, $template, array $data = [])
+    public function displayAdmin($title, $template, ?array $data = [])
     {
         extract($data);
         $title = SELF::SITE_NAME . ' - Espace administrateur - ' . $title;

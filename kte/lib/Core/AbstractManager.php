@@ -2,7 +2,7 @@
 
 namespace Library\Core;
 
-abstract class AbstractManager
+abstract class Managers
 {
     protected $db;
     protected $config = '../config/database_3wa.php';
@@ -18,7 +18,7 @@ abstract class AbstractManager
     public function __construct()
     {
         $config = require $this->config;
-        $this->db = new \Library\Database\Connection($config);
-        // $this->db = new Connection();
+        $this->db = new \Library\Database\Connexion($config);
+        // $this->db = new Connexion();
     }
 }
