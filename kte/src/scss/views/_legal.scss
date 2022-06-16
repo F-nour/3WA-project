@@ -1,7 +1,7 @@
-@use '../mixins/elements';
+@use '../mixins/element';
 
 .legal {
-    @include elements.container();
+    @include element.container();
 }
 
 .legal__content {

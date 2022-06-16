@@ -16,14 +16,14 @@
 			foreach ($actuality as $actu) { ?>
 				<div class="actuality">
 					<div class="actuality__title">
-						<h2><?= $actu['title'] ?></h2>
+						<h2><?= $actu->title ?></h2>
 					</div>
 					<div class="actuality__content">
-						<p><?= $actu['content'] ?></p>
+						<p><?= $actu->content ?></p>
 					</div>
 					<div class="actuality__date">
 						<p>Actualité du
-							<?= date_create($actu['date'])->format('d/m/Y à H:i') ?></p>
+							<?= date_create($actu->date)->format('d/m/Y à H:i') ?></p>
 					</div>
 				</div>
 			<?php } ?>

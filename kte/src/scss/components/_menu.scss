@@ -20,7 +20,7 @@
 		position: fixed;
 		top: 0;
 		background-image: url('../../images/components/menu.svg');
-		background-position-x: 1rem;
+		background-position-x: var(--sizeGeneral);
 		width: var(--sizeAll);
 		@include menu.menu-onclick();
 		background-color: var(--bgColor);
@@ -35,7 +35,7 @@
 			position: absolute;
 			color: var(--transparentColor);
 			top: 1.25rem;
-			right: 1rem;
+			right: var(--sizeGeneral);
 		}
 	}
 }

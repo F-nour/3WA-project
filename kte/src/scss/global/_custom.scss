@@ -32,7 +32,7 @@ body {
 	box-shadow: var(--boxShadow);
 	letter-spacing: 0.05rem;
 	@media (max-width: 1024px) {
-		font-size: small;
+		font-size: large;
 	}
 	font-family: var(--joan);
 }
@@ -44,7 +44,7 @@ body {
 }
 
 p {
-	margin-bottom: 0.5rem;
+	margin-bottom: var(--sizeHalf);
 }
 
 .internal,
@@ -66,13 +66,13 @@ button {
 	padding: 0;
 	background: none;
 	border: none;
-	text-align: center;
+	justify-content: center;
 	font-style: italic;
 	font-family: var(--abril);
 }
 
 button {
-	text-align: center;
+	justify-content: center;
 }
 
 h1,
@@ -85,7 +85,7 @@ h5,
 .h3,
 .h4,
 .h5 {
-	font-weight: 600;
+	font-weight: 700;
 	font-style: oblique;
 	font-family: var(--gentium);
 	margin: 1em 0 0.5em;
@@ -94,10 +94,8 @@ h5,
 h1,
 .h1 {
 	font-size: 3rem;
-	text-align: center;
-	@media (max-width: 1024px) {
-		margin: 0 0.5rem;
-	}
+	justify-content: center;
+	font-family: var(--abril);
 }
 
 h2,

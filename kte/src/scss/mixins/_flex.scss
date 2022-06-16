@@ -5,10 +5,10 @@
 	flex-direction: column;
 	justify-content: $content;
 	align-items: $items;
-	gap: #{$gap}px;
+	gap: #{$gap}rem;
 }
 
-@mixin flex-row($size: 0, $gap: 0, $content) {
+@mixin flex-row($size: 0, $gap: 0, $content, $wrap: wrap) {
 	@if $size == 0 {
 		flex: 1 0;
 	} @else {
@@ -18,6 +18,6 @@
 	flex-direction: row;
 	justify-content: $content;
 	align-items: center;
-	flex-wrap: wrap;
-	gap: #{$gap}px;
+	flex-wrap: $wrap;
+	gap: #{$gap}rem;
 }

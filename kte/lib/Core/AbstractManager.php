@@ -1,10 +1,37 @@
 <?php
 
+/**
+ * @file AbstractManager.php
+ * @brief file for the AbstractManager class.
+ */
+
+/**
+ * @brief naamespace Library\Core
+ * @namespace Library\Core
+ * @uses \Library\Database\Connexion : Connexion to the database
+ */
 namespace Library\Core;
 
-abstract class Managers
+use \Library\Database\Connexion;
+
+/**
+ * @brief abstract class for managers.
+ * @class AbstractManager
+ * @property Connexion $db Connexion to the database
+ * @property $config array configuration file
+ * names of tables in the database (for the managers) :
+ * @const string ACTUALITIES = 'actualities'
+ * @const string ABOUT = 'about'
+ * @const string CATEGORIES = 'categories'
+ * @const string CONTACT = 'contact'
+ * @const string ORDERED = 'ordered'
+ * @const string PRODUCTS = 'products'
+ * @const string USERS = 'users'
+ *
+ */
+class AbstractManager
 {
-    protected $db;
+    protected Connexion $db;
     protected $config = '../config/database_3wa.php';
 
     const ACTUALITIES = 'actualities';
@@ -15,10 +42,14 @@ abstract class Managers
     const PRODUCTS = 'products';
     const USERS = 'users';
 
+    /**
+     * @brief constructor
+     * @method __construct()
+     * @variable $config array configuration file
+     */
     public function __construct()
     {
         $config = require $this->config;
-        $this->db = new \Library\Database\Connexion($config);
-        // $this->db = new Connexion();
+        $this->db = new Connexion($config);
     }
 }

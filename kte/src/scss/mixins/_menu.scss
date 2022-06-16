@@ -5,6 +5,9 @@
 	left: 0;
 	height: var(--sizeMenu);
 	justify-content: center;
+	@media (max-width: 1024px) {
+		font-size: small;
+	}
 }
 
 @mixin menu-onclick() {

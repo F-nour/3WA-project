@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @brief file for the UserManager class.
+ * @file UserManager.php
+ * @namespace App\Model\Manager
+ * @uses \Library\Core\AbstractManager AbstractManager class.
+ * @class UserManager
+ */
+
 namespace App\Model\Manager;
 
 use Library\Core\AbstractManager;
@@ -12,6 +20,11 @@ class UserManager extends AbstractManager
         parent::__construct(self::USERS);
     }
 
+    /**
+     * @brief Method to get all users.
+     * @method array getAll
+     * @return array
+     */
     public function getAllUsers() : array
     {
         $sql = 'SELECT id, role, society, INSEE, lastname, firstname, tel, service, adress, complement, zip, city, email  FROM ' . self::USERS;
@@ -21,6 +34,12 @@ class UserManager extends AbstractManager
         return $users;
     }
 
+    /**
+     * @brief Method to get a user.
+     * @method object getUser
+     * @param int $id
+     * @return object
+     */
     public function getUserById(int $id) : \App\Model\Table\User
     {
         $sql = 'SELECT id, role, society, INSEE, lastname, firstname, tel, service, adress, complement, zip, city, email  FROM ' . self::USERS . ' WHERE id = :id';
@@ -30,10 +49,4 @@ class UserManager extends AbstractManager
         $user = $result->fetch();
         return $user;
     }
-
-
-
-
-
-
 }

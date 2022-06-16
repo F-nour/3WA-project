@@ -1,10 +1,31 @@
 <?php
 
+/**
+ * @file Router.php
+ * @brief Router class file.
+ */
+
+/**
+ * @namespace Library\Router
+ * @brief Library\Router namespace.
+ */
 namespace Library\Router;
 
+/**
+ * @class Router
+ * @brief Router class.
+ */
 class Router
 {
 
+    /**
+     * @brief Method used to match a route.
+     * @variable $routes Array of routes.
+     * @variable $route String route to match.
+     * @variable $controllerName String name of the controller.
+     * @variable $method String name of the method.
+     * @throws \Library\Http\NotFoundException If the route is not found.
+     */
     public function goToRoute()
     {
         $routes = require '../config/routes.php';
@@ -18,9 +39,7 @@ class Router
             $controller = new $controllerName();
             $controller->$method();
         } else {
-            header("HTTP/1.1 404 Not Found");
-            $controller = new \App\Controller\ErrorController();
-            $controller->index();
+            throw new \Library\Http\NotFoundException('404 Not Found');
         }
     }
 }

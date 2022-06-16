@@ -5,7 +5,7 @@ function includeClasses($className)
 
     if (file_exists($fichier = 'Models/' . $className . '.php')) {
         require $fichier;
-    } elseif (file_exists($fichier = 'Controllers/' . $className . '.php')) {
+    } elseif (file_exists($fichier = 'AbstractController/' . $className . '.php')) {
         require $fichier;
     } elseif (file_exists($fichier = 'lib/Data/' . $className . '.php')) {
         require $fichier;

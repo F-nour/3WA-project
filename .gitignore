@@ -1,0 +1,31 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+## IDE's setting file
+.idea/
+.vscode/
+
+
+## kte
+## config database file
+kte/config/database.php
+kte/config/database_3wa.php
+
+
+## library files
+kte/logs/
+kte/vendor/
+kte/node_modules/
+
+## IDE's setting file
+kte/.idea/
+kte/.vscode/
+
+## project
+project/
+utils/

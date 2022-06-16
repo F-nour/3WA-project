@@ -1,9 +1,11 @@
-
 // variables css
-@use './variables/colors';
-@use './variables/fonts';
+@use './variables/boxShadow';
+@use './variables/color';
+@use './variables/font';
+@use './variables/other';
 @use './variables/print';
-@use './variables/variables';
+@use './variables/size';
+@use './variables/transition';
 
 // reseters for the site
 @use './reseters/common';
@@ -13,7 +15,6 @@
 @use './global/accessibility';
 @use './global/main';
 
-
 // components
 @use './components/modals';
 @use './components/menu';
@@ -22,4 +23,5 @@
 
 // views
 @use './views/home';
+@use './views/about';
 @use './views/legal';

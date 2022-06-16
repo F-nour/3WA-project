@@ -1,3 +1,14 @@
-<section class="home" id="home" name="home">
-    <h1>A propos</h1>
+<section class="about" id="about" name="about">
+    <div class="about__title" id="aboutTitle" name="aboutTitle">
+        <h1>À propos de nous</h1>
+    </div>
+    <div class="about__content" id="aboutContent" name="aboutContent">
+        <h2><?= $about->status . ' "' . $about->society ?>"</h2>
+        <p>
+            La société <?= $about->society ?> est située à <?= $about->city ?>,
+        </p>
+        <p>
+            son email est <a class="external" href="mailto:<?= $about->mail ?>"><?= $about->mail ?></a>,
+        </p>
+    </div>
 </section>

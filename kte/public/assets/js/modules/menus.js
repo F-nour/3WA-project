@@ -18,25 +18,38 @@ import {
 
 ('use strict');
 
-// constantes globales
+// global variables
 
 const header = document.querySelector('#header');
 const headerMenu = document.querySelector('#headerMenu');
 const headerWidth = `300px`;
 
-// export de fonctions
+// export functions
 
-export const displayMenu = () => {
+/**
+ * @function initMenu
+ * @description initialize the menu
+ * @callback actualLinkMenu
+ * @callback logoEvent
+ *
+ */
+export const initMenu = () => {
 	actualLinkMenu();
 	logoEvent();
 };
 
+/**
+ * @function displayResponsiveMenu
+ * @description display responsive menu
+ *
+ */
 export const displayResponsiveMenu = () => {
 	if (window.innerWidth <= SCREENWIDTH.LARGE) {
 		size(header, '0px');
 		visible(header, STYLES.HIDDEN);
 		menuIcon();
 		closeMenu();
+		cancel(closeMenuAction);
 	} else {
 		size(header, '');
 		visible(header, STYLES.VISIBLE);
@@ -46,8 +59,12 @@ export const displayResponsiveMenu = () => {
 	}
 };
 
-// création des icônes de menu
+// create icons for the menu
 
+/**
+ * @function menuIcon
+ * @description create the hamberger menu icon
+ */
 const menuIcon = () => {
 	const hambergerMenu = createElement(
 		'button',
@@ -61,6 +78,11 @@ const menuIcon = () => {
 	return hambergerMenu;
 };
 
+/**
+ * @function closeMenuIcon
+ * @description create the close menu icon
+ * @returns {*}
+ */
 const closeMenuIcon = () => {
 	const hambergerMenu = document.getElementById(ID.HAMBERGERMENU);
 	const closeMenuIcon = closeBtn(
@@ -71,12 +93,16 @@ const closeMenuIcon = () => {
 		ID.CLOSEMENU,
 		closeMenuAction
 	);
-	closeMenuIcon.innerHTML = `<span class="sr-only">Ouvrir le menu</span>`;
+	closeMenuIcon.innerHTML = `<span class="sr-only">Ouvrir le menu</span>`; // ajoute un texte à l'icône pour l'accessibilité
 	return closeMenuIcon;
-};
+};;
 
-// création des actions d'event
+// create events for the menu
 
+/**
+ * @function openMenu
+ * @description open the menu
+ */
 const openMenu = () => {
 	size(header, headerWidth);
 	visible(header, STYLES.VISIBLE);
@@ -88,6 +114,10 @@ const openMenu = () => {
 	headerOnFocus;
 };
 
+/**
+ * @function closeMenu
+ * @description close the menu
+ */
 const closeMenu = () => {
 	const shadow = document.querySelector(`#${ID.SHADOW}`);
 	const closeBtn = document.getElementById(ID.CLOSEMENU);
@@ -100,6 +130,10 @@ const closeMenu = () => {
 	scrollable(document.body, STYLES.AUTO);
 };
 
+/**
+ * @function closeMenuAction
+ * @description actions to do when the menu is closed
+ */
 const closeMenuAction = () => {
 	closeMenu();
 	const hambergerMenu = document.getElementById(ID.HAMBERGERMENU);
@@ -107,17 +141,28 @@ const closeMenuAction = () => {
 	hambergerMenu.addEventListener('click', openMenu);
 };
 
+/**
+ * @function cance
+ * @param closeMenuAction()
+ * @description close the menu when the user keypresses escape
+ */
 cancel(closeMenuAction);
 
-// garder le focus sur le menu
-
+/**
+ * @function headerOnFocus
+ * @description focus on the header when the user clicks on the menu
+ */
 const headerOnFocus = () => {
 	const closeIcon = document.getElementById(ID.CLOSEMENU);
 	modalFocus(header, closeIcon);
 };
 
-// Indique la page actuel (si elle est en interne)
-
+/**
+ * @function getActualClass
+ * @description get the url and change the class of the element
+ * @param menus
+ * @param action
+ */
 const getActualClass = (menus, action = null) => {
 	for (let i = 0; i < menus.length; i += 1) {
 		const menu = menus[i];
@@ -130,6 +175,10 @@ const getActualClass = (menus, action = null) => {
 	}
 };
 
+/**
+ * @function ActualLinkMenu
+ * @description get the url and change the class of the link in the menu
+ */
 const actualLinkMenu = () => {
 	const headerMenus = document.querySelectorAll('.header-menu__link');
 	const footerMenu = document.querySelectorAll('.footer-menu__link');
@@ -137,14 +186,16 @@ const actualLinkMenu = () => {
 	getActualClass(footerMenu);
 };
 
+/**
+ * @function logoEvent
+ * @description create the event for the logo
+ */
 const logoEvent = () => {
 	const logo = document.querySelector('.logo');
 	clickEvent(logo, function () {
-		window.location.href = '/';
+		window.location.href = '/kte/';
 	});
 	keyEvent(logo, 'Enter', function () {
-		window.location.href = '/';
+		window.location.href = '/kte/';
 	});
 };
-
-cancel(closeMenuAction);

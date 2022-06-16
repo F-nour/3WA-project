@@ -1,10 +1,9 @@
 <?php
 
-function url(string $path): string
-{
-    return '/kte'  . $path;
-}
-
+/**
+ * @file routes.php
+ * @brief Routes configuration file.
+ */
 return [
     url('/') => [
         '\App\Controller\HomepageController',

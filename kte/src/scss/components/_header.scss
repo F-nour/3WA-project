@@ -12,7 +12,7 @@
 .header-menu {
 	line-height: var(--sizeMenu);
 	width: var(--sizeAll);
-	@include flex.flex-row(0, 32, space-between);
+	@include flex.flex-row(0, 3.2, space-between);
 	& > div {
 		width: var(--sizeAll);
 	}
@@ -22,7 +22,7 @@
 	}
 	&__link,
 	&__link a {
-		text-align: center;
+		justify-content: center;
 		width: var(--sizeAll);
 		margin: 0;
 	}
@@ -48,7 +48,7 @@
 		width: 300px;
 		z-index: 100;
 		transition: var(--transitionAll);
-		height: var(--sizeAll);
+		height: calc(var(--sizeMenu) * var(--sizeGap));
 		&-menu {
 			&__list {
 				@include flex.flex-column(end, start, var(--sizeGap));
@@ -56,7 +56,7 @@
 			&__link,
 			&__link a {
 				height: var(--sizeMenu);
-				text-align: start;
+				justify-content: start;
 			}
 			&__link a {
 				padding: 0 8px 0 var(--sizeMenu);

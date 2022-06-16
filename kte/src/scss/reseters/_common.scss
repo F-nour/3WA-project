@@ -25,12 +25,25 @@
 
 /* fix responsive bugs */
 
-*:not(head, meta, title, link, script, table, tbody, tfoot, thead, tr, td, th, p, br, hr, blockquote, q, code, span, strong, em, img, a, li, dd, dt),
+*:not(head, meta, title, link, script,
+table, tbody, tfoot, thead, tr, td, th,
+p, br, hr, blockquote, q, code, span, strong, em,
+h1, h2, h3, h4, h5, h6,
+img, a, li, dd, dt),
 :after,
 :before,
 .flex-column {
 	display: flex;
 	flex-direction: column;
+}
+
+p, blockquote, q, code, span, strong, em,
+h1, h2, h3, h4, h5, h6,
+a, li, dd, dt,
+button
+.flex-row {
+	display: flex;
+	flex-direction: row;
 }
 
 .flex-row {

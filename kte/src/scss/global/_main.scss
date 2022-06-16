@@ -1,16 +1,11 @@
-@use '../mixins/elements';
+@use '../mixins/element';
 
 .main {
 	width: var(--sizeAll);
-	padding-bottom: calc(var(--sizeMenu) + 2rem);
+	@include element.main();
+	padding-bottom: calc(var(--sizeMenu) + var(--sizeDubble));
 	& > section {
 		width: var(--sizeAll);
 		height: var(--sizeAll);
-		@include elements.main();
-		@include elements.container();
 	}
-}
-
-.f18 {
-	font-size: 1.8rem;
 }

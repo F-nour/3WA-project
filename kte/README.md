@@ -77,3 +77,15 @@ Aujourd'hui, je souhaite proposer de la maintenance informatique software, mais 
 ## Projets pour le site
 
 À terme, je souhaite que les personnes puissent effectuer leur commande directement sur ce site. Ils ou elles feront leur demande de prestation, et je génèrerai un devis une fois la demande effectuée. Il y aura donc un espace utilisateur distinct de l'espace administrateur.
+
+### Améliorations envisagées
+
+- Implémenter un système d'utilisateurs avec un rôle différent pour les utilisateurs et les administrateurs.
+- Permettre des actions différenciées qu'on soit utilisateur ou administrateur.
+- Rendre la SPA dynamique en implémentant un routeur en ajax combiné à celui en php.
+- Utilisation probable des framworks Synfony (php) et VueJS ou React (js)
+
+#### A  plus long terme :
+
+- Passer d'un back-end PHP à un back-end TypeScript
+- Mise en place d'un serveur distant avec nom de domaine.

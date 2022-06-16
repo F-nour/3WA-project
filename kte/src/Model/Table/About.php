@@ -1,16 +1,41 @@
 <?php
 
+/**
+ * @brief file for the About class to get and set data of about table.
+ * @file About.php
+ * @namespace App\Model\Table
+ * @property string $status
+ * @property string $society
+ * @property int INSEE
+ * @property int $zip
+ * @property string $city
+ * @property string phone
+ * @property string $mail
+ * @property string $image path to the image
+ * @property array $errors array of errors
+ * @const string INVALID_STATUS : invalid status
+ * @const string INVALID_SOCIETY : invalid society
+ * @const string INVALID_INSEE : invalid INSEE
+ * @const string INVALID_ZIP : invalid zip
+ * @const string INVALID_CITY : invalid city
+ * @const string INVALID_PHONE : invalid phone
+ * @const string INVALID_MAIL : invalid mail
+ * @const string INVALID_IMAGE : invalid image
+ */
+
 namespace App\Model\Table;
 
 class About
 {
     private array $errors = [];
+    private string $status;
     private string $society; // Nom de la société
     private string $INSEE; // Numéro INSEE
     private int $zip; // Code postal
     private string $city; // Ville
     private string $phone; // Téléphone
     private string $mail; // Email
+    private string $image; // Photo
 
     const INVALID_SOCIETY = "Nom de la société invalide.";
     const INVALID_INSEE = "Numéro INSEE invalide.";
@@ -18,7 +43,14 @@ class About
     const INVALID_CITY = "Ville invalide.";
     const INVALID_PHONE = "Téléphone invalide.";
     const INVALID_MAIL = "Email invalide.";
+    const INVALID_IMAGE = "Photo invalide.";
 
+    /**
+     * @brief Method to automatically set the data of the about table.
+     * @method array @hydrate
+     * @param array $data
+     * @return void
+     */
     private function hydrate(array $data): void
     {
         foreach ($data as $key => $value) {
@@ -29,6 +61,12 @@ class About
         }
     }
 
+    /**
+     * @brief Method to create row in the about table.
+     * @method void createDataRow
+     * @param array $data
+     * @return self
+     */
     public static function createDataRow(array $data): self
     {
         $product = new self();
@@ -38,7 +76,7 @@ class About
 
     // setters
 
-    private function setSociety(string $society)
+    private function setSociety(string $society): void
     {
         if (empty($society)) {
             $this->addError(self::INVALID_SOCIETY);
@@ -92,11 +130,25 @@ class About
         }
     }
 
+    private function setImage(string $image)
+    {
+        if (empty($image)) {
+            $this->addError(self::INVALID_IMAGE);
+        } else {
+            $this->image = $image;
+        }
+    }
+
     // getters
 
     public function getSociety(): string
     {
         return $this->society;
+    }
+
+    public function getstatus(): string
+    {
+        return $this->status;
     }
 
     public function getINSEE(): string
@@ -122,6 +174,11 @@ class About
     public function getMail(): string
     {
         return $this->mail;
+    }
+
+    public function getImage(): string
+    {
+        return $this->image;
     }
 
     // addError

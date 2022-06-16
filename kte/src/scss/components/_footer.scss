@@ -7,7 +7,7 @@
 	@include menu.styleMenu();
 	width: var(--sizeAll);
 	bottom: 0;
-	padding: 0 0.5rem;
+	padding: 0 var(--sizeHalf);
 	& span {
 		color: var(--linkColor);
 	}
@@ -17,7 +17,7 @@
 }
 
 .footer-menu {
-	@include flex.flex-row(2, 16, space-between);
+	@include flex.flex-row(2, 1.6, space-between);
 	& a:hover > img,
 	& a:focus > img {
 		height: 3.5rem;
@@ -26,13 +26,13 @@
 	}
 	&__link img {
 		height: 2.5rem;
+		padding: 0;
 	}
 	&__list {
-		@include flex.flex-row(3, 8, end);
-		width: var(--sizeAll);
+		@include flex.flex-row(3, 0, end, nowrap);
 	}
 	&__list:first-child {
-		@include flex.flex-row(3, 16, start);
+		@include flex.flex-row(3, 0, start);
 		& a,
 		& a > img {
 			@include accessibility.disabledBoxShadow();
@@ -42,35 +42,31 @@
 	&__link a {
 		display: flex;
 		height: var(--sizeMenu);
+		padding: 0 var(--sizeHalf);
 		align-items: center;
 	}
 	&__list,
-	&__copyritght {
+	&__copyright {
 		align-items: center;
 	}
 }
 
 @media (max-width: 1024px) {
 	.footer {
-		padding-bottom: 1rem;
-		position: static;
-		width: 100%;
+		padding-bottom: var(--sizeGeneral);
+		width: var(--sizeAll); // 100%
+		position: initial;
 		height: -webkit-fit-content;
 		height: -moz-fit-content;
 		height: fit-content;
+		align-items: center;
 		&-menu {
 			@include flex.flex-column(center, center, var(--sizeGap));
-			&__social {
-				@include flex.flex-column(end, center);
-				&__title {
-					justify-content: center;
-				}
-				&__list {
-					flex-wrap: wrap;
-				}
+			&__link {
+				padding: 0 var(--sizeGeneral);
 			}
-			&__legal {
-				justify-content: center;
+			&__list:first-child {
+				@include flex.flex-row(3, 0, center, nowrap);
 			}
 		}
 	}
