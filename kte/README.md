@@ -4,14 +4,16 @@
 
 ### Système d'exploitation utilisé
 
-Ce projet a été créé sur la distribution Linux Ubuntu 22.04 LTS.
+Ce projet a été créé sur la distribution Linux Ubuntu v22.04 LTS.
+
+La configuration php utilisée est la version v8.1.2 avec xDebug v3.1.2.
 
 ### IDE utilisés pour le développement
 
 Il a été édité à l'aide des IDE :
 
-- Visual Studio Code Version 1.68.0 (64 bits)
-- PhpStorm Version 2022.1.2 (64-bit).
+- Visual Studio Code Version v1.68.0 (64 bits)
+- PhpStorm Version v2022.1.2 (64-bit).
 
 #### Visual Studio Code (VSCode)
 
