@@ -10,7 +10,9 @@
 
 namespace App\Model\Manager;
 
+use App\Model\Table\User;
 use Library\Core\AbstractManager;
+use PDO;
 
 class UserManager extends AbstractManager
 {
@@ -25,11 +27,11 @@ class UserManager extends AbstractManager
      * @method array getAll
      * @return array
      */
-    public function getAllUsers() : array
+    public function getAllUsers(): array
     {
         $sql = 'SELECT id, role, society, INSEE, lastname, firstname, tel, service, adress, complement, zip, city, email  FROM ' . self::USERS;
         $result = $this->db->query->prepare($sql);
-        $result->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, \App\Model\Table\User::class);
+        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, User::class);
         $users = $result->fetchAll();
         return $users;
     }
@@ -40,12 +42,12 @@ class UserManager extends AbstractManager
      * @param int $id
      * @return object
      */
-    public function getUserById(int $id) : \App\Model\Table\User
+    public function getUserById(int $id): User
     {
         $sql = 'SELECT id, role, society, INSEE, lastname, firstname, tel, service, adress, complement, zip, city, email  FROM ' . self::USERS . ' WHERE id = :id';
         $result = $this->db->query->prepare($sql);
-        $result->bindValue(':id', $id, \PDO::PARAM_INT);
-        $result->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, \App\Model\Table\User::class);
+        $result->bindValue(':id', $id, PDO::PARAM_INT);
+        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, User::class);
         $user = $result->fetch();
         return $user;
     }

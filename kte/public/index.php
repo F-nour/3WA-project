@@ -24,17 +24,18 @@ $debug = $root . '/config/debug.php';
 require $autoload;
 require $helpers;
 require $debug;
+
 /**
  * @brief Use the Router class and the NotFoundException class.
  * @uses \Library\Router\Router : Router class.
  * @uses \Library\Http\NotFoundException : NotFoundException class.
  */
 
-use \Library\Router\Router;
-use \Library\Http\NotFoundException;
+use App\Controller\ErrorController;
+use Library\Http\NotFoundException;
+use Library\Router\Router;
 
 try {
-
     /**
      * @brief instentiate the Router class.
      * @function Router->goToRoute() : go to the route.
@@ -49,16 +50,16 @@ try {
     logAction('http', 'badRequest', $nfe->getMessage());
     http_response_code(404);
     header("HTTP/1.0 404 Not Found");
-    $controller = new \App\Controller\ErrorController();
+    $controller = new ErrorController();
     $controller->notFound();
-} catch (\PDOException $pdoe) {
+} catch (PDOException $pdoe) {
     /**
      * @brief if the database is not found, display the 500 page.
      * @class \PDOException($pdoe) Affiche la page d'erreur 500
      */
     logAction('pdo', 'applicationError', $pdoe->getMessage());
     http_response_code(500);
-    $controller = new \App\Controller\ErrorController();
+    $controller = new ErrorController();
     $controller->forbidden();
     exit();
 }

@@ -80,7 +80,7 @@ class User
 
     private function setLastname(string $lastname)
     {
-        if (empty($lastname) || strlen($lastname) < 3 || strlen($lastname) > 50 || !is_string($lastname) ) {
+        if (empty($lastname) || strlen($lastname) < 3 || strlen($lastname) > 50 || !is_string($lastname)) {
             $this->addError(self::LASTNAME_INVALID);
         } else {
             $this->lastname = $lastname;
@@ -89,7 +89,7 @@ class User
 
     private function setFirstname(string $firstname)
     {
-        if (empty($firstname) || strlen($firstname) < 3 || strlen($firstname) > 50 || !is_string($firstname) ) {
+        if (empty($firstname) || strlen($firstname) < 3 || strlen($firstname) > 50 || !is_string($firstname)) {
             $this->addError(self::FIRSTNAME_INVALID);
         } else {
             $this->firstname = $firstname;
@@ -107,7 +107,7 @@ class User
 
     private function setService(string $service)
     {
-        if (empty($service) || strlen($service) < 3 || strlen($service) > 50 || !is_string($service) ) {
+        if (empty($service) || strlen($service) < 3 || strlen($service) > 50 || !is_string($service)) {
             $this->addError(self::SERVICE_INVALID);
         } else {
             $this->service = $service;
@@ -116,7 +116,7 @@ class User
 
     private function setAdress(string $adress)
     {
-        if (empty($adress) || strlen($adress) < 3 || strlen($adress) > 50 || !is_string($adress) ) {
+        if (empty($adress) || strlen($adress) < 3 || strlen($adress) > 50 || !is_string($adress)) {
             $this->addError(self::ADRESS_INVALID);
         } else {
             $this->adress = $adress;
@@ -125,7 +125,7 @@ class User
 
     private function setConplement(string $conplement)
     {
-        if (empty($conplement) || strlen($conplement) < 3 || strlen($conplement) > 50 || !is_string($conplement) ) {
+        if (empty($conplement) || strlen($conplement) < 3 || strlen($conplement) > 50 || !is_string($conplement)) {
             $this->addError(self::CONPLEMENT_INVALID);
         } else {
             $this->conplement = $conplement;
@@ -143,7 +143,7 @@ class User
 
     private function setCity(string $city)
     {
-        if (empty($city) || strlen($city) < 3 || strlen($city) > 50 || !is_string($city) ) {
+        if (empty($city) || strlen($city) < 3 || strlen($city) > 50 || !is_string($city)) {
             $this->addError(self::CITY_INVALID);
         } else {
             $this->city = $city;
@@ -152,7 +152,10 @@ class User
 
     private function setEmail(string $email)
     {
-        if (empty($email) || strlen($email) < 3 || strlen($email) > 50 || !is_string($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (empty($email) || strlen($email) < 3 || strlen($email) > 50 || !is_string($email) || !filter_var(
+                $email,
+                FILTER_VALIDATE_EMAIL
+            )) {
             $this->addError(self::EMAIL_INVALID);
         } else {
             $this->email = $email;
@@ -161,7 +164,7 @@ class User
 
     private function setPassword(string $password)
     {
-        if (empty($password) || strlen($password) < 8 || strlen($password) > 50 || !is_string($password) ) {
+        if (empty($password) || strlen($password) < 8 || strlen($password) > 50 || !is_string($password)) {
             $this->addError(self::PASSWORD_INVALID);
         } else {
             $this->password = $password;

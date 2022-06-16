@@ -9,7 +9,7 @@
 /**
  * @brief Fonction de redirection.
  * @function url(string $path) Retourne une URL absolue.
- * @param string $path: Chemin de la page à rediriger.
+ * @param string $path : Chemin de la page à rediriger.
  * @return void
  */
 function url(string $path): string
@@ -34,5 +34,9 @@ function logAction(string $type, string $name, string $message): void
     if (!file_exists($logdir)) {
         mkdir($logdir, 0777, true);
     }
-    file_put_contents($logfile, date('d/m/Y H:i') . " : " . $message . ' - ' . $_SERVER['REQUEST_URI'] . " ", FILE_APPEND);
+    file_put_contents(
+        $logfile,
+        date('d/m/Y H:i') . " : " . $message . ' - ' . $_SERVER['REQUEST_URI'] . " ",
+        FILE_APPEND
+    );
 }

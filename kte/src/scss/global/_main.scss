@@ -1,11 +1,12 @@
 @use '../mixins/element';
 
 .main {
-	width: var(--sizeAll);
-	@include element.main();
-	padding-bottom: calc(var(--sizeMenu) + var(--sizeDubble));
-	& > section {
-		width: var(--sizeAll);
-		height: var(--sizeAll);
-	}
+  width: var(--sizeAll);
+  @include element.main();
+  padding-bottom: calc(var(--sizeMenu) + var(--sizeDubble));
+
+  & > section {
+    width: var(--sizeAll);
+    height: var(--sizeAll);
+  }
 }

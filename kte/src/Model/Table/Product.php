@@ -1,15 +1,18 @@
 <?php
 
 namespace App\Model\Table;
+
 // class des produits
+use DateTime;
+
 class Product
 {
     private array $errors = [];
     private int $id; // id du produit
     private string $title; // Titre du produit
     private string $content; // description du produit
-    private \DateTime $created; // date d'ajout du produit
-    private \DateTime $updated; // date de modification du produit
+    private DateTime $created; // date d'ajout du produit
+    private DateTime $updated; // date de modification du produit
 
     // propriétés NULL par défault
     private int $price_halfday; // prix à la demi-journée
@@ -143,12 +146,12 @@ class Product
         return $this->traveling_country;
     }
 
-    public function getCreated(): \DateTime
+    public function getCreated(): DateTime
     {
         return $this->created;
     }
 
-    public function getUpdated(): \DateTime
+    public function getUpdated(): DateTime
     {
         return $this->updated;
     }

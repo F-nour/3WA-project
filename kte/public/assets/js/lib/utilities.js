@@ -1,4 +1,4 @@
-('use strict');
+('use strict')
 
 // style change
 
@@ -11,10 +11,10 @@
  * @param padding
  */
 export const size = (element, width = '', height = '', padding = '') => {
-	element.style.width = width;
-	element.style.height = height;
-	element.style.padding = padding;
-};
+	element.style.width = width
+  element.style.height = height
+  element.style.padding = padding
+}
 
 /**
  * @function visible
@@ -23,8 +23,8 @@ export const size = (element, width = '', height = '', padding = '') => {
  * @param visibility
  */
 export const visible = (element, visibility) => {
-	element.style.visibility = visibility;
-};
+  element.style.visibility = visibility
+}
 
 /**
  * @function display
@@ -33,8 +33,8 @@ export const visible = (element, visibility) => {
  * @param display
  */
 export const display = (element, display) => {
-	element.style.display = display;
-};
+  element.style.display = display
+}
 
 // events
 
@@ -45,8 +45,8 @@ export const display = (element, display) => {
  * @param action
  */
 export const clickEvent = (element, action) => {
-	element.addEventListener('click', action);
-};
+  element.addEventListener ('click', action)
+}
 
 /**
  * @function keyEvent
@@ -57,12 +57,12 @@ export const clickEvent = (element, action) => {
  * @param action
  */
 export const keyEvent = (element, key1, key2 = '', action) => {
-	element.addEventListener('keydown', (e) => {
-		if (e.key === key1 || e.key === key2) {
-			action();
-		}
-	});
-};
+  element.addEventListener ('keydown', (e) => {
+    if (e.key === key1 || e.key === key2) {
+      action ()
+    }
+  })
+}
 
 /**
  * @function cancel
@@ -70,13 +70,12 @@ export const keyEvent = (element, key1, key2 = '', action) => {
  * @param action
  */
 export const cancel = (action) => {
-	addEventListener('keydown', (e) => {
-		if (e.key === 'Escape') {
-			action();
-		}
-	});
-};
-
+  addEventListener ('keydown', (e) => {
+    if (e.key === 'Escape') {
+      action ()
+    }
+  })
+}
 
 // Add or remove Elements
 
@@ -86,10 +85,10 @@ export const cancel = (action) => {
  * @param element
  */
 export const removeElement = (element) => {
-	if (element) {
-		element.parentNode.removeChild(element);
-	}
-};
+  if (element) {
+    element.parentNode.removeChild (element)
+  }
+}
 
 /**
  * @function createElement
@@ -101,12 +100,12 @@ export const removeElement = (element) => {
  * @returns {*}
  */
 export const createElement = (tagName, parentElement, className, id) => {
-	const element = document.createElement(tagName);
-	element.classList.add(className);
-	element.id = id;
-	parentElement.prepend(element);
-	return element;
-};
+  const element = document.createElement (tagName)
+  element.classList.add (className)
+  element.id = id
+  parentElement.prepend (element)
+  return element
+}
 
 /**
  * @function addElement
@@ -118,13 +117,13 @@ export const createElement = (tagName, parentElement, className, id) => {
  * @returns {*}
  */
 export const addElement = (tagName, parentElement, className, id) => {
-	const parent = document.querySelector(parentElement);
-	const element = document.createElement(tagName);
-	element.classList.add(className);
-	element.id = id;
-	parent.appendChild(element);
-	return element;
-};
+  const parent = document.querySelector (parentElement)
+  const element = document.createElement (tagName)
+  element.classList.add (className)
+  element.id = id
+  parent.appendChild (element)
+  return element
+}
 
 /**
  * @function toggleClass
@@ -133,8 +132,8 @@ export const addElement = (tagName, parentElement, className, id) => {
  * @param className
  */
 export const toggleClass = (element, className) => {
-	element.classList.toggle(className);
-};
+  element.classList.toggle (className)
+}
 
 /**
  * @function addClass
@@ -143,8 +142,8 @@ export const toggleClass = (element, className) => {
  * @param className
  */
 export const addClass = (element, className) => {
-	element.classList.add(className);
-};
+  element.classList.add (className)
+}
 
 /**
  * @function removeClass
@@ -153,5 +152,5 @@ export const addClass = (element, className) => {
  * @param className
  */
 export const removeClass = (element, className) => {
-	element.classList.remove(className);
-};
+  element.classList.remove (className)
+}

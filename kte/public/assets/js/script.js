@@ -1,15 +1,15 @@
-('use strict');
-import { initMenu } from './modules/menus.js';
-import { responsive } from './modules/responsive.js';
+('use strict')
+import { initMenu } from './modules/menus.js'
+import { responsive } from './modules/responsive.js'
 
 /**
  * @function initMenu
  * @description Initialize the menu
  */
-initMenu();
+initMenu ()
 
 /**
  * @function responsive
  * @description Initialize the responsive
  */
-responsive();
+responsive ()

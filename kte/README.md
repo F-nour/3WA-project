@@ -6,9 +6,15 @@
 
 Ce projet a été créé sur la distribution Linux Ubuntu 22.04 LTS.
 
-### IDE utilisé :
+### IDE utilisés pour le développement
 
-Il a été édité à l'aide de l'IDE Visual Studio Code Version 1.68.0.
+Il a été édité à l'aide des IDE :
+
+- Visual Studio Code Version 1.68.0 (64 bits)
+- PhpStorm Version 2022.1.2 (64-bit).
+
+#### Visual Studio Code (VSCode)
+
 Les extensions VSCode utilisées sont :
 
 - accessibility-snippets.accessibility-snippets,
@@ -31,6 +37,16 @@ Les extensions VSCode utilisées sont :
 - xdebug.php-debug,
 - xdebug.php-pack,
 - zobo.php-intellisense.
+
+#### PhpStorm
+
+Les extensions PhpStorm utilisées sont :
+
+- gitHub Copilot,
+- prettier,
+- php-annotators,
+- indent-rainbow,
+- rainbow-brackets.
 
 ### Réglage du serveur en local :
 
@@ -63,20 +79,32 @@ Un fichier de configuration a donc été créé pour le serveur. C'est le suivan
 
 ## Objectifs du projet
 
-Dans le cadre de la formation de développeur web effectuée auprès de la 3W Academy, j'ai souhaité créé un site internet de présentation de mon auto-entreprise.
+Dans le cadre de la formation de développeur web effectuée auprès de la 3W Academy, j'ai souhaité créé un site internet
+de présentation de mon auto-entreprise.
 Pour la présentation de ce projet, je souhaite montrer les prestations que je propose, ainsi que les tarifs.
-Je souhaite également mettre en place un formulaire de contact, ainsi qu'n espace administrateur qui me permettra de modifier l'ensemble des données du site directement depuis le site internet et non depuis un système de gestion de base de données.
-L'objectif de la présentation du projet est de montrer que je suis en capacité de maîtriser les langages natifs du web, comme le HTML/CSS, Javascript, php, sql, et que je suis en capacité d'utiliser des outils tels que SASS, NodeJS ou Composer.
+Je souhaite également mettre en place un formulaire de contact, ainsi qu'n espace administrateur qui me permettra de
+modifier l'ensemble des données du site directement depuis le site internet et non depuis un système de gestion de base
+de données.
+L'objectif de la présentation du projet est de montrer que je suis en capacité de maîtriser les langages natifs du web,
+comme le HTML/CSS, Javascript, php, sql, et que je suis en capacité d'utiliser des outils tels que SASS, NodeJS ou
+Composer.
 
 ### Origine de l'auto-entreprise "Kiff ton Écharpe"
 
-À l'origine, j'ai créé cette auto-entreprise en qualité de moniteur de portage. Je proposais donc des prestations de formation pour les parents et futurs parents afin de leur permettre de porter leur nourisson en écharpe ou en porte-bébé, de manière sécuritaire et la plus adaptée possible à leur situation mais aussi à celle de leur enfant.
-Au fil des ans, on m'a proposé d'être formateur en travail social, principalement sur les sujets de protection de l'enfance et des violences conjugales et intrafamiliales. J'ai donc utilisé cette auto-entreprise pour effectuer ces prestations.
-Aujourd'hui, je souhaite proposer de la maintenance informatique software, mais également du développement de site internet ou d'application web. Je vais donc utilisé cette même structure pour proposer ces prestations en plus.
+À l'origine, j'ai créé cette auto-entreprise en qualité de moniteur de portage. Je proposais donc des prestations de
+formation pour les parents et futurs parents afin de leur permettre de porter leur nourisson en écharpe ou en
+porte-bébé, de manière sécuritaire et la plus adaptée possible à leur situation mais aussi à celle de leur enfant.
+Au fil des ans, on m'a proposé d'être formateur en travail social, principalement sur les sujets de protection de
+l'enfance et des violences conjugales et intrafamiliales. J'ai donc utilisé cette auto-entreprise pour effectuer ces
+prestations.
+Aujourd'hui, je souhaite proposer de la maintenance informatique software, mais également du développement de site
+internet ou d'application web. Je vais donc utilisé cette même structure pour proposer ces prestations en plus.
 
 ## Projets pour le site
 
-À terme, je souhaite que les personnes puissent effectuer leur commande directement sur ce site. Ils ou elles feront leur demande de prestation, et je génèrerai un devis une fois la demande effectuée. Il y aura donc un espace utilisateur distinct de l'espace administrateur.
+À terme, je souhaite que les personnes puissent effectuer leur commande directement sur ce site. Ils ou elles feront
+leur demande de prestation, et je génèrerai un devis une fois la demande effectuée. Il y aura donc un espace utilisateur
+distinct de l'espace administrateur.
 
 ### Améliorations envisagées
 

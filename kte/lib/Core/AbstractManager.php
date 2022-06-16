@@ -10,9 +10,10 @@
  * @namespace Library\Core
  * @uses \Library\Database\Connexion : Connexion to the database
  */
+
 namespace Library\Core;
 
-use \Library\Database\Connexion;
+use Library\Database\Connexion;
 
 /**
  * @brief abstract class for managers.
@@ -31,9 +32,6 @@ use \Library\Database\Connexion;
  */
 class AbstractManager
 {
-    protected Connexion $db;
-    protected $config = '../config/database_3wa.php';
-
     const ACTUALITIES = 'actualities';
     const ABOUT = 'about';
     const CATEGORIES = 'categories';
@@ -41,6 +39,8 @@ class AbstractManager
     const ORDERED = 'ordered';
     const PRODUCTS = 'products';
     const USERS = 'users';
+    protected Connexion $db;
+    protected $config = '../config/database_3wa.php';
 
     /**
      * @brief constructor

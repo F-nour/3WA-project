@@ -6,16 +6,19 @@
  */
 
 /**
-    * @brief namespace pour la classe Connexion.
-    * @namespace Library\Database
-    */
+ * @brief namespace pour la classe Connexion.
+ * @namespace Library\Database
+ */
+
 namespace Library\Database;
 
 /**
  * @brief Use PDO to connect to the database.
  * @uses PDO.
  */
+
 use PDO;
+use PDOException;
 
 /**
  * @brief Connexion class
@@ -68,27 +71,7 @@ class Connexion
             $query = $this->pdo->prepare($sql);
             $query->execute($parameters);
             return $query->fetchAll();
-        } catch (\PDOException $e) {
-            return $e->getMessage();
-        }
-    }
-
-    /**
-     * @brief Method to get a row from a table.
-     * @method getResult() : object
-     * @param string $sql SQL query
-     * @param array $params parameters of the query
-     */
-    public function getResult(
-        string $sql,
-        ?array $parameters = null,
-    ): ?object {
-        try {
-            $query = $this->pdo->prepare($sql);
-            $query->execute($parameters);
-
-            return $query->fetch();
-        } catch (\PDOException $e) {
+        } catch (PDOException $e) {
             return $e->getMessage();
         }
     }
@@ -106,5 +89,25 @@ class Connexion
         $query->execute($parameters);
 
         return $this->pdo->lastInsertId();
+    }
+
+    /**
+     * @brief Method to get a row from a table.
+     * @method getResult() : object
+     * @param string $sql SQL query
+     * @param array $params parameters of the query
+     */
+    public function getResult(
+        string $sql,
+        ?array $parameters = null,
+    ): ?object {
+        try {
+            $query = $this->pdo->prepare($sql);
+            $query->execute($parameters);
+
+            return $query->fetch();
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
     }
 }

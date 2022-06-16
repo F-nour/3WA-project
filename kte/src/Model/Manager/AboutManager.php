@@ -10,7 +10,7 @@
 
 namespace App\Model\Manager;
 
-use \Library\Core\AbstractManager;
+use Library\Core\AbstractManager;
 
 class AboutManager extends AbstractManager
 {

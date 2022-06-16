@@ -9,7 +9,10 @@
  * @namespace Library\Router
  * @brief Library\Router namespace.
  */
+
 namespace Library\Router;
+
+use Library\Http\NotFoundException;
 
 /**
  * @class Router
@@ -24,7 +27,7 @@ class Router
      * @variable $route String route to match.
      * @variable $controllerName String name of the controller.
      * @variable $method String name of the method.
-     * @throws \Library\Http\NotFoundException If the route is not found.
+     * @throws NotFoundException If the route is not found.
      */
     public function goToRoute()
     {
@@ -39,7 +42,7 @@ class Router
             $controller = new $controllerName();
             $controller->$method();
         } else {
-            throw new \Library\Http\NotFoundException('404 Not Found');
+            throw new NotFoundException('404 Not Found');
         }
     }
 }

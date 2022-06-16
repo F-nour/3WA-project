@@ -2,6 +2,9 @@
 
 namespace Library\Auth;
 
+use App\Model\Manager\UserManager;
+use App\Model\Table\User;
+
 class Authentifier
 {
     public function startSession(): void
@@ -20,19 +23,19 @@ class Authentifier
         session_destroy();
     }
 
-    public function getUser(): ?\App\Model\Table\User
+    public function getUser(): ?User
     {
         if (!isset($_SESSION['user_id'])) {
             return null;
         }
 
-        $manager = new \App\Model\Manager\UserManager();
+        $manager = new UserManager();
         $user = $manager->getUserById($_SESSION['user_id']);
         $this->getRole();
         return $user;
     }
 
-    public function getRole() : ?string
+    public function getRole(): ?string
     {
         if (!isset($_SESSION['user_id'])) {
             return null;

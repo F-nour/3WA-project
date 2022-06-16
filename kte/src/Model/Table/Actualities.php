@@ -15,6 +15,8 @@
 
 namespace App\Model\Table;
 
+use DateTime;
+
 class Actualities
 {
     private array $errors = [];
@@ -106,7 +108,7 @@ class Actualities
         return $this->img;
     }
 
-    public function getDate(): \DateTime
+    public function getDate(): DateTime
     {
         return $this->created;
     }

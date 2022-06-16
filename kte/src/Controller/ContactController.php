@@ -10,9 +10,10 @@
  * @namespace App\Controller
  * @uses \Library\Core\AbstractController : AbstractController class.
  */
+
 namespace App\Controller;
 
-use \Library\Core\AbstractController;
+use Library\Core\AbstractController;
 
 /**
  * @class ContactController

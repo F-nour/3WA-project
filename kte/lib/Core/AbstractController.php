@@ -9,9 +9,11 @@
  * @namespace Library\Core
  * @uses \Library\Auth\Authentifier
  */
+
 namespace Library\Core;
 
 
+use App\Model\Table\User;
 use Library\Auth\Authentifier;
 
 /**
@@ -23,14 +25,13 @@ use Library\Auth\Authentifier;
  */
 class AbstractController
 {
+    const SITE_NAME = 'Kiff ton Écharpe';
     protected $user;
     protected $admin;
     protected $userLayout = 'Views/layout.phtml';
     protected $adminLayout = '../Admin/admin_layout.phtml';
 
-    const SITE_NAME = 'Kiff ton Écharpe';
-
-    public function getConnectedUser(): ?\App\Model\Table\User
+    public function getConnectedUser(): ?User
     {
         $auth = new Authentifier();
         $auth->startSession();

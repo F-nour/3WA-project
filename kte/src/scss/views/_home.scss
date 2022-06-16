@@ -1,5 +1,7 @@
 @use '../mixins/element';
 
 .home {
-	@include element.container();
-};
+  @include element.container();
+}
+
+;

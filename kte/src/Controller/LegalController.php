@@ -10,7 +10,7 @@
 
 namespace App\Controller;
 
-use \Library\Core\AbstractController;
+use Library\Core\AbstractController;
 
 class LegalController extends AbstractController
 {

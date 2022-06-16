@@ -6,14 +6,15 @@
  */
 
 /**
-* @namespace App\Controller\Controller
+ * @namespace App\Controller\Controller
  * @uses \Library\Core\AbstractController : AbstractController class.
  * @uses \App\Model\Manager\AboutManager : AboutManager class.
-*/
+ */
+
 namespace App\Controller;
 
-use \Library\Core\AbstractController;
-use \App\Model\Manager\AboutManager;
+use App\Model\Manager\AboutManager;
+use Library\Core\AbstractController;
 
 /**
  * @class AboutController

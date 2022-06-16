@@ -11,8 +11,8 @@
 
 namespace App\Controller;
 
-use Library\Core\AbstractController;
 use App\Model\Manager\ActualityManager;
+use Library\Core\AbstractController;
 
 class HomepageController extends AbstractController
 {

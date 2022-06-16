@@ -2,65 +2,72 @@
 @use '../mixins/menu';
 
 .header {
-	@include menu.headerFooter();
-	@include menu.styleMenu();
-	z-index: 100;
-	top: 0;
-	width: var(--sizeAll);
+  @include menu.headerFooter();
+  @include menu.styleMenu();
+  z-index: 100;
+  top: 0;
+  width: var(--sizeAll);
 }
 
 .header-menu {
-	line-height: var(--sizeMenu);
-	width: var(--sizeAll);
-	@include flex.flex-row(0, 3.2, space-between);
-	& > div {
-		width: var(--sizeAll);
-	}
-	&__list,
-	&__link {
-		@include flex.flex-row(0, 0, space-evenly);
-	}
-	&__link,
-	&__link a {
-		justify-content: center;
-		width: var(--sizeAll);
-		margin: 0;
-	}
+  line-height: var(--sizeMenu);
+  width: var(--sizeAll);
+  @include flex.flex-row(0, 3.2, space-between);
+
+  & > div {
+    width: var(--sizeAll);
+  }
+
+  &__list,
+  &__link {
+    @include flex.flex-row(0, 0, space-evenly);
+  }
+
+  &__link,
+  &__link a {
+    justify-content: center;
+    width: var(--sizeAll);
+    margin: 0;
+  }
 }
 
 .logo {
-	height: var(--sizeMenu);
-	background-image: url('../../images/logo/kte.svg');
-	background-repeat: no-repeat;
-	background-size: contain;
-	left: 0px;
-	top: 0px;
-	cursor: pointer;
-	& a {
-		padding: 0 8px 0 var(--sizeMenu);
-		width: var(--sizeAll);
-	}
+  height: var(--sizeMenu);
+  background-image: url('../../images/logo/kte.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  left: 0px;
+  top: 0px;
+  cursor: pointer;
+
+  & a {
+    padding: 0 8px 0 var(--sizeMenu);
+    width: var(--sizeAll);
+  }
 }
 
 @media (max-width: 1024px) {
-	.header {
-		visibility: hidden;
-		width: 300px;
-		z-index: 100;
-		transition: var(--transitionAll);
-		height: calc(var(--sizeMenu) * var(--sizeGap));
-		&-menu {
-			&__list {
-				@include flex.flex-column(end, start, var(--sizeGap));
-			}
-			&__link,
-			&__link a {
-				height: var(--sizeMenu);
-				justify-content: start;
-			}
-			&__link a {
-				padding: 0 8px 0 var(--sizeMenu);
-			}
-		}
-	}
+  .header {
+    visibility: hidden;
+    width: 300px;
+    z-index: 100;
+    transition: var(--transitionAll);
+    height: calc(var(--sizeMenu) * var(--sizeGap));
+
+    &-menu {
+      &__list {
+        @include flex.flex-column(end, start, var(--sizeGap));
+      }
+
+      &__link,
+      &__link a {
+        height: var(--sizeMenu);
+        justify-content: start;
+      }
+
+      &__link a {
+        padding: 0 8px 0 var(--sizeMenu);
+      }
+    }
+  }
 }

@@ -8,13 +8,16 @@
 /**
  * @namespace Library\Http
  */
+
 namespace Library\Http;
+
+use Exception;
 
 /**
  * @class NotFoundException
  * @brief Exceptions lorsqu'une ressource n'a pas été trouvée.
- * @extends \Exception
+ * @extends Exception
  */
-class NotFoundException extends \Exception
+class NotFoundException extends Exception
 {
 }

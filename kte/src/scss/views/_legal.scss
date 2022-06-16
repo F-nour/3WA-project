@@ -1,9 +1,9 @@
 @use '../mixins/element';
 
 .legal {
-    @include element.container();
+  @include element.container();
 }
 
 .legal__content {
-    gap: 2em;
+  gap: 2em;
 }

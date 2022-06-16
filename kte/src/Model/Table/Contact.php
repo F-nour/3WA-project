@@ -2,18 +2,20 @@
 
 namespace App\Model\Table;
 
+use DateTime;
+
 class Contact
 {
+    public const NAME_INVALID = "Le nom n'est pas valide.";
+    public const EMAIL_INVALID = "L'email n'est pas valide.";
+    public const MESSAGE_INVALID = "Le message n'est pas valide.";
+
     private array $errors = [];
     private int $id; // id du contact
     private string $name; // nom du contact
     private string $email; // email du contact
     private string $message; // message du contact
-    private \DateTime $created; // date d'ajout du contact
-
-    public const NAME_INVALID = "Le nom n'est pas valide.";
-    public const EMAIL_INVALID = "L'email n'est pas valide.";
-    public const MESSAGE_INVALID = "Le message n'est pas valide.";
+    private DateTime $created; // date d'ajout du contact
 
     private function hydrate(array $data): void
     {
@@ -80,7 +82,7 @@ class Contact
         return $this->message;
     }
 
-    public function getCreated(): \DateTime
+    public function getCreated(): DateTime
     {
         return $this->created;
     }

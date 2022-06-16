@@ -105,7 +105,7 @@ class About
 
     private function setCity(string $city)
     {
-        if (empty($city) || strlen($city) < 3 || strlen($city) > 50 || !is_string($city) ) {
+        if (empty($city) || strlen($city) < 3 || strlen($city) > 50 || !is_string($city)) {
             $this->addError(self::INVALID_CITY);
         } else {
             $this->city = $city;
