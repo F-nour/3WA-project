@@ -1,14 +1,11 @@
 <?php
 
 /**
- * @brief Mode de développement
- * @var $whoops Whoops error handler.
+ * @brief debug file
+ * @file debug.phh
  */
-$whoops = new Run;
-$whoops->pushHandler(new PrettyPageHandler);
-$whoops->register();
 
-// vardumper
+/* it's importing the VarDump class and the PrettyPageHandler class from the Whoops package.*/
 
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\Dumper\CliDumper;
@@ -19,6 +16,20 @@ use Symfony\Component\VarDumper\Dumper\ServerDumper;
 use Symfony\Component\VarDumper\VarDumper;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
+
+
+/**
+ * @brief Mode de développement
+ * @var $whoops Whoops error handler.
+ */
+
+$whoops = new Run;
+$whoops->pushHandler(new PrettyPageHandler);
+$whoops->register();
+
+// vardumper
+
+/* Importing the VarCloner class from the Symfony VarDumper component. */
 
 $cloner = new VarCloner();
 $fallbackDumper = in_array(PHP_SAPI, ['cli', 'phpdbg']) ? new CliDumper() : new HtmlDumper();

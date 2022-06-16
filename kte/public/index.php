@@ -35,28 +35,22 @@ use App\Controller\ErrorController;
 use Library\Http\NotFoundException;
 use Library\Router\Router;
 
+/**
+ * @brief Create a new Router instance.
+ * @var $router Router : Router instance.
+ * @var $nfe NotFoundException : NotFoundException instance.
+ * @var pdoe PDOEException : PDOEException instance.
+ * */
 try {
-    /**
-     * @brief instentiate the Router class.
-     * @function Router->goToRoute() : go to the route.
-     */
     $router = new Router();
     $router->goToRoute();
 } catch (NotFoundException $nfe) {
-    /**
-     * @brief if the route is not found, display the 404 page.
-     * @class NotFoundException($nfe) Affiche la page d'erreur 404
-     */
     logAction('http', 'badRequest', $nfe->getMessage());
     http_response_code(404);
     header("HTTP/1.0 404 Not Found");
     $controller = new ErrorController();
     $controller->notFound();
 } catch (PDOException $pdoe) {
-    /**
-     * @brief if the database is not found, display the 500 page.
-     * @class \PDOException($pdoe) Affiche la page d'erreur 500
-     */
     logAction('pdo', 'applicationError', $pdoe->getMessage());
     http_response_code(500);
     $controller = new ErrorController();
