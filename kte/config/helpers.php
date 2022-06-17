@@ -29,8 +29,8 @@ function url(string $path): string
  */
 function logAction(string $type, string $name, string $message): void
 {
-    $logdir = dirname(__DIR__) . "/logs/$type/$name/" . date('dmY');
-    $logfile = $logdir . DIRECTORY_SEPARATOR . $type . '_' . $name . '_' . date('dmY_H-i-s') . '.log';
+    $logdir = dirname(__DIR__) . "/logs/$type/$name/" . date('Ymd');
+    $logfile = $logdir . DIRECTORY_SEPARATOR . $type . '_' . $name . '_' . date('Ymd_H-i-s') . '.log';
     if (!file_exists($logdir)) {
         mkdir($logdir, 0777, true);
     }
