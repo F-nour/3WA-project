@@ -17,8 +17,8 @@ namespace Library\Database;
  * @uses PDO.
  */
 
-use PDO;
-use PDOException;
+use \PDO;
+use \PDOException;
 
 /**
  * @brief Connexion class
@@ -72,7 +72,7 @@ class Connexion
             $query->execute($parameters);
             return $query->fetchAll();
         } catch (PDOException $e) {
-            return $e->getMessage();
+            die($e->getMessage());
         }
     }
 
@@ -92,7 +92,7 @@ class Connexion
 
             return $query->fetch();
         } catch (PDOException $e) {
-            return $e->getMessage();
+            die($e->getMessage());
         }
     }
 
@@ -112,7 +112,7 @@ class Connexion
         $query->execute($parameters);
         return $this->pdo->lastInsertId();
         } catch (PDOException $e) {
-            return $e->getMessage();
+            die($e->getMessage());
         }
     }
 }

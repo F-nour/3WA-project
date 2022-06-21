@@ -1,0 +1,30 @@
+<section class="login" id="login">
+    <div class="login__title">
+        <h1>Connexion</h1>
+    </div>
+    <div class="login__form">
+        <form method="post" action="<?= url('/auth') ?>">
+          <?php if (isset($_GET['errors'])): ?>
+            <div class="alert alert-danger">
+                <?php foreach ($_GET['errors'] as $error): ?>
+                <p><?= $error ?></p>
+                <?php endforeach; ?>
+            </div>
+          <?php endif; ?>
+            <div class="login__form__input">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required>
+            </div>
+            <div class="login__form__input">
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+            <div class="login__form__input">
+                <input type="submit" value="Connexion">
+            </div>
+        </form>
+    </div>
+    <div class="login__form__link">
+        <p class="h3">Vous n'êtes pas encore inscrit-e ? <a href="<?= url('/register') ?>">Inscrivez-vous</a></p>
+    </div>
+</section>

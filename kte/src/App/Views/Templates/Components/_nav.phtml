@@ -14,8 +14,17 @@
     <li data-menus class="header-menu__link internal list3">
       <a href="<?= url('/contact') ?>" title="Contact">Me contacter</a>
     </li>
+    <?php if (auth()->isAuthenticated()): ?>
+      <li data-menus class="header-menu__link internal list4">
+        <a href="<?= url('/account') ?>" title="Mon compte">Mon compte</a>
+      </li>
+      <li data-menus class="header-menu__link internal list5">
+        <a href="<?= url('/logout') ?>" title="Déconnexion">Déconnexion</a>
+      </li>
+    <?php else : ?>
     <li data-menus class="header-menu__link internal">
       <a href="<?= url('/login') ?>" title="Connexion">Connexion</a>
     </li>
+    <?php endif; ?>
   </ul>
 </nav>

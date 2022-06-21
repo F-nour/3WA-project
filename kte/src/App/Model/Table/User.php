@@ -4,22 +4,21 @@ namespace App\Model\Table;
 
 class User
 {
-    const ROLE_INVALID = 1;
+    const role_id_INVALID = 1;
     const LASTNAME_INVALID = "Nom de famille invalide."; // id de l'utilisateur
-    const FIRSTNAME_INVALID = "Prénom invalide."; // role de l'utilisateur
+    const FIRSTNAME_INVALID = "Prénom invalide."; // role_id de l'utilisateur
     const SERVICE_INVALID = "Service invalide."; // nom de la société
     const ADRESS_INVALID = "Adresse invalide."; // nom de famille
     const ZIP_INVALID = "Code postal invalide."; // prénom
     const CITY_INVALID = "Ville invalide."; // numéro de téléphone
     const EMAIL_INVALID = "Email invalide."; // service
     const PASSWORD_INVALID = "Mot de passe invalide."; // adresse
-    private array $errors = []; // complément d'adresse
+    private array $errors = []; // erreurs
     private int $id; // code postal
-    private int $role; // ville
+    private int $role_id_id; // ville
     private string $society; // email
     private string $lastname; // mot de passe
     private string $firstname;
-    private int $tel;
     private string $service;
     private string $adress;
     private string $complement;
@@ -45,21 +44,26 @@ class User
 
     // setters
 
-    private function setRole(int $role)
+    private function setId(int $id): void
     {
-        if (empty($role)) {
-            $this->errors .= self::ROLE_INVALID;
+        $this->id = $id;
+    }
+
+    private function setRole_id(int $role_id): void
+    {
+        if (empty($role_id)) {
+            $this->errors[] = self::role_id_INVALID;
         } else {
-            $this->role = $role;
+            $this->role_id = $role_id;
         }
     }
 
-    private function setSociety(string $society)
+    private function setSociety(string $society): void
     {
         $this->society = $society;
     }
 
-    private function setLastname(string $lastname)
+    private function setLastname(string $lastname): void
     {
         if (empty($lastname) || strlen($lastname) < 3 || strlen($lastname) > 50 || !is_string($lastname)) {
             $this->errors .= self::LASTNAME_INVALID;
@@ -68,7 +72,7 @@ class User
         }
     }
 
-    private function setFirstname(string $firstname)
+    private function setFirstname(string $firstname): void
     {
         if (empty($firstname) || strlen($firstname) < 3 || strlen($firstname) > 50 || !is_string($firstname)) {
             $this->errors .= self::FIRSTNAME_INVALID;
@@ -77,12 +81,12 @@ class User
         }
     }
 
-    private function setService(string $service)
+    private function setService(string $service): void
     {
         $this->service = $service;
     }
 
-    private function setAdress(string $adress)
+    private function setAdress(string $adress): void
     {
         if (empty($adress) || strlen($adress) < 3 || strlen($adress) > 50 || !is_string($adress)) {
             $this->errors .= self::ADRESS_INVALID;
@@ -91,14 +95,13 @@ class User
         }
     }
 
-    private function setcomplement(string $complement)
+    private function setcomplement(string $complement): void
     {
         $this->complement = $complement;
     }
 
-    private function setZip(
-        int $zip
-    ) {
+    private function setZip(int $zip): void
+    {
         if (empty($zip) || strlen($zip) != 5 || !is_numeric($zip)) {
             $this->errors .= self::ZIP_INVALID;
         } else {
@@ -106,9 +109,8 @@ class User
         }
     }
 
-    private function setCity(
-        string $city
-    ) {
+    private function setCity(string $city): void
+    {
         if (empty($city) || strlen($city) < 3 || strlen($city) > 50 || !is_string($city)) {
             $this->errors .= self::CITY_INVALID;
         } else {
@@ -116,9 +118,8 @@ class User
         }
     }
 
-    private function setEmail(
-        string $email
-    ) {
+    private function setEmail(string $email): void
+    {
         if (empty($email) || strlen($email) < 3 || strlen($email) > 50 || !is_string($email) || !filter_var(
                 $email,
                 FILTER_VALIDATE_EMAIL
@@ -129,13 +130,12 @@ class User
         }
     }
 
-    private function setPassword(
-        string $password
-    ) {
-        if (empty($password) || strlen($password) < 8 || strlen($password) > 50 || !is_string($password)) {
-            $this->errors .= self::PASSWORD_INVALID;
+    private function setPassword(string $password): void
+    {
+        if (empty($password) || strlen($password) < 8 || !is_string($password)) {
+            $this->errors[] = self::PASSWORD_INVALID;
         } else {
-            $this->password = password_hash($password, PASSWORD_ARGON2ID);
+            $this->password = $password;
         }
     }
 
@@ -146,9 +146,9 @@ class User
         return $this->id;
     }
 
-    public function getRole(): int
+    public function getrole_id(): int
     {
-        return $this->role;
+        return $this->role_id;
     }
 
     public function getSociety(): string
@@ -204,6 +204,11 @@ class User
     public function getErrors(): array
     {
         return $this->errors;
+    }
+
+    public function addError(string $error): void
+    {
+        $this->errors[] .= $error;
     }
 
     public function isValid(): bool
