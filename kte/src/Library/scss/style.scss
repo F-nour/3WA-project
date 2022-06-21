@@ -1,0 +1,27 @@
+// variables css
+@use 'variables/boxShadow';
+@use 'variables/color';
+@use 'variables/font';
+@use 'variables/other';
+@use 'variables/print';
+@use 'variables/size';
+@use 'variables/transition';
+
+// reseters for the site
+@use 'reseters/common';
+
+// global
+@use 'global/custom';
+@use 'global/accessibility';
+@use 'global/main';
+
+// components
+@use 'components/modals';
+@use 'components/menu';
+@use 'components/header';
+@use 'components/footer';
+
+// views
+@use 'views/home';
+@use 'views/about';
+@use 'views/legal';

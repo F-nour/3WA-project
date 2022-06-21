@@ -38,6 +38,7 @@ class AbstractManager
     const CONTACT = 'contacts';
     const ORDERED = 'ordered';
     const PRODUCTS = 'products';
+    const ROLE = 'role';
     const USERS = 'users';
     protected Connexion $db;
     protected $config = '../config/database_3wa.php';

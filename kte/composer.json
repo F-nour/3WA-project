@@ -9,8 +9,8 @@
 	],
 	"autoload": {
 		"psr-4": {
-			"Library\\": "lib/",
-			"App\\": "src/"
+			"Library\\": "src/Library/",
+			"App\\": "src/App/"
 		}
 	},
 	"require": {

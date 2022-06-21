@@ -1,7 +1,7 @@
 'use strict'
 
 import { actualLinkMenu } from '../../assets/js/modules/menus.js'
-import { addElement } from '../../assets/js/lib/utilities.js'
+import { addElement } from '../../assets/js/Library/utilities.js'
 
 export const insertPhp = (url, root, id = null, className = null) => {
   fetch (`/src/Modules/${url}.php`, {

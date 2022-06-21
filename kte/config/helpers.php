@@ -6,6 +6,9 @@
  * @author Nour-eddine
  */
 
+use \Library\Auth\Authentifier;
+use \Library\Session\SessionManagment;
+
 /**
  * @brief Fonction de redirection.
  * @function url(string $path) Retourne une URL absolue.
@@ -39,4 +42,14 @@ function logAction(string $type, string $name, string $message): void
         date('d/m/Y H:i') . " : " . $message . ' - ' . $_SERVER['REQUEST_URI'] . " ",
         FILE_APPEND
     );
+}
+
+function flash(): SessionManagment
+{
+    return new SessionManagment();
+}
+
+function auth(): Authentifier
+{
+    return new Authentifier();
 }

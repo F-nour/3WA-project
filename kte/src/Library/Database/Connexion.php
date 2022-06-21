@@ -77,21 +77,6 @@ class Connexion
     }
 
     /**
-     * @brief Method to insert, update or delate a row in a table.
-     * @method execute()
-     * @param string $sql SQL query
-     * @param array $parameters parameters of the query
-     */
-
-    public function execute(string $sql, ?array $parameters = null): string|false
-    {
-        $query = $this->pdo->prepare($sql);
-        $query->execute($parameters);
-
-        return $this->pdo->lastInsertId();
-    }
-
-    /**
      * @brief Method to get a row from a table.
      * @method getResult() : object
      * @param string $sql SQL query
@@ -106,6 +91,26 @@ class Connexion
             $query->execute($parameters);
 
             return $query->fetch();
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    /**
+     * @brief Method to insert, update or delate a row in a table.
+     * @method execute()
+     * @param string $sql SQL query
+     * @param array $parameters parameters of the query
+     */
+    public function execute(
+        string $sql,
+        ?array $parameters = null
+    ): string|false
+    {
+        try {
+        $query = $this->pdo->prepare($sql);
+        $query->execute($parameters);
+        return $this->pdo->lastInsertId();
         } catch (PDOException $e) {
             return $e->getMessage();
         }

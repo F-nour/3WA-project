@@ -1,5 +1,5 @@
 # ce script est un script de compilation du code sass en css.
-# Il est appelé par la commande "bash lib/script/sass-css.sh" effectuée dans un terminal, à la racine du projet.
+# Il est appelé par la commande "bash Library/script/sass-css.sh" effectuée dans un terminal, à la racine du projet.
 
 #!/usr/bin/env bash
 

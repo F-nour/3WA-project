@@ -13,9 +13,6 @@
 namespace Library\Core;
 
 
-use App\Model\Table\User;
-use Library\Auth\Authentifier;
-
 /**
  * @brief abstract class for controllers.
  * @class AbstractController
@@ -26,24 +23,8 @@ use Library\Auth\Authentifier;
 class AbstractController
 {
     const SITE_NAME = 'Kiff ton Écharpe';
-    protected $user;
-    protected $admin;
-    protected $userLayout = 'Views/layout.phtml';
-    protected $adminLayout = '../Admin/admin_layout.phtml';
-
-    public function getConnectedUser(): ?User
-    {
-        $auth = new Authentifier();
-        $auth->startSession();
-        $userIsConnected = $auth->getUser();
-        if ($auth->getRole() === 'admin') {
-            return $admin = $this->admin;
-        } elseif ($auth->getRole() === 'user') {
-            return $user = $this->user;
-        }
-        return $userIsConnected;
-        // echo 'test'; test de la fonction getConnectedUser()
-    }
+    protected $userLayout = '../src/App/Views/layout.phtml';
+    protected $adminLayout = '../admin/admin_layout.phtml';
 
     /**
      * @brief display method
@@ -57,7 +38,7 @@ class AbstractController
     {
         extract($data);
         $title = SELF::SITE_NAME . ' - ' . $title;
-        $template = 'Views/Templates/Pages/' . $template . '.phtml';
+        $template = '../src/App/Views/Templates/Pages/' . $template . '.phtml';
         require $this->userLayout;
     }
 
@@ -73,7 +54,7 @@ class AbstractController
     {
         extract($data);
         $title = SELF::SITE_NAME . ' - Espace administrateur - ' . $title;
-        $template = '../Admin/Views/Templates/Pages/' . $template . '.phtml';
+        $template = '../src/Views/Templates/Admin/' . $template . '.phtml';
         require $this->adminLayout;
     }
 

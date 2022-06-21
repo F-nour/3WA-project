@@ -18,7 +18,11 @@ return [
         'index'
     ],
     url('/login') => [
-        '\App\Controller\LoginController',
-        'index'
+        '\App\Controller\UserController',
+        'login'
+    ],
+    url('/register') => [
+        '\App\Controller\UserController',
+        'register'
     ],
 ];
