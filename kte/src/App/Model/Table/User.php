@@ -15,7 +15,7 @@ class User
     const PASSWORD_INVALID = "Mot de passe invalide."; // adresse
     private array $errors = []; // erreurs
     private int $id; // code postal
-    private int $role_id_id; // ville
+    private int $role_id; // ville
     private string $society; // email
     private string $lastname; // mot de passe
     private string $firstname;

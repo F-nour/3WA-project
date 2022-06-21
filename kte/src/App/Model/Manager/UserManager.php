@@ -22,14 +22,14 @@ class UserManager extends AbstractManager
     }
 
     /**
-     * @brief Method to get all users.
+     * @brief Method to get all admin.
      * @method array getAll
      * @return array
      */
     public function getAllUsers(): array
     {
         $users = $this->db->getResults(
-            'SELECT id, role_id_id, INSEE, lastname, firstname, service, adress, complement, zip, city, email, role_id 
+            'SELECT id, role_id, INSEE, lastname, firstname, service, adress, complement, zip, city, email, role_id 
                 FROM ' . SELF::USERS . ' u 
                 INNER JOIN ' . SELF::ROLE . ' r ON u.role_id = r.id
                 ORDER BY id ASC'
@@ -46,22 +46,27 @@ class UserManager extends AbstractManager
     public function getUserById(int $id): ?User
     {
         $userById = $this->db->getResult(
-            'SELECT id, role_id_id, society, lastname, firstname, service, adress, complement, zip, city, email, role_id 
+            'SELECT u.id, society, lastname, firstname, service, adress, complement, zip, city, email, password, r.role 
             FROM ' . self::USERS . ' u 
-            INNER JOIN ' . SELF::ROLE . ' r ON u.role_id_id = r.id
-            WHERE id = :id',
+            INNER JOIN ' . SELF::ROLE . ' r ON u.role_id = r.id
+            WHERE u.id = :id',
             [
                 'id' => $id
             ]
         );
-        return $userById;
+        if ($userById === null) {
+            return null;
+        }
+            $user = new User();
+            $user->createDataRow((array) $userById);
+            return $user;
     }
 
     public function getUserByMail(string $email): ?User
     {
         $userByMail = $this->db->getResult(
             'SELECT u.id, society, lastname, firstname, service, adress, complement, zip, city, email, password, role 
-            FROM ' . self::USERS . ' u 
+            FROM ' . SELF::USERS . ' u 
             INNER JOIN ' . SELF::ROLE . ' r ON u.role_id = r.id
             WHERE email = :email',
             [
@@ -79,16 +84,23 @@ class UserManager extends AbstractManager
         return $user;
     }
 
-    public function getUserByrole(int $id)
+    public function getUserByRole(int $id): ?User
     {
-        $userrole_id = $this->db->getResult(
-            'SELECT role_id_id role_id FROM ' . SELF::USERS . ' u 
-            INNER JOIN ' . SELF::ROLE . ' r ON u.role_id = r.id 
-            WHERE id = :id',
+        $userByRole = $this->db->getResult(
+            'SELECT u.id, u.role_id, society, lastname, firstname, service, adress, complement, zip, city, email, password, r.role 
+            FROM ' . self::USERS . ' u 
+            INNER JOIN ' . SELF::ROLE . ' r ON u.role_id = r.id
+            WHERE u.id = :id',
             [
                 'id' => $id
             ]
         );
+        if ($userByRole === null) {
+            return null;
+        }
+        $user = new User();
+        $user->createDataRow((array) $userByRole);
+        return $user;
     }
 
     public function createUser(array $data): ?int

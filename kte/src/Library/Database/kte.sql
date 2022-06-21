@@ -152,7 +152,7 @@ INSERT INTO `role` (`id`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Structure de la table `admin`
 --
 
 CREATE TABLE `users` (
@@ -221,7 +221,7 @@ ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `users`
+-- Index pour la table `admin`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -264,7 +264,7 @@ ALTER TABLE `products`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `users`
+-- AUTO_INCREMENT pour la table `admin`
 --
 ALTER TABLE `users`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
@@ -280,7 +280,7 @@ ALTER TABLE `actualities`
   ADD CONSTRAINT `category` FOREIGN KEY (`id_category`) REFERENCES `categories` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Contraintes pour la table `users`
+-- Contraintes pour la table `admin`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role`) REFERENCES `role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;

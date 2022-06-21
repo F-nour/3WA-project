@@ -28,15 +28,4 @@ class Authentifier
     {
         return isset($_SESSION['user_id']);
     }
-
-    public function isAdmin(): bool
-    {
-        $userManager = new UserManager();
-        $user = $userManager->getUserByRole($_SESSION['user_id']);
-        if ($user->getRole() === 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 }

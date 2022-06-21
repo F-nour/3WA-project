@@ -14,6 +14,11 @@
   <script type="module" src="<?= url('/public/assets/js/script.js') ?>"></script>
   <!-- Titre de la page web -->
   <title><?= $title ?></title> <!-- titre généré dynamiquement par le serveur -->
+  <?php if (auth()->isAuthenticated()): ?>
+  <meta name="robots" content="noindex">
+  <meta name="robots" content="nofollow">
+  <meta name="googlebot" content="noindex">
+  <?php else: ?>
   <meta name="description" content="" />
   <meta name="keywords" content="" />
   <meta name="author" content="Kiff ton Écharpe" />
@@ -57,4 +62,5 @@
   <meta name="DC.language" content="fr" />
   <meta name="DC.coverage" content="World" />
   <meta name="DC.rights" content="Kiff Ton Echarpe" />
+  <?php endif; ?>
 </head>

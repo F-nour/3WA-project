@@ -23,7 +23,7 @@ class UserController extends AbstractController
         if (auth()->isAuthenticated()) {
             $this->redirect('/');
         }
-        $this->display('Inscription', 'users/register');
+        $this->display('Inscription', 'admin/register');
     }
 
     public function create(): void
@@ -61,7 +61,7 @@ class UserController extends AbstractController
         if (auth()->isAuthenticated()) {
             $this->redirect('/');
         }
-        $this->display('Connexion', 'users/login');
+        $this->display('Connexion', 'login');
     }
 
     public function auth(): void
@@ -88,7 +88,7 @@ class UserController extends AbstractController
             $this->redirect('/');
         } else {
             $errors = $user->getErrors();
-            $this->redirect('/login?errors');
+            $this->redirect('/login');
         }
     }
     

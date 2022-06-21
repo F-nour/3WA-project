@@ -37,4 +37,8 @@ return [
         '\App\Controller\UserController',
         'logout'
     ],
+    url('/admin/') => [
+        '\App\Controller\AdminController',
+        'index'
+    ],
 ];

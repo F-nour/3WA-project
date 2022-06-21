@@ -27,7 +27,7 @@ use Library\Database\Connexion;
  * @const string CONTACT = 'contact'
  * @const string ORDERED = 'ordered'
  * @const string PRODUCTS = 'products'
- * @const string USERS = 'users'
+ * @const string USERS = 'admin'
  *
  */
 class AbstractManager
@@ -40,7 +40,7 @@ class AbstractManager
     const PRODUCTS = 'products';
     const ROLE = 'role';
     const USERS = 'users';
-    protected Connexion $db;
+    public Connexion $db;
     protected $config = '../config/database_3wa.php';
 
     /**
@@ -52,5 +52,6 @@ class AbstractManager
     {
         $config = require $this->config;
         $this->db = new Connexion($config);
+        var_dump($this->db->getPdo());
     }
 }
