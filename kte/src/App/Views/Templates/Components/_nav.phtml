@@ -2,36 +2,54 @@
   <ul class=" header-menu__list flex-row" id="menuList">
     <li data-menus class="header-menu__link internal logo" id="logo">
       <a href="<?= url('/') ?>" title="Accueil" class="flex-row">
-        <?php if (auth()->isAuthenticated()): ?>Gérer les actualités
-        <?php else: ?>Kiff Ton Écharpe
-        <?php endif; ?>
+        <?php
+        if (auth()->isAuthenticated()): ?>Gérer les actualités
+        <?php
+        else: ?>Kiff Ton Écharpe
+        <?php
+        endif; ?>
       </a>
     </li>
     <li data-menus class="header-menu__link internal list1">
       <a href="<?= url('/products') ?>" title="Produits">
-      <?php if (auth()->isAuthenticated()) : ?>Gérer les services
-      <?php else: ?>Mes services
-      <?php endif; ?></a>
+        <?php
+        if (auth()->isAuthenticated()) : ?>Gérer les services
+        <?php
+        else: ?>Mes services
+        <?php
+        endif; ?></a>
     </li>
     <li data-menus class="header-menu__link internal list2">
       <a href="<?= url('/about') ?>" title="A propos">
-        <?php if (auth()->isAuthenticated()) : ?>Modifier l'à propos
-        <?php else: ?>Mieux me connaître
-      <?php endif; ?></a>
+        <?php
+        if (auth()->isAuthenticated()) : ?>Modifier l'à propos
+        <?php
+        else: ?>Mieux me connaître
+        <?php
+        endif; ?></a>
     </li>
     <li data-menus class="header-menu__link internal list3">
       <a href="<?= url('/contact') ?>" title="Contact">
-        <?php if (auth()->isAuthenticated()) : ?>Demandes de contacts
-        <?php else: ?>Me contacter
-      <?php endif; ?></a>
+        <?php
+        if (auth()->isAuthenticated()) : ?>Demandes de contacts
+        <?php
+        else: ?>Me contacter
+        <?php
+        endif; ?></a>
     </li>
-    <?php if (auth()->isAuthenticated()) : ?>
+    <?php
+    if (auth()->isAuthenticated()) : ?>
+      <li data-menus class="header-menu__link internal list4">
+        <a href="<?= url('/account') ?>" title="Déconnexion">Mon compte</a>
+      </li>
       <li data-menus class="header-menu__link internal list5">
         <a href="<?= url('/logout') ?>" title="Déconnexion">Déconnexion</a>
       </li>
-    <?php else: ?>
-      <li data-menus class="header-menu__link internal list4">
-        <a href="<?= url('/login') ?>" title="Connexion">Connexion</a>
-    <?php endif; ?>
+    <?php
+    else: ?>
+    <li data-menus class="header-menu__link internal list4">
+      <a href="<?= url('/login') ?>" title="Connexion">Connexion</a>
+      <?php
+      endif; ?>
   </ul>
 </nav>

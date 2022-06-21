@@ -23,7 +23,7 @@ class UserController extends AbstractController
         if (auth()->isAuthenticated()) {
             $this->redirect('/');
         }
-        $this->display('Inscription', 'admin/register');
+        $this->display('Inscription', 'user/register');
     }
 
     public function create(): void
@@ -31,28 +31,30 @@ class UserController extends AbstractController
         if (auth()->isAuthenticated()) {
             $this->redirect('/');
         }
-        if (isset($_POST['lastname']) && isset($_POST['firstname']) && isset($_POST['email']) && isset($_POST['password'])) {
-            $this->user->createDataRow([
-                'society' => $_POST['society'],
-                'lastname' => $_POST['lastname'],
-                'firstname' => $_POST['firstname'],
-                'service' => $_POST['service'],
-                'adress' => $_POST['adress'],
-                'complement' => $_POST['complement'],
-                'zip' => $_POST['zip'],
-                'city' => $_POST['city'],
-                'email' => $_POST['email'],
-                'password' => (password_hash($_POST['password'], PASSWORD_ARGON2ID)),
-            ]);
-            if ($_POST['password'] !== $_POST['password_confirm']) {
-                $this->user->addError(User::PASSWORD_INVALID);
-            }
-            if ($this->user->isValid()) {
-                $this->manager->insertUser($this->user);
-                $this->redirect('/login');
-            } else {
-                $errors = $this->user->getErrors();
-            }
+        $user = $this->manager->getUserByMail(auth()->isAuthenticated());
+        if (!empty($user)) {
+            $this->user->AddErrors(User::EMAIL_INVALID);
+        }
+        $this->manager->insertUser([
+            'society' => $_POST['society'],
+            'lastname' => $_POST['lastname'],
+            'firstname' => $_POST['firstname'],
+            'service' => $_POST['service'],
+            'adress' => $_POST['adress'],
+            'complement' => $_POST['complement'],
+            'zip' => $_POST['zip'],
+            'city' => $_POST['city'],
+            'email' => $_POST['email'],
+            'password' => (password_hash($_POST['password'], PASSWORD_ARGON2ID)),
+        ]);
+        if ($_POST['password'] !== $_POST['password_confirm']) {
+            $this->user->addError(User::PASSWORD_INVALID);
+        }
+        if ($this->user->isValid()) {
+            $this->redirect('/');
+        } else {
+            $errors = $this->user->getErrors();
+            $this->redirect('/login');
         }
     }
 
@@ -61,7 +63,7 @@ class UserController extends AbstractController
         if (auth()->isAuthenticated()) {
             $this->redirect('/');
         }
-        $this->display('Connexion', 'login');
+        $this->display('Connexion', 'user/login');
     }
 
     public function auth(): void
@@ -91,7 +93,90 @@ class UserController extends AbstractController
             $this->redirect('/login');
         }
     }
-    
+
+    public function account(): void
+    {
+        if (!auth()->isAuthenticated()) {
+            $this->redirect('/login');
+        } else {
+            $user = $this->manager->getUserById(auth()->isAuthenticated());
+            $this->display('Mon compte', 'user/account', ['user' => $user]);
+        }
+    }
+
+    public function modify(): void
+    {
+        if (!auth()->isAuthenticated()) {
+            $this->redirect('/login');
+        } else {
+            $user = $this->manager->getUserById(auth()->isAuthenticated());
+            $this->display('Modification', 'user/modify', ['user' => $user]);
+        }
+    }
+
+    public function updateUser(): void
+    {
+        if (!auth()->isAuthenticated()) {
+            $this->redirect('/login');
+        } else {
+            $user = $this->manager->getUserById(auth()->isAuthenticated());
+            $this->manager->updateUser([
+                'society' => $_POST['society'],
+                'lastname' => $_POST['lastname'],
+                'firstname' => $_POST['firstname'],
+                'service' => $_POST['service'],
+                'adress' => $_POST['adress'],
+                'complement' => $_POST['complement'],
+                'zip' => $_POST['zip'],
+                'city' => $_POST['city'],
+                'email' => $_POST['email'],
+            ],
+                auth()->isAuthenticated());
+            if ($this->user->isValid()) {
+                $this->redirect('/account');
+            } else {
+                $_SESSION('errors');
+                $this->redirect('/modify');
+            }
+        }
+    }
+
+    public function updatePassword(): void
+    {
+        if (!auth()->isAuthenticated()) {
+            $this->redirect('/login');
+        } else {
+            $user = $this->manager->getUserById(auth()->isAuthenticated());
+            $this->display('Modification du mot de passe', 'user/updatePassword', ['user' => $user]);
+        }
+    }
+
+    public function updatePwd(): void
+    {
+        if (!auth()->isAuthenticated()) {
+            $this->redirect('/login');
+        } else {
+            $user = $this->manager->getUserById(auth()->isAuthenticated());
+            $password = password_verify($_POST['password'], $user->getPassword());
+            if (!$password) {
+                $user->addError(User::PASSWORD_INVALID);
+            }
+            $this->manager->updatePassword([
+                'newPassword' => (password_hash($_POST['newPassword'], PASSWORD_ARGON2ID)),
+            ],
+            auth()->isAuthenticated());
+            if ($_POST['newPassword'] !== $_POST['password_confirm']) {
+                $_SESSION['error'] = ['password' => $this->user->addError(User::PASSWORD_INVALID)];
+            }
+            if ($this->user->isValid()) {
+                $this->redirect('/account');
+            } else {
+                $_SESSION['errors'];
+                $this->redirect('/updatePassword');
+            }
+        }
+    }
+
     public function logout(): void
     {
         auth()->logout();

@@ -37,6 +37,26 @@ return [
         '\App\Controller\UserController',
         'logout'
     ],
+    url('/account') => [
+        '\App\Controller\UserController',
+        'account'
+    ],
+    url('/modify') => [
+        '\App\Controller\UserController',
+        'modify'
+    ],
+    url('/updateUser') => [
+        '\App\Controller\UserController',
+        'updateUser'
+    ],
+    url('/updatePassword') => [
+        '\App\Controller\UserController',
+        'updatePassword'
+    ],
+    url('/updatePwd') => [
+        '\App\Controller\UserController',
+        'updatePwd'
+    ],
     url('/admin/') => [
         '\App\Controller\AdminController',
         'index'

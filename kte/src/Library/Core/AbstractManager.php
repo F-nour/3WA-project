@@ -40,8 +40,9 @@ class AbstractManager
     const PRODUCTS = 'products';
     const ROLE = 'role';
     const USERS = 'users';
-    public Connexion $db;
+    protected Connexion $db;
     protected $config = '../config/database_3wa.php';
+    protected $table;
 
     /**
      * @brief constructor

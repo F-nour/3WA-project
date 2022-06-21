@@ -19,6 +19,7 @@ class UserManager extends AbstractManager
     public function __construct()
     {
         parent::__construct(self::USERS);
+        $this->table = new User();
     }
 
     /**
@@ -57,9 +58,8 @@ class UserManager extends AbstractManager
         if ($userById === null) {
             return null;
         }
-            $user = new User();
-            $user->createDataRow((array) $userById);
-            return $user;
+            $this->table->createDataRow((array) $userById);
+            return $this->table;
     }
 
     public function getUserByMail(string $email): ?User
@@ -77,11 +77,8 @@ class UserManager extends AbstractManager
         if ($userByMail === null) {
             return null;
         }
-
-        $user = new User();
-        $user->createDataRow((array) $userByMail);
-
-        return $user;
+        $this->table->createDataRow((array) $userByMail);
+        return $this->table;
     }
 
     public function getUserByRole(int $id): ?User
@@ -98,18 +95,17 @@ class UserManager extends AbstractManager
         if ($userByRole === null) {
             return null;
         }
-        $user = new User();
-        $user->createDataRow((array) $userByRole);
-        return $user;
+        $this->table->createDataRow((array) $userByRole);
+        return $this->table;
     }
 
-    public function createUser(array $data): ?int
+    public function insertUser(array $data): ?int
     {
         $userId = $this->db->execute(
-            'INSERT INTO society, lastname, firstname, service, adress, complement, zip, city, email, password 
-            VALUE  :society, :INSEE, :lastname, :firstname, :service, :adress, :complement, :zip, :city, :email, :password 
-            ',
+            'INSERT INTO ' . self::USERS . ' (society, lastname, firstname, service, adress, complement, zip, city, email, password)
+            VALUE (:society, :lastname, :firstname, :service, :adress, :complement, :zip, :city, :email, :password)',
             [
+                'id' => $id,
                 'society' => $data['society'],
                 'lastname' => $data['lastname'],
                 'firstname' => $data['firstname'],
@@ -120,6 +116,30 @@ class UserManager extends AbstractManager
                 'city' => $data['city'],
                 'email' => $data['email'],
                 'password' => $data['password']
+            ]);
+        if ($userId === null) {
+            return null;
+        }
+        return $userId;
+    }
+
+    public function updateUser(array $data, int $id): ?int
+    {
+        $userId = $this->db->execute(
+            'UPDATE ' . self::USERS .
+            ' SET society = :society, lastname = :lastname, firstname = :firstname, service = :service, adress = :adress, complement = :complement, zip = :zip, city = :city, email = :email 
+            WHERE id = :id',
+            [
+                'id' => $id,
+                'society' => $data['society'],
+                'lastname' => $data['lastname'],
+                'firstname' => $data['firstname'],
+                'service' => $data['service'],
+                'adress' => $data['adress'],
+                'complement' => $data['complement'],
+                'zip' => $data['zip'],
+                'city' => $data['city'],
+                'email' => $data['email'],
             ]
         );
         if ($userId === false) {
@@ -128,24 +148,19 @@ class UserManager extends AbstractManager
         return $userId;
     }
 
-    public function insertUser(User $User): string
-    {
+    public function updatePassword(array $data, int $id): ?int {
         $userId = $this->db->execute(
-            'INSERT INTO ' . self::USERS . ' (society, lastname, firstname, service, adress, complement, zip, city, email, password)
-            VALUE (:society, :lastname, :firstname, :service, :adress, :complement, :zip, :city, :email, :password)',
+            'UPDATE ' . self::USERS .
+            ' SET password = :password  
+            WHERE id = :id',
             [
-                'society' => $User->getSociety(),
-                'lastname' => $User->getLastname(),
-                'firstname' => $User->getFirstname(),
-                'service' => $User->getService(),
-                'adress' => $User->getAdress(),
-                'complement' => $User->getComplement(),
-                'zip' => $User->getZip(),
-                'city' => $User->getCity(),
-                'email' => $User->getEmail(),
-                'password' => $User->getPassword()
+                'id' => $id,
+                'password' => $data['newPassword']
             ]
         );
+        if ($userId === false) {
+            return null;
+        }
         return $userId;
     }
 }
