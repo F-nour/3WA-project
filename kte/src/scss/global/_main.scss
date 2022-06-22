@@ -5,8 +5,13 @@
   @include element.main();
   padding-bottom: calc(var(--sizeMenu) + var(--sizeDubble));
 
+
   & > section {
     width: var(--sizeAll);
     height: var(--sizeAll);
+    @media (max-width: 1024px) {
+      width: 98%;
+      margin: auto;
+    }
   }
 }

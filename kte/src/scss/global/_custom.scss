@@ -25,13 +25,8 @@
 
 body {
   flex: 1 0;
-  flex-direction: row;
   height: var(--sizeAll);
   background-color: var(--bgColor);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
   color: var(--textColor);
   box-shadow: var(--boxShadow);
   letter-spacing: 0.05rem;
@@ -45,6 +40,7 @@ body {
   margin-top: var(--sizeMenu);
   @include flex.flex-column(space-between, center, 0);
   width: var(--sizeAll);
+    height: var(--sizeAll);
 }
 
 p {
@@ -92,14 +88,15 @@ h5,
   font-weight: 700;
   font-style: oblique;
   font-family: var(--gentium);
-  margin: 1em 0 0.5em;
+  margin: 1em 0 1em;
 }
 
 h1,
 .h1 {
   font-size: 3rem;
-  justify-content: center;
+  text-align: center;
   font-family: var(--abril);
+  margin-bottom: 1.5em;
 }
 
 h2,

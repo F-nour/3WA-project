@@ -38,13 +38,13 @@ try {
     $router = new Router();
     $router->goToRoute();
 } catch (NotFoundException $nfe) {
-    logAction('http', 'badRequest', $nfe->getMessage());
+//    logAction('http', 'badRequest', $nfe->getMessage());
     http_response_code(404);
     header("HTTP/1.0 404 Not Found");
     $controller = new ErrorController();
     $controller->notFound();
 } catch (PDOException $pdoe) {
-    logAction('pdo', 'applicationError', $pdoe->getMessage());
+//    logAction('pdo', 'applicationError', $pdoe->getMessage());
     http_response_code(500);
     $controller = new ErrorController();
     $controller->forbidden();

@@ -22,7 +22,6 @@
   &__link {
     @include flex.flex-row(0, 0, space-evenly);
   }
-
   &__link,
   &__link a {
     justify-content: center;
@@ -39,11 +38,6 @@
   left: 0px;
   top: 0px;
   cursor: pointer;
-
-  & a {
-    padding: 0 8px 0 var(--sizeMenu);
-    width: var(--sizeAll);
-  }
 }
 
 @media (max-width: 1024px) {

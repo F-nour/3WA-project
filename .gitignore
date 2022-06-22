@@ -9,22 +9,20 @@
 ## IDE's setting file
 .idea/
 .vscode/
+kte/.idea/
+kte/.vscode/
 
 
 ## kte
 ## config database file
 kte/config/database.php
 kte/config/database_3wa.php
-
+kte/phpini.php
 
 ## library files
 kte/logs/
 kte/vendor/
 kte/node_modules/
-
-## IDE's setting file
-kte/.idea/
-kte/.vscode/
 
 ## project
 project/

@@ -53,6 +53,5 @@ class AbstractManager
     {
         $config = require $this->config;
         $this->db = new Connexion($config);
-        var_dump($this->db->getPdo());
     }
 }

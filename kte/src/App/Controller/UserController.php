@@ -31,9 +31,14 @@ class UserController extends AbstractController
         if (auth()->isAuthenticated()) {
             $this->redirect('/');
         }
+        $errors = validForm()->userForm($_POST);
         $user = $this->manager->getUserByMail(auth()->isAuthenticated());
         if (!empty($user)) {
-            $this->user->AddErrors(User::EMAIL_INVALID);
+            flash()->addError('username', 'Un utilisateur utilise déjà cette adresse mail');
+        }
+        if (count($errors) > 0) {
+            $_SESSION['error'] = $errors;
+            $this->redirect('/register');
         }
         $this->manager->insertUser([
             'society' => $_POST['society'],
@@ -47,9 +52,6 @@ class UserController extends AbstractController
             'email' => $_POST['email'],
             'password' => (password_hash($_POST['password'], PASSWORD_ARGON2ID)),
         ]);
-        if ($_POST['password'] !== $_POST['password_confirm']) {
-            $this->user->addError(User::PASSWORD_INVALID);
-        }
         if ($this->user->isValid()) {
             $this->redirect('/');
         } else {
@@ -68,29 +70,25 @@ class UserController extends AbstractController
 
     public function auth(): void
     {
+        $errors = validForm()->userForm($_POST);
         // Récupération de l'utilisateur a partir de son email
         $userbyMail = $this->manager->getUserByMail($_POST['email']);
-        // Si l'utilisateur n'existe pas, on affiche une erreur
         if (!$userbyMail) {
-            $this->user->addError(User::EMAIL_INVALID);
+            flash()->addError('email', 'Adresse mail invalide');
+            $this->redirect('/login');
         }
         // Vérification du mot de passe avec password_verify
         $user = $userbyMail;
 
         $password = password_verify($_POST['password'], $user->getPassword());
-
-        // Si le mot de passe est invalide, on affiche une erreur
         if (!$password) {
-            $user->addError(User::PASSWORD_INVALID);
-        }
-
-        // Si tout est ok, on connecte l'utilisateur avec $_SESSION
-        if ($user->isValid()) {
-            auth()->login($user->getId());
-            $this->redirect('/');
-        } else {
-            $errors = $user->getErrors();
+            flash()->addError('password', 'Mot de passe invalide');
             $this->redirect('/login');
+        }
+        // Si tout est ok, on connecte l'utilisateur avec $_SESSION
+        if (validForm()->isValid()) {
+            auth()->login($user->getId());
+            $this->redirect('/account');
         }
     }
 
@@ -164,7 +162,7 @@ class UserController extends AbstractController
             $this->manager->updatePassword([
                 'newPassword' => (password_hash($_POST['newPassword'], PASSWORD_ARGON2ID)),
             ],
-            auth()->isAuthenticated());
+                auth()->isAuthenticated());
             if ($_POST['newPassword'] !== $_POST['password_confirm']) {
                 $_SESSION['error'] = ['password' => $this->user->addError(User::PASSWORD_INVALID)];
             }

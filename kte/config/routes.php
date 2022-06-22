@@ -57,7 +57,7 @@ return [
         '\App\Controller\UserController',
         'updatePwd'
     ],
-    url('/admin/') => [
+    url('/admin') => [
         '\App\Controller\AdminController',
         'index'
     ],

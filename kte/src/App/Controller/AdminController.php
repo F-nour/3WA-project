@@ -10,7 +10,7 @@ class AdminController extends AbstractController
     public function index() : void
     {
         if (auth()->isAuthenticated()) {
-            $this->display('Espace Administrateur', 'admin');
+            $this->display('Espace Administrateur', 'admin/admin');
         } else {
             $this->redirect('/login');
         }

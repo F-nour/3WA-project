@@ -29,7 +29,7 @@ class ErrorController extends AbstractController
      */
     public function notFound()
     {
-        $this->display('Erreur 404 - Page introuvable', 'notFound');
+        $this->display('Erreur 404 - Page introuvable', 'error/notFound');
     }
 
     /**
@@ -38,6 +38,6 @@ class ErrorController extends AbstractController
      */
     public function forbidden()
     {
-        $this->display('Erreur 500 - Erreur interne', 'internalError');
+        $this->display('Erreur 500 - Erreur interne', 'error/internalError');
     }
 }

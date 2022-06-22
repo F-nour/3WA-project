@@ -37,14 +37,6 @@ class About
     private string $mail; // Email
     private string $image; // Photo
 
-    const INVALID_SOCIETY = "Nom de la société invalide.";
-    const INVALID_INSEE = "Numéro INSEE invalide.";
-    const INVALID_ZIP = "Code postal invalide.";
-    const INVALID_CITY = "Ville invalide.";
-    const INVALID_PHONE = "Téléphone invalide.";
-    const INVALID_MAIL = "Email invalide.";
-    const INVALID_IMAGE = "Photo invalide.";
-
     /**
      * @brief Method to automatically set the data of the about table.
      * @method array @hydrate

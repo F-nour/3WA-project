@@ -37,10 +37,7 @@ img, a, li, dd, dt),
   flex-direction: column;
 }
 
-p, blockquote, q, code, span, strong, em,
-h1, h2, h3, h4, h5, h6,
-a, li, dd, dt,
-button
+li, dd, dt
 .flex-row {
   display: flex;
   flex-direction: row;

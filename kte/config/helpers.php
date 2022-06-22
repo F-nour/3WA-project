@@ -6,8 +6,10 @@
  * @author Nour-eddine
  */
 
-use \Library\Auth\Authentifier;
-use \Library\Session\SessionManagment;
+use Library\Auth\Authentifier;
+use Library\Session\Flashbag;
+use Library\Log\Logger;
+use Library\Validator\Validator;
 
 /**
  * @brief Fonction de redirection.
@@ -30,26 +32,18 @@ function url(string $path): string
  * @variable $logFile : File of the log
  * @return void
  */
-function logAction(string $type, string $name, string $message): void
-{
-    $logdir = dirname(__DIR__) . "/logs/$type/$name/" . date('Ymd');
-    $logfile = $logdir . DIRECTORY_SEPARATOR . $type . '_' . $name . '_' . date('Ymd_H-i-s') . '.log';
-    if (!file_exists($logdir)) {
-        mkdir($logdir, 0777, true);
-    }
-    file_put_contents(
-        $logfile,
-        date('d/m/Y H:i') . " : " . $message . ' - ' . $_SERVER['REQUEST_URI'] . " ",
-        FILE_APPEND
-    );
-}
 
-function flash(): SessionManagment
+function flash(): Flashbag
 {
-    return new SessionManagment();
+    return new Flashbag();
 }
 
 function auth(): Authentifier
 {
     return new Authentifier();
+}
+
+function validForm(): Validator
+{
+    return new Validator();
 }
