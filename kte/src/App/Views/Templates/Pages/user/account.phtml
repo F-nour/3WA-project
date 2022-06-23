@@ -1,9 +1,23 @@
 <section class="account" id="account">
-    <div class="account__title">
-        <h1>Mon compte</h1>
-    </div>
-    <div class="account__content">
-        <p>Bienvenue sur votre compte, <?= $user->getFIrstName(); ?> <?= $user->getLastName(); ?>.</p>
-        <p>Vous pouvez <a class="internal" href="<?= url('/modify') ?>">modifier vos informations</a> ou <a class="internal" href="<?= url('/updatePassword') ?>">modifier votre mot de passe.</a>.</p>
-    </div>
+  <div class="account__title">
+    <h1>Mon compte</h1>
+  </div>
+  <?php
+  if (flash()->hasSuccess('isConnected')) :
+    echo flash()->getSuccess('isConnected');
+  elseif (flash()->hasSuccess('modifyUser')) :
+    echo flash()->getSuccess('modifyUser');
+  elseif (flash()->hasError('modifyPwd')) :
+    echo flash()->getError('modifyPwd');
+  endif; ?>
+  <div class="account__content">
+    <p>Vous êtes sur votre espace personnel, <?= $user->getFIrstName(); ?> <?= $user->getLastName(); ?>.</p>
+
+    <p>Vous pouvez
+      <a class="internal" href="<?= url('/modify') ?>">modifier vos informations
+      </a> ou <a class="internal" href="<?= url('/updatePassword') ?>">
+        modifier votre mot de passe.
+      </a>.
+    </p>
+  </div>
 </section>

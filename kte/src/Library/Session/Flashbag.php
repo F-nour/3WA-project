@@ -14,7 +14,7 @@ class Flashbag
         $message = $_SESSION['error'][$field];
         unset($_SESSION['error'][$field]);
 
-        return $message;
+        return '<div class="error"><p>' . $message . '</p></div>';
     }
 
     public function hasError(string $field): bool
@@ -36,7 +36,7 @@ class Flashbag
         $message = $_SESSION['success'][$field];
         unset($_SESSION['success'][$field]);
 
-        return $message;
+        return '<div class="success"><p>' . $message . '</p></div>';
     }
 
     public function hasSuccess(string $field): bool

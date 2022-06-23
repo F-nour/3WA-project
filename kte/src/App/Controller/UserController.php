@@ -31,7 +31,7 @@ class UserController extends AbstractController
         if (auth()->isAuthenticated()) {
             $this->redirect('/');
         }
-        $errors = validForm()->userForm($_POST);
+        $errors = userForm()->createUser($_POST);
         $user = $this->manager->getUserByMail(auth()->isAuthenticated());
         if (!empty($user)) {
             flash()->addError('username', 'Un utilisateur utilise déjà cette adresse mail');
@@ -70,27 +70,20 @@ class UserController extends AbstractController
 
     public function auth(): void
     {
-        $errors = validForm()->userForm($_POST);
         // Récupération de l'utilisateur a partir de son email
-        $userbyMail = $this->manager->getUserByMail($_POST['email']);
-        if (!$userbyMail) {
-            flash()->addError('email', 'Adresse mail invalide');
-            $this->redirect('/login');
-        }
-        // Vérification du mot de passe avec password_verify
-        $user = $userbyMail;
-
+        $user = $this->manager->getUserByMail($_POST['email']);
         $password = password_verify($_POST['password'], $user->getPassword());
-        if (!$password) {
-            flash()->addError('password', 'Mot de passe invalide');
+        $errors = userForm()->authUser($user, $password);
+        // S'il y a des erreurs
+        if (count($errors) > 0) {
+            $_SESSION['error'] = $errors;
             $this->redirect('/login');
         }
         // Si tout est ok, on connecte l'utilisateur avec $_SESSION
-        if (validForm()->isValid()) {
             auth()->login($user->getId());
+            flash()->addSuccess('isConnected', 'Vous êtes connecté');
             $this->redirect('/account');
         }
-    }
 
     public function account(): void
     {
@@ -116,28 +109,29 @@ class UserController extends AbstractController
     {
         if (!auth()->isAuthenticated()) {
             $this->redirect('/login');
-        } else {
-            $user = $this->manager->getUserById(auth()->isAuthenticated());
-            $this->manager->updateUser([
-                'society' => $_POST['society'],
-                'lastname' => $_POST['lastname'],
-                'firstname' => $_POST['firstname'],
-                'service' => $_POST['service'],
-                'adress' => $_POST['adress'],
-                'complement' => $_POST['complement'],
-                'zip' => $_POST['zip'],
-                'city' => $_POST['city'],
-                'email' => $_POST['email'],
-            ],
-                auth()->isAuthenticated());
-            if ($this->user->isValid()) {
-                $this->redirect('/account');
-            } else {
-                $_SESSION('errors');
-                $this->redirect('/modify');
-            }
         }
-    }
+        $errors = userForm()->modifyUser($_POST);
+        if (count($errors) > 0) {
+            $_SESSION['error'] = $errors;
+            $this->redirect('/modify');
+        }
+        $this->manager->updateUser([
+            'society' => $_POST['society'],
+            'lastname' => $_POST['lastname'],
+            'firstname' => $_POST['firstname'],
+            'service' => $_POST['service'],
+            'adress' => $_POST['adress'],
+            'complement' => $_POST['complement'],
+            'zip' => $_POST['zip'],
+            'city' => $_POST['city'],
+            'email' => $_POST['email'],
+        ],
+            auth()->isAuthenticated());
+            flash()->addSuccess('modifyUser', 'Modifications effectuées');
+            $this->redirect('/account');
+        }
+
+
 
     public function updatePassword(): void
     {
@@ -145,7 +139,7 @@ class UserController extends AbstractController
             $this->redirect('/login');
         } else {
             $user = $this->manager->getUserById(auth()->isAuthenticated());
-            $this->display('Modification du mot de passe', 'user/updatePassword', ['user' => $user]);
+            $this->display('Modification du mot de passe', 'user/updatePassword', ['user' => $user, 'post' => $_POST]);
         }
     }
 
@@ -153,26 +147,20 @@ class UserController extends AbstractController
     {
         if (!auth()->isAuthenticated()) {
             $this->redirect('/login');
-        } else {
-            $user = $this->manager->getUserById(auth()->isAuthenticated());
-            $password = password_verify($_POST['password'], $user->getPassword());
-            if (!$password) {
-                $user->addError(User::PASSWORD_INVALID);
-            }
-            $this->manager->updatePassword([
-                'newPassword' => (password_hash($_POST['newPassword'], PASSWORD_ARGON2ID)),
-            ],
-                auth()->isAuthenticated());
-            if ($_POST['newPassword'] !== $_POST['password_confirm']) {
-                $_SESSION['error'] = ['password' => $this->user->addError(User::PASSWORD_INVALID)];
-            }
-            if ($this->user->isValid()) {
-                $this->redirect('/account');
-            } else {
-                $_SESSION['errors'];
-                $this->redirect('/updatePassword');
-            }
         }
+        $user = $this->manager->getUserById(auth()->isAuthenticated());
+        $password = password_verify($_POST['actualPassword'], $user->getPassword());
+        $errors = userForm()->updatePwd($_POST, $password);
+        if (count($errors) > 0) {
+            $_SESSION['error'] = $errors;
+            $this->redirect('/updatePassword');
+        }
+        $this->manager->updatePassword([
+            'newPassword' => (password_hash($_POST['newPassword'], PASSWORD_ARGON2ID))
+        ],
+            auth()->isAuthenticated());
+        flash()->addSuccess('modifyPwd', 'Votre mot de passe a été modifié');
+        $this->redirect('/account');
     }
 
     public function logout(): void

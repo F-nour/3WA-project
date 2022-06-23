@@ -1,45 +1,117 @@
 <section class="modify" id="modify">
-    <div class="modify__title">
-        <h1>Modifiez vos informations</h1>
-    </div>
-    <div class="modify_content">
-        <form action="<?= url('/updateUser'); ?>" method="post">
-            <div class="form-group">
-                <label for="society">Société</label>
-                <input type="text" name="society" id="society" class="form-control" placeholder="Société" value="<?= $user->getSociety() ?>">
-            </div>
-            <div class="form-group">
-                <label for="lastname">Nom</label>
-                <input required type="text" name="lastname" id="lastname" class="form-control" placeholder="Nom" value="<?= $user->getLastname() ?>">
-            </div>
-            <div class="form-group">
-                <label for="firstname">Prénom</label>
-                <input required type="text" name="firstname" id="firstname" class="form-control" placeholder="Prénom" value="<?= $user->getFirstname() ?>">
-            </div>
-            <div class="form-group">
-                <label for="service">Service</label>
-                <input type="text" name="service" id="service" class="form-control" placeholder="Service" value="<?= $user->getService() ?>">
-            </div>
-            <div class="form-group">
-                <label for="adress">Adresse</label>
-                <input required type="text" name="adress" id="adress" class="form-control" placeholder="Adresse" value="<?= $user->getAdress() ?>">
-            </div>
-            <div class="form-group">
-                <label for="complement">Complément</label>
-                <input type="text" name="complement" id="complement" class="form-control" placeholder="Complément" value="<?= $user->getComplement() ?>">
-            </div>
-            <div class="form-group">
-                <label for="zip">Code postal</label>
-                <input required type="text" name="zip" id="zip" class="form-control" placeholder="Code postal" value="<?= $user->getZip() ?>">
-            </div>
-            <div class="form-group">
-                <label for="city">Ville</label>
-                <input required type="text" name="city" id="city" class="form-control" placeholder="Ville" value="<?= $user->getCity() ?>">
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input required type="email" name="email" id="email" class="form-control" placeholder="Email" value="<?= $user->getEmail() ?>">
-            </div>
-            <button type="submit" class="btn btn-primary">Inscription</button>
-        </form>
+  <div class="modify__title">
+    <h1>Modifiez vos informations</h1>
+  </div>
+  <div class="modify_content">
+    <form action="<?= url('/updateUser'); ?>" method="post">
+      <div class="form-group">
+        <label for="society">Société</label>
+        <input type="text"
+                name="society"
+                id="society"
+                class="form-control"
+                placeholder="Société"
+                value="<?= $user->getSociety() ?>">
+      </div>
+      <div class="form-group">
+        <label for="lastname">Nom</label>
+        <input required
+                type="text"
+                name="lastname"
+                id="lastname"
+                class="form-control"
+                placeholder="Nom"
+                value="<?= $user->getLastname() ?>">
+          <?php
+          if (flash()->hasError('lastname')) :
+              echo flash()->getError('lastname');
+          endif; ?>
+      </div>
+      <div class="form-group">
+        <label for="firstname">Prénom</label>
+        <input required
+                type="text"
+                name="firstname"
+                id="firstname"
+                class="form-control"
+                placeholder="Prénom"
+                value="<?= $user->getFirstname() ?>">
+          <?php
+          if (flash()->hasError('firstname')) :
+              echo flash()->getError('firstname');
+          endif; ?>
+      </div>
+      <div class="form-group">
+        <label for="service">Service</label>
+        <input type="text"
+                name="service"
+                id="service"
+                class="form-control"
+                placeholder="Service"
+                value="<?= $user->getService() ?>">
+
+      </div>
+      <div class="form-group">
+        <label for="adress">Adresse</label>
+        <input required
+                type="text"
+                name="adress"
+                id="adress"
+                class="form-control"
+                placeholder="Adresse"
+                value="<?= $user->getAdress() ?>">
+          <?php
+          if (flash()->hasError('adress')) :
+              echo flash()->getError('adress');
+          endif; ?>
+      </div>
+      <div class="form-group">
+        <label for="complement">Complément</label>
+        <input type="text" name="complement" id="complement" class="form-control" placeholder="Complément"
+                value="<?= $user->getComplement() ?>">
+      </div>
+      <div class="form-group">
+        <label for="zip">Code postal</label>
+        <input required
+                type="text"
+                name="zip"
+                id="zip"
+                class="form-control"
+                placeholder="Code postal"
+                value="<?= $user->getZip() ?>">
+          <?php
+          if (flash()->hasError('zip')) :
+              echo flash()->getError('zip');
+          endif; ?>
+      </div>
+      <div class="form-group">
+        <label for="city">Ville</label>
+        <input required
+                type="text"
+                name="city"
+                id="city"
+                class="form-control"
+                placeholder="Ville"
+                value="<?= $user->getCity() ?>">
+          <?php
+          if (flash()->hasError('city')) :
+              echo flash()->getError('city');
+          endif; ?>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input required
+                type="email"
+                name="email"
+                id="email"
+                class="form-control"
+                placeholder="Email"
+                value="<?= $user->getEmail() ?>">
+          <?php
+          if (flash()->hasError('email')) :
+              echo flash()->getError('email');
+          endif; ?>
+      </div>
+      <button type="submit" class="btn btn-primary">Inscription</button>
+    </form>
 </section>

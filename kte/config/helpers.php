@@ -9,7 +9,7 @@
 use Library\Auth\Authentifier;
 use Library\Session\Flashbag;
 use Library\Log\Logger;
-use Library\Validator\Validator;
+use Library\Validator\UserValidator;
 
 /**
  * @brief Fonction de redirection.
@@ -43,7 +43,7 @@ function auth(): Authentifier
     return new Authentifier();
 }
 
-function validForm(): Validator
+function userForm(): UserValidator
 {
-    return new Validator();
+    return new UserValidator();
 }

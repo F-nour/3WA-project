@@ -30,7 +30,7 @@ use Library\Database\Connexion;
  * @const string USERS = 'admin'
  *
  */
-class AbstractManager
+abstract class AbstractManager
 {
     const ACTUALITIES = 'actualities';
     const ABOUT = 'about';

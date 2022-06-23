@@ -161,14 +161,4 @@ class User
     {
         return $this->errors;
     }
-
-    public function addError(string $error): void
-    {
-        $this->errors[] .= $error;
-    }
-
-    public function isValid(): bool
-    {
-        return empty($this->errors);
-    }
 }

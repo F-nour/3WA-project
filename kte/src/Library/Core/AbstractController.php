@@ -20,7 +20,7 @@ namespace Library\Core;
  * @property string $adminLayout administrator layout
  * @const string SITE_NAME = 'Kiff ton Écharpe' name of the site
  */
-class AbstractController
+abstract class AbstractController
 {
     const SITE_NAME = 'Kiff ton Écharpe';
     protected $userLayout = '../src/App/Views/layout.phtml';

@@ -163,4 +163,34 @@ class UserManager extends AbstractManager
         }
         return $userId;
     }
+
+    public function updateRole(array $data, int $id): ?int {
+        $userId = $this->db->execute(
+            'UPDATE ' . self::USERS .
+            ' SET role_id = :role_id  
+            WHERE id = :id',
+            [
+                'id' => $id,
+                'role_id' => $data['roleId']
+            ]
+        );
+        if ($userId === false) {
+            return null;
+        }
+        return $userId;
+    }
+
+    public function delateUser(int $id): ?int
+    {
+        $userId = $this->db->execute(
+            'DELETE FROM ' . self::USERS . ' WHERE id = :id',
+            [
+                'id' => $id
+            ]
+        );
+        if ($userId === false) {
+            return null;
+        }
+        return $userId;
+    }
 }
