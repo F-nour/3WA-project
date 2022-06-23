@@ -23,7 +23,6 @@ use App\Controller\ErrorController;
 use Library\Http\NotFoundException;
 use Library\Router\Router;
 
-session_start();
 /**
  * @brief Create a new Router instance.
  * @var $root: root directory.
@@ -35,6 +34,7 @@ session_start();
  * @var pdoe PDOEException : PDOEException instance.
  * */
 try {
+    session_start();
     $router = new Router();
     $router->goToRoute();
 } catch (NotFoundException $nfe) {

@@ -35,7 +35,7 @@ abstract class AbstractController
      * @return void
      */
 
-    private function purify($html) {
+    public function purify($html) {
         $config = \HTMLPurifier_Config::createDefault();
         $purifier = new \HTMLPurifier($config);
         $clean_html = $purifier->purify($html);
@@ -46,7 +46,6 @@ abstract class AbstractController
         extract($data);
         $title = SELF::SITE_NAME . ' - ' . $title;
         $template = '../src/App/Views/Templates/Pages/' . $template . '.phtml';
-        $this->purify($this->userLayout);
         require $this->userLayout;
     }
 

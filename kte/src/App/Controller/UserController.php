@@ -52,13 +52,9 @@ class UserController extends AbstractController
             'email' => $_POST['email'],
             'password' => (password_hash($_POST['password'], PASSWORD_ARGON2ID)),
         ]);
-        if ($this->user->isValid()) {
             $this->redirect('/');
-        } else {
-            $errors = $this->user->getErrors();
-            $this->redirect('/login');
         }
-    }
+
 
     public function login(): void
     {
