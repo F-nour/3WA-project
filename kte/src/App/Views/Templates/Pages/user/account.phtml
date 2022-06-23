@@ -1,5 +1,5 @@
 <section class="account" id="account">
-  <div class="account__title">
+  <div class="account title">
     <h1>Mon compte</h1>
   </div>
   <?php
@@ -10,8 +10,8 @@
   elseif (flash()->hasError('modifyPwd')) :
     echo flash()->getError('modifyPwd');
   endif; ?>
-  <div class="account__content">
-    <p>Vous êtes sur votre espace personnel, <?= $user->getFIrstName(); ?> <?= $user->getLastName(); ?>.</p>
+  <div class="account section-content">
+    <p>Vous êtes sur votre espace personnel, <?= htmlspecialchars($user->getFIrstName()); ?> <?= htmlspecialchars($user->getLastName()); ?>.</p>
 
     <p>Vous pouvez
       <a class="internal" href="<?= url('/modify') ?>">modifier vos informations

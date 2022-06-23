@@ -34,11 +34,19 @@ abstract class AbstractController
      * @param ?array $data : data to display
      * @return void
      */
+
+    private function purify($html) {
+        $config = \HTMLPurifier_Config::createDefault();
+        $purifier = new \HTMLPurifier($config);
+        $clean_html = $purifier->purify($html);
+        return $clean_html;
+    }
     public function display(string $title, string $template, ?array $data = []): void
     {
         extract($data);
         $title = SELF::SITE_NAME . ' - ' . $title;
         $template = '../src/App/Views/Templates/Pages/' . $template . '.phtml';
+        $this->purify($this->userLayout);
         require $this->userLayout;
     }
 

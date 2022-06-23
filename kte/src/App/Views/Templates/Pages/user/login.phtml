@@ -1,8 +1,8 @@
 <section class="login" id="login">
-  <div class="login__title">
+  <div class="login title">
     <h1>Connexion</h1>
   </div>
-  <div class="login__content">
+  <div class="login section-content">
     <div class="login__form">
       <form action="<?= url('/auth'); ?>" method="post">
         <div class="form-group">
@@ -11,7 +11,7 @@
         </div>
         <div class="form-group">
           <label for="password">Mot de passe</label>
-          <input type="password" name="password" id="password" class="form-control <?php if (flash()->hasError('password')) : ?>invalid <?php endif; ?>" placeholder="Mot de passe">
+          <input type="password" name="password" id="password" class="form-control <?php if (flash()->hasError('password')) : ?>invalid <?php endif; ?>" placeholder="Mot de passe" />
           <?php if (flash()->hasError('password')): ?>
           <div class="error">
             <?= flash()->getError('password') ?>

@@ -1,8 +1,8 @@
 <section class="home" id="home" name="home">
-  <div class="home__title" id="homeTitle" name="homeTitle">
+  <div class="home section-title" id="homeTitle" name="homeTitle">
     <h1>Bienvenue sur le site de Kiff Ton Écharpe</h1>
   </div>
-  <div class="home__content" id="homeContent" name="homeContent">
+  <div class="home section-content" id="homeContent" name="homeContent">
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae natus
       dolores ad molestias quidem quisquam labIioriosam in unde deserunt amet.
@@ -16,14 +16,14 @@
       foreach ($actuality as $actu) { ?>
         <div class="actuality">
           <div class="actuality__title">
-            <h2><?= $actu->title ?></h2>
+            <h2><?= htmlspecialchars($actu->title) ?></h2>
           </div>
           <div class="actuality__content">
-            <p><?= $actu->content ?></p>
+            <p><?= htmlspecialchars($actu->content) ?></p>
           </div>
           <div class="actuality__date">
             <p>Actualité du
-              <?= date_create($actu->date)->format('d/m/Y à H:i') ?></p>
+              <?= date_create(htmlspecialchars($actu->date))->format('d/m/Y à H:i') ?></p>
           </div>
         </div>
         <?php
