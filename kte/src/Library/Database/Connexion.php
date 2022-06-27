@@ -94,8 +94,11 @@ class Connexion
         try {
             $query = $this->pdo->prepare($sql);
             $query->execute($parameters);
-
-            return $query->fetch();
+            $result = $query->fetch();
+            if ($result === false) {
+                return null;
+            }
+            return $result;
         } catch (PDOException $e) {
             die($e->getMessage());
         }

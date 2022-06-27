@@ -32,7 +32,10 @@ class Router
     public function goToRoute()
     {
         $routes = require '../config/routes.php';
-        $route = $_SERVER['REQUEST_URI'] ?? '/';
+        $route = $_SERVER['REQUEST_URI'] ?? url('/');
+        if (! empty($_SERVER['QUERY_STRING'])) {
+            $route = substr($route, 0, -strlen($_SERVER['QUERY_STRING']) - 1);
+        }
         if (isset($routes[$route])) {
             $action = $routes[$route];
             $controllerName = $action[0];

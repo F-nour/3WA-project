@@ -1,0 +1,13 @@
+<section class="admin" id="admin">
+  <div class="admin title center">
+    <h2>Espace Administrateur</h2>
+  </div>
+  <div class="admin_content">
+      <?php
+      if (flash()->hasSuccess('isConnected')) :
+          echo flash()->getSuccess('isConnected');
+      endif; ?>
+
+    <p>Vous êtes connecté-e en tant qu'administrateur.</p>
+  </div>
+</section>

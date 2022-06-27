@@ -11,7 +11,7 @@
  * @uses \Library\Core\AbstractController : AbstractController class.
  */
 
-namespace App\Controller;
+namespace App\Controller\Guest;
 
 use Library\Core\AbstractController;
 

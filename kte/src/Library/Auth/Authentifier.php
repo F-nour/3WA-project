@@ -28,4 +28,9 @@ class Authentifier
     {
         return isset($_SESSION['user_id']);
     }
+
+    public function isAdmin(): bool {
+        $this->isAuthenticated();
+        return isset($_SESSION['admin']);
+    }
 }

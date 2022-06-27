@@ -5,7 +5,7 @@
  * @brief index.php file.
  * @uses \Library\Router\Router : Router class.
  * @uses \Library\Http\NotFoundException : NotFoundException class.
- * @uses \App\Controller\ErrorController : ErrorController class.
+ * @uses \App\Controller\Guest\ErrorController : ErrorController class.
  * @require $autoload
  * @require $helpers
  */
@@ -19,7 +19,7 @@ require $autoload;
 require $helpers;
 require $debug;
 
-use App\Controller\ErrorController;
+use App\Controller\Guest\ErrorController;
 use Library\Http\NotFoundException;
 use Library\Router\Router;
 

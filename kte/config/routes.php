@@ -6,59 +6,67 @@
  */
 return [
     url('/') => [
-        '\App\Controller\HomepageController',
+        '\App\Controller\Guest\HomepageController',
         'index'
     ],
     url('/about') => [
-        '\App\Controller\AboutController',
+        '\App\Controller\Guest\AboutController',
         'index'
     ],
     url('/legal') => [
-        '\App\Controller\LegalController',
+        '\App\Controller\Guest\LegalController',
         'index'
     ],
     url('/login') => [
-        '\App\Controller\UserController',
+        '\App\Controller\Guest\UserController',
         'login'
     ],
     url('/register') => [
-        '\App\Controller\UserController',
+        '\App\Controller\Guest\UserController',
         'register'
     ],
     url('/create') => [
-        '\App\Controller\UserController',
+        '\App\Controller\Guest\UserController',
         'create'
     ],
     url('/auth') => [
-        '\App\Controller\UserController',
+        '\App\Controller\Guest\UserController',
         'auth'
     ],
     url('/logout') => [
-        '\App\Controller\UserController',
+        '\App\Controller\Guest\UserController',
         'logout'
     ],
     url('/account') => [
-        '\App\Controller\UserController',
+        '\App\Controller\Guest\UserController',
         'account'
     ],
     url('/modify') => [
-        '\App\Controller\UserController',
+        '\App\Controller\Guest\UserController',
         'modify'
     ],
     url('/updateUser') => [
-        '\App\Controller\UserController',
+        '\App\Controller\Guest\UserController',
         'updateUser'
     ],
     url('/updatePassword') => [
-        '\App\Controller\UserController',
+        '\App\Controller\Guest\UserController',
         'updatePassword'
     ],
     url('/updatePwd') => [
-        '\App\Controller\UserController',
+        '\App\Controller\Guest\UserController',
         'updatePwd'
     ],
     url('/admin') => [
-        '\App\Controller\AdminController',
+        '\App\Controller\Admin\AdminController',
+        'index'
+    ],
+    url('/admin/editActuality') => [
+        '\App\Controller\Admin\AdminActualityController',
+        'editActuality'
+    ],
+    url('/admin/user') => [
+        '\App\Controller\Admin\AdminUserController',
         'index'
     ],
 ];

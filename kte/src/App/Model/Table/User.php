@@ -6,7 +6,7 @@ class User
 {
     private array $errors = []; // erreurs
     private int $id; // code postal
-    private int $role_id; // ville
+    public int $role_id; // ville
     private string $society; // email
     private string $lastname; // mot de passe
     private string $firstname;

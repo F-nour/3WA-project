@@ -12,6 +12,7 @@
 
 namespace Library\Core;
 
+use App\Model\Manager\ActualityManager;
 
 /**
  * @brief abstract class for controllers.
@@ -23,8 +24,9 @@ namespace Library\Core;
 abstract class AbstractController
 {
     const SITE_NAME = 'Kiff ton Écharpe';
-    protected $userLayout = '../src/App/Views/layout.phtml';
-    protected $adminLayout = '../admin/admin_layout.phtml';
+    protected $layout = '../src/App/Views/layout.phtml';
+    protected $template = 'Templates/Pages/';
+
 
     /**
      * @brief display method
@@ -35,18 +37,12 @@ abstract class AbstractController
      * @return void
      */
 
-    public function purify($html) {
-        $config = \HTMLPurifier_Config::createDefault();
-        $purifier = new \HTMLPurifier($config);
-        $clean_html = $purifier->purify($html);
-        return $clean_html;
-    }
     public function display(string $title, string $template, ?array $data = []): void
     {
         extract($data);
         $title = SELF::SITE_NAME . ' - ' . $title;
-        $template = '../src/App/Views/Templates/Pages/' . $template . '.phtml';
-        require $this->userLayout;
+        $template = $this->template  . $template . '.phtml';
+        require $this->layout;
     }
 
     /**
@@ -57,12 +53,12 @@ abstract class AbstractController
      * @param ?array $data : data to display
      * @return void
      */
-    public function displayAdmin($title, $template, ?array $data = [])
+    public function displayAdmin(string $title, string $template, ?array $data = []): void
     {
         extract($data);
         $title = SELF::SITE_NAME . ' - Espace administrateur - ' . $title;
-        $template = '../src/Views/Templates/Admin/' . $template . '.phtml';
-        require $this->adminLayout;
+        $template = $this->template . $template . '.phtml';
+        require $this->layout;
     }
 
     /**
@@ -77,4 +73,19 @@ abstract class AbstractController
         header('Location: ' . url($path));
         exit();
     }
+
+    public function purify($html): string
+    {
+        $config = \HTMLPurifier_Config::createDefault();
+        $purifier = new \HTMLPurifier($config);
+        $clean_html = $purifier->purify($html);
+        return $clean_html;
+    }
+
+    public function createActuality(string $title, string $content, ?string $img): ?int
+    {
+        $actualityManager = new ActualityManager();
+        return $actualityManager->create($title, $content, $img);
+    }
 }
+

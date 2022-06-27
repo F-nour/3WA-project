@@ -7,8 +7,8 @@
     echo flash()->getSuccess('isConnected');
   elseif (flash()->hasSuccess('modifyUser')) :
     echo flash()->getSuccess('modifyUser');
-  elseif (flash()->hasError('modifyPwd')) :
-    echo flash()->getError('modifyPwd');
+  elseif (flash()->hasSuccess('modifyPwd')) :
+    echo flash()->getSuccess('modifyPwd');
   endif; ?>
   <div class="account section-content">
     <p>Vous êtes sur votre espace personnel, <?= htmlspecialchars($user->getFIrstName()); ?> <?= htmlspecialchars($user->getLastName()); ?>.</p>

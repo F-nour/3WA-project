@@ -8,7 +8,7 @@
  * @class LegalController
  */
 
-namespace App\Controller;
+namespace App\Controller\Guest;
 
 use Library\Core\AbstractController;
 

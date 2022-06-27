@@ -23,6 +23,33 @@
   position: absolute;
 }
 
+.center {
+  @if (display: flex) {
+    align-items: center;
+  }
+    @else {
+    text-align: center;
+  }
+}
+
+.right {
+  @if (display: flex) {
+    align-items: flex-end;
+  }
+    @else {
+    text-align: right;
+  }
+}
+
+.left {
+  @if (display: flex) {
+    align-items: flex-start;
+  }
+    @else {
+    text-align: left;
+  }
+}
+
 /* fix responsive bugs */
 
 *:not(head, meta, title, link, script, style,

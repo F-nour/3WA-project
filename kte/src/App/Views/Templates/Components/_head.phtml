@@ -13,7 +13,7 @@
   <!-- Titre de la page web -->
   <title><?= $title ?></title> <!-- titre généré dynamiquement par le serveur -->
   <?php
-  if (auth()->isAuthenticated()): ?>
+  if (auth()->isAdmin()): ?>
     <meta name="robots" content="noindex">
     <meta name="robots" content="nofollow">
     <meta name="googlebot" content="noindex">

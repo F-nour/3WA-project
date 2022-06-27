@@ -11,7 +11,7 @@
  * @uses \App\Model\Manager\AboutManager : AboutManager class.
  */
 
-namespace App\Controller;
+namespace App\Controller\Guest;
 
 use App\Model\Manager\AboutManager;
 use Library\Core\AbstractController;

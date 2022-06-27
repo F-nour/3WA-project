@@ -65,7 +65,7 @@ class UserManager extends AbstractManager
     public function getUserByMail(string $email): ?User
     {
         $userByMail = $this->db->getResult(
-            'SELECT u.id, society, lastname, firstname, service, adress, complement, zip, city, email, password, role 
+            'SELECT u.id, role_id, society, lastname, firstname, service, adress, complement, zip, city, email, password, role 
             FROM ' . SELF::USERS . ' u 
             INNER JOIN ' . SELF::ROLE . ' r ON u.role_id = r.id
             WHERE email = :email',
@@ -73,7 +73,6 @@ class UserManager extends AbstractManager
                 'email' => $email
             ]
         );
-
         if ($userByMail === null) {
             return null;
         }
@@ -105,7 +104,6 @@ class UserManager extends AbstractManager
             'INSERT INTO ' . self::USERS . ' (society, lastname, firstname, service, adress, complement, zip, city, email, password)
             VALUE (:society, :lastname, :firstname, :service, :adress, :complement, :zip, :city, :email, :password)',
             [
-                'id' => $id,
                 'society' => $data['society'],
                 'lastname' => $data['lastname'],
                 'firstname' => $data['firstname'],
@@ -180,7 +178,7 @@ class UserManager extends AbstractManager
         return $userId;
     }
 
-    public function delateUser(int $id): ?int
+    public function deleteUser(int $id): ?int
     {
         $userId = $this->db->execute(
             'DELETE FROM ' . self::USERS . ' WHERE id = :id',

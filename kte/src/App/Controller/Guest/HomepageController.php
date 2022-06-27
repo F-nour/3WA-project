@@ -9,7 +9,7 @@
  * @extends AbstractController class.
  */
 
-namespace App\Controller;
+namespace App\Controller\Guest;
 
 use App\Model\Manager\ActualityManager;
 use Library\Core\AbstractController;
@@ -20,7 +20,7 @@ class HomepageController extends AbstractController
      * @property $actualityManager : ActualityManager object.
      * @method __construct : constructor method.
      */
-    private $actualityManager;
+    protected $actualityManager;
 
     public function __construct()
     {

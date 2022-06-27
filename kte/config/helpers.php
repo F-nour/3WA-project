@@ -9,7 +9,12 @@
 use Library\Auth\Authentifier;
 use Library\Session\Flashbag;
 use Library\Log\Logger;
+use Library\Validator\AboutValidator;
+use Library\Validator\ActualityValidator;
+use Library\Validator\ContactValidator;
+use Library\Validator\ProductValidator;
 use Library\Validator\UserValidator;
+
 
 /**
  * @brief Fonction de redirection.
@@ -41,6 +46,26 @@ function flash(): Flashbag
 function auth(): Authentifier
 {
     return new Authentifier();
+}
+
+function aboutForm(): AboutValidator
+{
+    return new AboutValidator();
+}
+
+function actualityForm(): ActualityValidator
+{
+    return new ActualityValidator();
+}
+
+function contactForm(): ContactValidator
+{
+    return new ContactValidator();
+}
+
+function productForm(): ProductValidator
+{
+    return new ProductValidator();
 }
 
 function userForm(): UserValidator

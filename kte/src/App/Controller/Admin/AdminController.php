@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
-use \Library\Core\AbstractController;
-use \App\Model\Manager\UserManager;
+use App\Model\Manager\UserManager;
+use Library\Core\AbstractController;
 
 class AdminController extends AbstractController
 {
@@ -17,8 +17,8 @@ class AdminController extends AbstractController
 
     public function index(): void
     {
-        if (auth()->isAuthenticated()) {
-            $this->display('Espace Administrateur', 'admin/admin');
+        if (auth()->isAdmin()) {
+            $this->displayAdmin('', 'admin/index');
         } else {
             $this->redirect('/login');
         }
@@ -26,7 +26,7 @@ class AdminController extends AbstractController
 
     public function updateRole()
     {
-        if (!auth()->isAuthenticated()) {
+        if (!auth()->isAdmin()) {
             $this->redirect('/login');
         }
         $user = $this->userManager->getUserById($_GET['id']);
@@ -40,13 +40,13 @@ class AdminController extends AbstractController
 
     public function delateUser()
     {
-        if (!auth()->isAuthenticated()) {
+        if (!auth()->isAdmin()) {
             $this->redirect('/login');
         }
         $user = $this->userManager->getUserById($_GET['id']);
         $userId = $user->getId();
         $this->userManager->delateUser($userId);
         flash()->addSuccess('delateUser', "L'utilisateur a été supprimé");
-        $this->redirect('\admin');
+        $this->redirect('/admin/user');
     }
 }

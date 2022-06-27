@@ -23,7 +23,7 @@ class Actualities
     private int $id; // id de l'actualité
     private string $title; // titre de l'actualité
     private string $content; // description de l'actualité
-    private string $img; // image de l'actualité
+    private ?string $img; // image de l'actualité
     private string $date; // date d'ajout de l'actualité
     private int $id_category; // id de la catégorie de l'actualité
 
@@ -61,29 +61,24 @@ class Actualities
 
     // setters
 
-    private function setTitle(string $title)
+    private function setId(int $id): void
     {
-        if (!empty($title)) {
-            $this->title = $title;
-        } else {
-            $this->errors[] = self::TITLE_INVALID;
-        }
+        $this->id = $id;
     }
 
-    private function setContent(string $content)
+    private function setTitle(string $title): void
     {
-        if (!empty($content)) {
-            $this->content = $content;
-        } else {
-            $this->errors[] = self::CONTENT_INVALID;
-        }
+        $this->title = $title;
     }
 
-    public function setImg(string $img)
+    private function setContent(string $content): void
     {
-        if (!empty($img)) {
-            $this->img = $img;
-        }
+        $this->content = $content;
+    }
+
+    public function setImg(?string $img): void
+    {
+        $this->img = $img;
     }
 
     // getters

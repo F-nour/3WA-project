@@ -8,20 +8,12 @@
  * @class ErrorController
  */
 
-namespace App\Controller;
+namespace App\Controller\Guest;
 
 use Library\Core\AbstractController;
 
 class ErrorController extends AbstractController
 {
-    /**
-     * @brief Method to get the error page.
-     * @method void error
-     */
-    public function error()
-    {
-        $this->display('Erreur', 'error');
-    }
 
     /**
      * @brief Method to get the notFound page.
