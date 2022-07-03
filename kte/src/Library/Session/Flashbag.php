@@ -14,7 +14,22 @@ class Flashbag
         $message = $_SESSION['error'][$field];
         unset($_SESSION['error'][$field]);
 
-        return '<div class="alert alert-error"><p>' . $message . '</p></div>';
+        return <<<HTML
+            <div class="alert-error">
+                <small class="text-danger">{$message}</small>
+            </div>;
+        HTML;
+    }
+
+    public function displayErrors(): ?string {
+        if (!isset($_SESSION['error'])) {
+            return null;
+        }
+        return <<<HTML
+                <div class="alert alert-errors">
+                    <small class="text-danger">Un ou plusieurs éléments sont invalides</small>
+                </div>
+        HTML;
     }
 
     public function hasError(string $field): bool
@@ -27,6 +42,16 @@ class Flashbag
         $_SESSION['error'][$field] = $message;
     }
 
+    public function hasSuccess(string $field): bool
+    {
+        return isset($_SESSION['success'][$field]);
+    }
+
+    public function addSuccess(string $field, string $message): void
+    {
+        $_SESSION['success'][$field] = $message;
+    }
+
     public function getSuccess(string $field): ?string
     {
         if (!isset($_SESSION['success'][$field])) {
@@ -36,16 +61,10 @@ class Flashbag
         $message = $_SESSION['success'][$field];
         unset($_SESSION['success'][$field]);
 
-        return '<div class="alert alert-success"><p>' . $message . '</p></div>';
-    }
-
-    public function hasSuccess(string $field): bool
-    {
-        return isset($_SESSION['success'][$field]);
-    }
-
-    public function addSuccess(string $field, string $message): void
-    {
-        $_SESSION['success'][$field] = $message;
+        return <<<HTML
+            <div class="alert alert-success">
+                <p class="text-success">{$message}</p>
+            </div>
+        HTML;
     }
 }

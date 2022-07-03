@@ -3,86 +3,24 @@
     <h1>Inscription</h1>
   </div>
   <div class="registrer_content">
-    <form action="<?= url('/create'); ?>" method="post">
-      <div class="form-group">
-        <label for="society">Société</label>
-        <input type="text" name="society" id="society" class="form-control" placeholder="Société">
-      </div>
-      <div class="form-group">
-        <label for="lastname">Nom</label>
-        <input required type="text" name="lastname" id="lastname" class="form-control" placeholder="Nom">
-          <?php
-          if (flash()->hasError('lastname')) :
-              echo flash()->getError('lastname');
-          endif; ?>
-      </div>
-      <div class="form-group">
-        <label for="firstname">Prénom</label>
-        <input required type="text" name="firstname" id="firstname" class="form-control" placeholder="Prénom">
-          <?php
-          if (flash()->hasError('firstname')) :
-              echo flash()->getError('firstname');
-          endif; ?>
-      </div>
-      <div class="form-group">
-        <label for="service">Service</label>
-        <input type="text" name="service" id="service" class="form-control" placeholder="Service">
-      </div>
-      <div class="form-group">
-        <label for="adress">Adresse</label>
-        <input required type="text" name="adress" id="adress" class="form-control" placeholder="Adresse">
-          <?php
-          if (flash()->hasError('adress')) :
-              echo flash()->getError('adress');
-          endif; ?>
-      </div>
-      <div class="form-group">
-        <label for="complement">Complément</label>
-        <input type="text" name="complement" id="complement" class="form-control" placeholder="Complément">
-      </div>
-      <div class="form-group">
-        <label for="zip">Code postal</label>
-        <input required type="text" name="zip" id="zip" class="form-control" placeholder="Code postal">
-          <?php
-          if (flash()->hasError('zip')) :
-              echo flash()->getError('zip');
-          endif; ?>
-      </div>
-      <div class="form-group">
-        <label for="city">Ville</label>
-        <input required type="text" name="city" id="city" class="form-control" placeholder="Ville">
-          <?
-          if (flash()->hasError('city')) :
-              echo flash()->getError('city');
-          endif; ?>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input required type="email" name="email" id="email" class="form-control" placeholder="Email">
-          <?php
-          if (flash()->hasError('email')) :
-              echo flash()->getError('email');
-          endif; ?>
-      </div>
-      <div class="form-group">
-        <label for="password">Mot de passe</label>
-        <input required type="password" name="password" id="password" class="form-control" placeholder="Mot de passe">
-          <?php if (flash()->hasError('password')) :
-              echo flash()->getError('password');
-          endif; ?>
-      </div>
-      <div class="form-group">
-        <label for="passwordConfirm">Confirmation du mot de passe</label>
-        <input required
-                type="password"
-                name="passwordConfirm"
-                id="passwordConfirm"
-                class="form-control"
-                placeholder="Confirmation du mot de passe">
-      <?php if (flash()->hasError('passwordConfirm')) :
-              echo flash()->getError('passwordConfirm');
-          endif; ?>
-      </div>
-      <button type="submit" class="btn btn-primary">Inscription</button>
-    </form>
+    <?= form()->open(url('/create'), 'POST') ?>
+      <?= form()->formGroup(null, 'Identité', 'identity',
+      form()->input('society', 'Société', 'text', null, false) .
+      form()->input('firstname', 'Prénom', 'text', null, true) .
+      form()->input('lastname', 'Nom', 'text', null, true)
+      ) ?>
+      <?= form()->formGroup(null, 'Coordonnées', 'coordinates',
+        form()->input('service', 'Service', 'text', null, false) .
+        form()->input('address', 'Adresse', 'text', null, true) .
+        form()->input('complement', 'Complément', 'text', null, false) .
+        form()->input('zip', 'Code postal', 'text', null, true) .
+        form()->input('city', 'Ville', 'text', null, true)
+        ) ?>
+      <?= form()->formGroup(null, 'Informations de connexion', 'login',
+        form()->input('email', 'Adresse mail', 'email', null, true) .
+        form()->input('password', 'Mot de passe', 'password', null, true) .
+        form()->input('password_confirm', 'Confirmation du mot de passe', 'password', null, true)
+        ) ?>
+      <?= form()->endFormWithAllButtons('btn btn-submit', "S'inscrire", null, 'btn btn-cancel', "Annuler", 'btn btn-reset', "Effacer") ?>
+  </div>
 </section>

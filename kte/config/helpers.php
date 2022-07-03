@@ -7,14 +7,14 @@
  */
 
 use Library\Auth\Authentifier;
+use Library\HTML\Accessibility;
+use Library\HTML\Form;
 use Library\Session\Flashbag;
-use Library\Log\Logger;
 use Library\Validator\AboutValidator;
 use Library\Validator\ActualityValidator;
 use Library\Validator\ContactValidator;
 use Library\Validator\ProductValidator;
 use Library\Validator\UserValidator;
-
 
 /**
  * @brief Fonction de redirection.
@@ -71,4 +71,14 @@ function productForm(): ProductValidator
 function userForm(): UserValidator
 {
     return new UserValidator();
+}
+
+function form(): Form
+{
+    return new Form();
+}
+
+function accessibility(): Accessibility
+{
+    return new Accessibility();
 }
