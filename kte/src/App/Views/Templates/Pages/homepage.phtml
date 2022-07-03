@@ -39,9 +39,10 @@
               <?php
               if (auth()->isAdmin()) : ?>
                 <div class="actuality__edit">
-                  <a class="internal" href="<?= url('/admin/editActuality?id=' . $actu->id) ?>">
-                    Modifier l'actualité
-                  </a>
+                  <?= form()->formGroup(null, 'Modifier ou supprimer ' . $actu->title, null,
+                    form()->button('/admin/editActuality?id=' . $actu->id, 'Modifier', 'btn btn-primary', "Modifier l'actualité") .
+                    form()->button('//admin/deleteActuality?id=' . $actu->id, 'Supprimer', 'btn btn-danger', "Supprimer l'actualité")
+                ) ?>
                 </div>
               <?php
               endif; ?>

@@ -71,7 +71,11 @@ button {
   font-family: var(--abril);
 }
 
-button {
+button,
+.btn {
+  appearance: button;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
