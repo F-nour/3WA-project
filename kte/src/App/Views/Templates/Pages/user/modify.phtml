@@ -3,9 +3,19 @@
     <h1>Modifiez vos informations</h1>
   </div>
   <div class="modify_content">
-      <?php dd($user); ?>
       <?= form()->open(url('/updateUser'), 'POST') ?>
-      <?php include 'Views/Templates/Components/Forms/_formUser.phtml' ?>
-      <?= form()->input('email', 'Adresse mail', 'email', $user->getEmail(), true) ?>
-      <?= form()->endFormWithSubmitCancel('btn btn-submit', 'Modifier', '/account', 'btn btn-cancel', 'Annuler') ?>
+      <?= form()->formGroup(null, 'Identité', 'identity',
+          form()->input('society', 'Société', 'text', $user->getSociety(), false) .
+          form()->input('firstname', 'Prénom', 'text', $user->getFirstName(), true) .
+          form()->input('lastname', 'Nom', 'text', $user->getLastName(), true)
+      ) ?>
+      <?= form()->formGroup(null, 'Coordonnées', 'coordinates',
+          form()->input('service', 'Service', 'text', $user->getService(), false) .
+          form()->input('address', 'Adresse', 'text', $user->getAdress(), true) .
+          form()->input('complement', 'Complément', 'text', $user->getComplement(), false) .
+          form()->input('zip', 'Code postal', 'text', $user->getZip(), true) .
+          form()->input('city', 'Ville', 'text', $user->getCity(), true) .
+          form()->input('email', 'Adresse mail', 'email', $user->getEmail(), true)
+      ) ?>
+    <?= form()->endFormWithSubmitCancel('btn btn-submit', 'Modifier', '/account', 'btn btn-cancel', 'Annuler') ?>
 </section>

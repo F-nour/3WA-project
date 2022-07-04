@@ -32,7 +32,7 @@ class Form
         return <<<HTML
             <div {$id} role="group" class="form-group {$classGroup}" {$this->ariaLabel($ariaLabelId)}>
                     {$label}
-                    {$content}    
+                    {$content}
             </div>
         HTML;
     }
@@ -245,7 +245,7 @@ class Form
     ): string {
         return <<<HTML
             {$this->formGroup(
-            null, 'group-end', 
+            null, 'group-end',
             'Effacer le formulaire ou Valider',
             null,
             $this->submitReset($classSubmit, $valueSubmit, $classReset, $valueReset)
@@ -263,7 +263,7 @@ class Form
     ): string {
         return <<<HTML
             {$this->formGroup(
-            null, 'group-end', 
+            null, 'group-end',
             'Effacer le formulaire ou Valider',
             null,
             $this->submitButton($classSubmit, $valueSubmit, $path, 'cancel', $classCancel, $valueCancel)
@@ -371,7 +371,7 @@ class Form
             return '';
         }
         return <<<html
-            value="{$value}" 
+            value="{$value}"
         html;
     }
 
