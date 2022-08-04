@@ -13,7 +13,7 @@ export const SCREENWIDTH = {
 export const CLASSNAME = {
   ACTIVE: 'active',
   ACTUAL: 'actual',
-  CLOSE: 'close',
+  CLOSE: '...' + ['btn', 'btn-close', 'close-icon'],
   CLOSEICON: 'close-icon',
   COLLAPSTITLE: 'collaps__title',
   SUBTITLE: 'collaps__contentTitle',
@@ -40,6 +40,7 @@ export const STYLES = {
 // Liste des ID des éléments HTML
 export const ID = {
   CLOSEMENU: 'closeMenu',
+  CLOSEPOPUP: 'closePopup',
   CONTAINER: 'container',
   FOOTER: 'footer',
   HAMBERGERMENU: 'hambergerMenu',

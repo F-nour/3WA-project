@@ -2,7 +2,7 @@
 
 .sr-only,
 .sr-only-focus:not(:focus):not(:focus-within) {
-  // bostrap < v5.0.0
+  // bostrap < v5
   position: absolute !important;
   width: 1px !important;
   height: 1px !important;
@@ -19,7 +19,7 @@ button,
 input,
 optgroup,
 select,
-textarea
+textarea,
 *[tabindex] {
   @include accessibility.focus();
   @include accessibility.hover();

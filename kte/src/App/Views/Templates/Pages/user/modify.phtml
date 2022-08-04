@@ -1,21 +1,86 @@
-<section class="modify" id="modify">
-  <div class="modify title">
-    <h1>Modifiez vos informations</h1>
+  <div class="popup-content">
+    <div class="popup-header">
+      <h1>Modifiez vos informations</h1>
+    </div>
+    <div class="popup-body">
+        <?= form()->openForm(url('/updateUser'), 'POST') ?>
+        <?= form()->formGroup(
+            'identity',
+            'group-input',
+            'identité',
+            'identityLegend',
+            form()->input(
+                'society',
+                'Société',
+                'text',
+                'organization',
+                purify($user->getSociety()),
+                false
+            ) .
+            form()->input(
+                'firstname',
+                'Prénom',
+                'text',
+                'given-name',
+                purify($user->getFirstName())
+            ) .
+            form()->input(
+                'lastname',
+                'Nom',
+                'text',
+                'family-name',
+                purify($user->getLastName())
+            )
+        ) ?>
+        <?= form()->formGroup(
+            'coordinates',
+            'group-input',
+            'Coordonnées',
+            'coordinatesLegend',
+            form()->input(
+                'service',
+                'Service',
+                'text',
+                null,
+                purify($user->getService()),
+                false
+            ) .
+            form()->input(
+                'address',
+                'addresse',
+                'text',
+                'address-line1',
+                purify($user->getaddress())
+            ) .
+            form()->input(
+                'complement',
+                'Complément',
+                'text',
+                null,
+                purify($user->getComplement()),
+                false
+            ) .
+            form()->input(
+                'zip',
+                'Code postal',
+                'text',
+                'postal-code',
+                purify($user->getZip())
+            ) .
+            form()->input(
+                'city',
+                'Ville',
+                'text',
+                null,
+                $user->getCity()
+            ) .
+            form()->input('email', 'addresse mail', 'email', 'email', $user->getEmail())
+        ) ?>
+        <?= form()->endFormWithSubmitCancel(
+                'modifyButtons',
+                null,
+                'Modifier',
+                null, '/account', 'Annuler')
+        ?>
+    </div>
   </div>
-  <div class="modify_content">
-      <?= form()->open(url('/updateUser'), 'POST') ?>
-      <?= form()->formGroup(null, 'Identité', 'identity',
-          form()->input('society', 'Société', 'text', $user->getSociety(), false) .
-          form()->input('firstname', 'Prénom', 'text', $user->getFirstName(), true) .
-          form()->input('lastname', 'Nom', 'text', $user->getLastName(), true)
-      ) ?>
-      <?= form()->formGroup(null, 'Coordonnées', 'coordinates',
-          form()->input('service', 'Service', 'text', $user->getService(), false) .
-          form()->input('address', 'Adresse', 'text', $user->getAdress(), true) .
-          form()->input('complement', 'Complément', 'text', $user->getComplement(), false) .
-          form()->input('zip', 'Code postal', 'text', $user->getZip(), true) .
-          form()->input('city', 'Ville', 'text', $user->getCity(), true) .
-          form()->input('email', 'Adresse mail', 'email', $user->getEmail(), true)
-      ) ?>
-    <?= form()->endFormWithSubmitCancel('btn btn-submit', 'Modifier', '/account', 'btn btn-cancel', 'Annuler') ?>
-</section>

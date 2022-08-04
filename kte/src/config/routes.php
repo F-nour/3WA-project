@@ -41,7 +41,7 @@ return [
         '\App\Controller\Guest\UserController',
         'account'
     ],
-    url('/modify') => [
+    url('/modifyUser') => [
         '\App\Controller\Guest\UserController',
         'modify'
     ],
@@ -57,16 +57,20 @@ return [
         '\App\Controller\Guest\UserController',
         'updatePwd'
     ],
+    url('/deleteAccount') => [
+        '\App\Controller\Guest\UserController',
+        'deleteAccount'
+    ],
     url('/admin') => [
         '\App\Controller\Admin\AdminController',
         'index'
     ],
-    url('/admin/editActuality') => [
-        '\App\Controller\Admin\AdminActualityController',
-        'editActuality'
+    url('/admin/editAbout') => [
+        '\App\Controller\Admin\AdminController',
+        'editAbout'
     ],
-    url('/admin/user') => [
-        '\App\Controller\Admin\AdminUserController',
-        'index'
+    url('/admin/updateAboutForm') => [
+        '\App\Controller\Admin\AdminController',
+        'updateAboutForm'
     ],
 ];

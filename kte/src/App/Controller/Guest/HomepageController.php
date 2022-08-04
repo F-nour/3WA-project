@@ -1,5 +1,11 @@
 <?php
 
+namespace App\Controller\Guest;
+
+use App\Model\Manager\ActualityManager;
+use Library\Core\AbstractController;
+
+
 /**
  * @brief File for the HomepageController class.
  * @file HomepageController.php
@@ -9,22 +15,16 @@
  * @extends AbstractController class.
  */
 
-namespace App\Controller\Guest;
-
-use App\Model\Manager\ActualityManager;
-use Library\Core\AbstractController;
-
 class HomepageController extends AbstractController
 {
     /**
-     * @property $actualityManager : ActualityManager object.
+     * @property object $actualityManager : ActualityManager object.
      * @method __construct : constructor method.
      */
-    protected $actualityManager;
+    protected object $actualityManager;
 
-    public function __construct()
-    {
-        $this->actualityManager = new ActualityManager;
+    public function __construct() {
+        parent::__construct();
     }
 
     /**
@@ -34,7 +34,7 @@ class HomepageController extends AbstractController
     public function index(): void
     {
         $this->display('Accueil', 'homepage', [
-            'actuality' => $this->actualityManager->getAll(),
+            'actuality' => $this->getActualities(),
         ]);
     }
 

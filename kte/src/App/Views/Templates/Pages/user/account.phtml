@@ -1,23 +1,44 @@
-<section class="account" id="account">
-  <div class="account title">
-    <h1>Mon compte</h1>
-  </div>
-  <?php
-  if (flash()->hasSuccess('isConnected')) :
-    echo flash()->getSuccess('isConnected');
-  elseif (flash()->hasSuccess('modifyUser')) :
-    echo flash()->getSuccess('modifyUser');
-  elseif (flash()->hasSuccess('modifyPwd')) :
-    echo flash()->getSuccess('modifyPwd');
-  endif; ?>
-  <div class="account section-content">
-    <p>Vous êtes sur votre espace personnel, <?= htmlspecialchars($user->getFIrstName()); ?> <?= htmlspecialchars($user->getLastName()); ?>.</p>
-
-    <p>Vous pouvez
-      <a class="internal" href="<?= url('/modify') ?>">modifier vos informations
-      </a> ou <a class="internal" href="<?= url('/updatePassword') ?>">
-        modifier votre mot de passe.
-      </a>.
-    </p>
-  </div>
-</section>
+<div class="account title">
+  <h1>Mon compte</h1>
+</div>
+<div class="account section-content">
+  <h2 class="center">
+    Bienvenue <?= purify($user->getFIrstName()); ?> <?= purify($user->getLastName()); ?>
+  </h2>
+  <p class="center bold">
+    Vous êtes sur votre espace personnel.
+      <?php
+      if (auth()->isAdmin()) : ?>
+        <span>Vous êtes connecté en tant qu'administrateur.</span>
+      <?php
+      endif ?>
+  </p>
+    <?=
+    form()->formGroup(
+        'logoutButton',
+        'group-row flex-center',
+        'Informations utilisateurs',
+        null,
+        form()->onclick(
+            'updateAccount-form',
+            '/modifyUser',
+            'btn-update',
+            'Modifier mes informations personnelles',
+            false
+        ) .
+        form()->onclick(
+            'updateAccount-form',
+            '/updatePassword',
+            'btn-update',
+            'Modifier mon mot de passe',
+            false
+        ) .
+        form()->onclick(
+            'deleteAccount',
+            '/deleteAccount',
+            'btn-delete',
+            'Supprimer mon compte',
+            false
+        )
+    ); ?>
+</div>

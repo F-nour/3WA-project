@@ -82,3 +82,12 @@ function accessibility(): Accessibility
 {
     return new Accessibility();
 }
+
+function purify(string $value): string
+{
+    $value = htmlspecialchars($value);
+    $value = trim($value);
+    $value = strip_tags($value);
+    $value = stripslashes($value);
+    return $value;
+}

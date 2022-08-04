@@ -10,8 +10,8 @@
 
 namespace App\Model\Manager;
 
-use Library\Core\AbstractManager;
 use App\Model\Table\Actualities;
+use Library\Core\AbstractManager;
 
 class ActualityManager extends AbstractManager
 {
@@ -33,16 +33,15 @@ class ActualityManager extends AbstractManager
      */
     public function getAll(): array
     {
-        $result = $this->db->getResults(
-            'SELECT id, title, content, img, date FROM ' . SELF::ACTUALITIES . ' ORDER BY id ASC',
+        return $this->db->getResults(
+            'SELECT id, title, content, image, titleImage, date FROM ' . SELF::ACTUALITIES . ' ORDER BY id ASC',
         );
-        return $result;
     }
 
     public function getActualityById(int $id): ?Actualities
     {
         $actualityById = $this->db->getResult(
-            'SELECT id, title, content, img, date FROM ' . SELF::ACTUALITIES . ' WHERE id = :id',
+            'SELECT id, title, content, image, titleImage date FROM ' . SELF::ACTUALITIES . ' WHERE id = :id',
             [
                 'id' => $id
             ]
@@ -51,18 +50,19 @@ class ActualityManager extends AbstractManager
             return null;
         }
 
-        $this->table->createDataRow((array) $actualityById);
+        $this->table->createDataRow((array)$actualityById);
         return $this->table;
     }
 
-    public function create(string $title, string $content, string $img): ?int
+    public function create(string $title, string $content, ?string $image, ?string $titleImage): ?int
     {
         $newActu = $this->db->execute(
-            'INSERT INTO ' . SELF::ACTUALITIES . ' (title, content, img, date) VALUES (:title, :content, :img, now())',
+            'INSERT INTO ' . SELF::ACTUALITIES . ' (title, content, image, titleImage date) VALUES (:title, :content, :image, now())',
             [
                 'title' => $title,
                 'content' => $content,
-                'img' => $img,
+                'image' => $image,
+                'titleImage' => $titleImage
             ]
         );
 
@@ -76,11 +76,11 @@ class ActualityManager extends AbstractManager
     public function updateActuality(array $data, int $id): ?int
     {
         $updateActu = $this->db->execute(
-            'UPDATE ' . SELF::ACTUALITIES . ' SET title = :title, content = :content, img = :img WHERE id = :id',
+            'UPDATE ' . SELF::ACTUALITIES . ' SET title = :title, content = :content, image = :image WHERE id = :id',
             [
                 'title' => $data['title'],
                 'content' => $data['content'],
-                'img' => $data['img'],
+                'image' => $data['image'],
                 'id' => $id,
             ]
         );

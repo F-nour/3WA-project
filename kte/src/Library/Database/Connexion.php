@@ -6,7 +6,7 @@
  */
 
 /**
- * @brief namespace pour la classe Connexion.
+ * @brief Namespace pour la classe Connexion.
  * @namespace Library\Database
  */
 
@@ -17,8 +17,8 @@ namespace Library\Database;
  * @uses PDO.
  */
 
-use \PDO;
-use \PDOException;
+use PDO;
+use PDOException;
 
 /**
  * @brief Connexion class
@@ -66,7 +66,8 @@ class Connexion
      * @brief Method to get several rows from a table.
      * @method getResults() : array
      * @param string $sql SQL query
-     * @param array $params parameters of the query
+     * @param array|null $parameters
+     * @return array
      */
     public function getResults(
         string $sql,
@@ -85,11 +86,12 @@ class Connexion
      * @brief Method to get a row from a table.
      * @method getResult() : object
      * @param string $sql SQL query
-     * @param array $params parameters of the query
+     * @param array|null $parameters
+     * @return object|null
      */
     public function getResult(
         string $sql,
-        ?array $parameters = null,
+        ?array $parameters = null
     ): ?object {
         try {
             $query = $this->pdo->prepare($sql);
@@ -105,20 +107,20 @@ class Connexion
     }
 
     /**
-     * @brief Method to insert, update or delate a row in a table.
+     * @brief Method to insert, update or delete a row in a table.
      * @method execute()
      * @param string $sql SQL query
-     * @param array $parameters parameters of the query
+     * @param array|null $parameters parameters of the query
+     * @return string|false
      */
     public function execute(
         string $sql,
         ?array $parameters = null
-    ): string|false
-    {
+    ): string|false {
         try {
-        $query = $this->pdo->prepare($sql);
-        $query->execute($parameters);
-        return $this->pdo->lastInsertId();
+            $query = $this->pdo->prepare($sql);
+            $query->execute($parameters);
+            return $this->pdo->lastInsertId();
         } catch (PDOException $e) {
             die($e->getMessage());
         }

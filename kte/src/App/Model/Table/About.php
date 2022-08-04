@@ -27,19 +27,19 @@ namespace App\Model\Table;
 
 class About
 {
-    private array $errors = [];
-    private string $status;
+    private int $id;
     private string $society; // Nom de la société
     private string $INSEE; // Numéro INSEE
     private int $zip; // Code postal
     private string $city; // Ville
     private string $phone; // Téléphone
     private string $mail; // Email
-    private string $image; // Photo
+    private ?string $image; // Photo
+    private ?string $titleImage;
 
     /**
      * @brief Method to automatically set the data of the about table.
-     * @method array @hydrate
+     * @method hydrate
      * @param array $data
      * @return void
      */
@@ -68,70 +68,57 @@ class About
 
     // setters
 
+    private function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
     private function setSociety(string $society): void
     {
-        if (empty($society)) {
-            $this->addError(self::INVALID_SOCIETY);
-        } else {
-            $this->society = $society;
-        }
+        $this->society = $society;
     }
 
-    private function setINSEE(string $INSEE)
+    private function setINSEE(string $INSEE): void
     {
-        if (empty($INSEE) || strlen($INSEE) != 5 || !is_numeric($INSEE)) {
-            $this->addError(self::INVALID_INSEE);
-        } else {
-            $this->INSEE = $INSEE;
-        }
+        $this->INSEE = $INSEE;
     }
 
-    private function setZip(int $zip)
+    private function setZip(int $zip): void
     {
-        if (empty($zip) || strlen($zip) != 5 || !is_numeric($zip)) {
-            $this->addError(self::INVALID_ZIP);
-        } else {
-            $this->zip = $zip;
-        }
+        $this->zip = $zip;
     }
 
-    private function setCity(string $city)
+    private function setCity(string $city): void
     {
-        if (empty($city) || strlen($city) < 3 || strlen($city) > 50 || !is_string($city)) {
-            $this->addError(self::INVALID_CITY);
-        } else {
-            $this->city = $city;
-        }
+        $this->city = $city;
     }
 
-    private function setPhone(string $phone)
+    private function setPhone(string $phone): void
     {
-        if (empty($phone) || !is_numeric($phone)) {
-            $this->addError(self::INVALID_PHONE);
-        } else {
-            $this->phone = $phone;
-        }
+        $this->phone = $phone;
     }
 
-    private function setMail(string $mail)
+    private function setMail(string $mail): void
     {
-        if (empty($mail) || !filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-            $this->addError(self::INVALID_MAIL);
-        } else {
-            $this->mail = $mail;
-        }
+        $this->mail = $mail;
     }
 
-    private function setImage(string $image)
+    private function setImage(string $image): void
     {
-        if (empty($image)) {
-            $this->addError(self::INVALID_IMAGE);
-        } else {
-            $this->image = $image;
-        }
+        $this->image = $image;
+    }
+
+    private function setTitleImage(string $titleImage): void
+    {
+        $this->titleImage = $titleImage;
     }
 
     // getters
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
     public function getSociety(): string
     {
@@ -173,17 +160,8 @@ class About
         return $this->image;
     }
 
-    // addError
-
-    private function addError(int $error)
+    public function getTitleImage(): string
     {
-        $this->errors[] = $error;
-    }
-
-    // Validation
-
-    public function isValid(): bool
-    {
-        return empty($this->errors);
+        return $this->titleImage;
     }
 }

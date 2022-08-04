@@ -1,4 +1,5 @@
 @use '../mixins/flex';
+@use '../mixins/form';
 
 * {
   scrollbar-width: thin;
@@ -33,14 +34,14 @@ body {
   @media (max-width: 1024px) {
     font-size: large;
   }
-  font-family: var(--joan);
+  font-family: var(--joan), var(--font-family-base);
 }
 
 .container {
   margin-top: var(--sizeMenu);
   @include flex.flex-column(space-between, center, 0);
   width: var(--sizeAll);
-    height: var(--sizeAll);
+  height: var(--sizeAll);
 }
 
 p {
@@ -59,24 +60,21 @@ p {
   color: var(--linkExternal);
 }
 
-a,
-button {
+a {
   text-decoration: none;
   // color: var(--linkColor);
-  padding: 0;
+  padding: 0 0.5rem;
   background: none;
   border: none;
   justify-content: center;
   font-style: italic;
-  font-family: var(--abril);
+  font-family: var(--abril), var(--font-family-base);
 }
 
-button,
+.button,
 .btn {
-  appearance: button;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  font-weight: 700;
+  font-family: var(--gentium), var(--font-family-base);
 }
 
 h1,
@@ -90,8 +88,8 @@ h5,
 .h4,
 .h5 {
   font-weight: 700;
-  font-style: oblique;
-  font-family: var(--gentium);
+  font-style: normal;
+  font-family: var(--gentium), var(--font-family-base);
   margin: 1em 0 1em;
 }
 
@@ -99,7 +97,7 @@ h1,
 .h1 {
   font-size: 3rem;
   text-align: center;
-  font-family: var(--abril);
+  font-family: var(--abril), var(--font-family-base);
   margin-bottom: 1.5em;
 }
 
@@ -121,4 +119,8 @@ h4,
 h5,
 .h5 {
   font-size: 2.2rem;
+}
+
+.no-flex {
+  display: initial;
 }

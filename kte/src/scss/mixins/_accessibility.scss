@@ -1,7 +1,7 @@
 // accessibility
 
 @mixin link() {
-  color: var(--focusColor);;
+  color: var(--focusColor);
   outline: none;
   box-shadow: var(--focusBorder), 0 0 0 1px rgba(255, 255, 255, 0.5);
   transition: var(--transitionAll);
@@ -38,6 +38,6 @@
   &:focus,
   &:focus-within,
   &:hover {
-    box-shadow: none;
+    box-shadow: inherit;
   }
 }
