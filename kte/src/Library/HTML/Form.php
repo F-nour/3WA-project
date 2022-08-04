@@ -53,6 +53,14 @@ class Form
             html;
         }
         return <<<HTML
+
+            <div {$this->getId($id)}
+            role="group"
+            class="form-group $classes"
+            <div {$this->getId($id)}
+            role="group"
+            class="form-group $classes"
+
             <div {$this->getId($id)}
             role="group"
             class="form-group $classes"
@@ -94,6 +102,13 @@ class Form
                 return 'btn-password';
             case 'title':
                 return 'btn-title';
+            case 'content':
+                return 'btn-description';
+            case 'titlePicture':
+            case 'content':
+                return 'btn-description';
+            case 'addPicture':
+                return 'btn-file';
             case 'content':
                 return 'btn-description';
             default:

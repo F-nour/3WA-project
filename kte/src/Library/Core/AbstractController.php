@@ -161,4 +161,11 @@ abstract class AbstractController
             return $title;
         }
     }
+
+    public function deleteFile(int $id, string $typeFile, object $manager): void
+    {
+        if (isset($_POST['delete' . ucfirst($typeFile)])) {
+            $manager->deleteFile($id);
+        }
+    }
 }

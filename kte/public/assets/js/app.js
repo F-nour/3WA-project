@@ -1,6 +1,5 @@
 import { responsive } from './modules/responsive.js'
 import { generateCollapse } from './modules/collapse.js'
-import { generatePopup } from './modules/popup.js'
 import { initMenu } from './modules/menus.js'
 import { timer } from './modules/timer.js'
 

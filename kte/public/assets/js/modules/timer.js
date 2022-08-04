@@ -13,6 +13,7 @@ let second = "00"
 
 const time = document.getElementById('redirection');
 
+
 // calculation functions
 
 const numberToString = (number, string) => {
