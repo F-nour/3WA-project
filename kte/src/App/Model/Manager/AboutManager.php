@@ -31,9 +31,30 @@ class AboutManager extends AbstractManager
      */
     public function getAbout(): object
     {
-        $result = $this->db->getResult(
-            'SELECT society, status, city, mail FROM ' . SELF::ABOUT
+        return $this->db->getResult(
+            'SELECT id, society, status, INSEE, zip, city, mail, image, titleImage FROM ' . SELF::ABOUT
         );
-        return $result;
+    }
+
+    public function updateAbout(array $data, int $id): ?int
+    {
+            $aboutId = $this->db->execute(
+            'UPDATE ' . SELF::ABOUT .
+            ' SET society = :society, status = :status, INSEE = :INSEE, zip = :zip, city = :city, mail = :mail 
+            WHERE id = :id',
+            [
+                'society' => $data['society'],
+                'status' => $data['status'],
+                'INSEE' => $data['INSEE'],
+                'zip' => $data['zip'],
+                'city' => $data['city'],
+                'mail' => $data['email'],
+                'id' => $id
+            ]
+        );
+        if ($aboutId === false) {
+            return null;
+        }
+        return $aboutId;
     }
 }

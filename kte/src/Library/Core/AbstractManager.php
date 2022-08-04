@@ -6,9 +6,9 @@
  */
 
 /**
- * @brief naamespace Library\Core
+ * @brief namespace Library\Core
  * @namespace Library\Core
- * @uses \Library\Database\Connexion : Connexion to the database
+ * @uses \Library\Database\Connexion  Connexion to the database
  */
 
 namespace Library\Core;
@@ -41,8 +41,8 @@ abstract class AbstractManager
     const ROLE = 'role';
     const USERS = 'users';
     protected Connexion $db;
-    protected $config = '../config/database_3wa.php';
-    protected $table;
+    protected string $config = '../src/config/database_3wa.php';
+    protected object $table;
 
     /**
      * @brief constructor

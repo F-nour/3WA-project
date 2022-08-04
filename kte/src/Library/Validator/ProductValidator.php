@@ -2,7 +2,7 @@
 
 namespace Library\Validator;
 
-use \Library\Core\AbstractValidator;
+use Library\Core\AbstractValidator;
 
 class ProductValidator extends AbstractValidator
 {
@@ -12,7 +12,8 @@ class ProductValidator extends AbstractValidator
      * @return array $this->errors
      */
     public function productForm(
-        array $data) {
+        array $data
+    ): array {
         if (empty($data['name']) || strlen($data['name']) <= 3 || !is_string($data['name'])) {
             $this->errors['name'] = self::TITLE_INVALID;
         }

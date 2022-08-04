@@ -1,4 +1,5 @@
 @use '../mixins/menu';
+@use '../mixins/flex';
 
 .shadow {
   transition: var(--transitionAll);
@@ -7,20 +8,15 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 50;
+  z-index: 100;
   background-color: var(--transparentColor);
 }
 
 .close-icon {
   position: absolute;
-  background-image: url('../../images/components/close.svg');
   @include menu.menu-onclick;
   top: 0;
   right: 0;
-  background-position: top 0 right 8px;
-
-  &:hover,
-  &:focus {
-    background-image: url('../../images/components/close__hover.svg');
-  }
 }
+
+

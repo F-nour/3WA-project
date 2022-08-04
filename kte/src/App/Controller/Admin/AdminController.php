@@ -2,33 +2,33 @@
 
 namespace App\Controller\Admin;
 
-use App\Model\Manager\UserManager;
 use Library\Core\AbstractController;
 
 class AdminController extends AbstractController
 {
 
-    private $userManager;
 
     public function __construct()
     {
-        $this->userManager = new UserManager();
+        parent::__construct();
     }
 
     public function index(): void
     {
-        if (auth()->isAdmin()) {
-            $this->displayAdmin('', 'admin/index');
-        } else {
-            $this->redirect('/login');
-        }
+        $this->isAdmin();
+        $admin = $this->getAdminUser();
+        $this->displayAdmin('Accueil', 'admin/index', ['admin' => $admin]);
+    }
+
+    public function getAdminUser(): ?object
+    {
+        $this->isAdmin();
+        return $this->userManager->getUserById(auth()->getUserId());
     }
 
     public function updateRole()
     {
-        if (!auth()->isAdmin()) {
-            $this->redirect('/login');
-        }
+        $this->isAdmin();
         $user = $this->userManager->getUserById($_GET['id']);
         $userId = $user->getId();
         $this->userManager->updateRole([
@@ -38,15 +38,30 @@ class AdminController extends AbstractController
         $this->redirect('\admin');
     }
 
-    public function delateUser()
+    public function editAbout()
     {
-        if (!auth()->isAdmin()) {
-            $this->redirect('/login');
+        $this->isAdmin();
+        $about = $this->aboutManager->getAbout();
+        $this->displayAdmin('Modifier les informations du site', 'admin/about/update', ['about' => $about]);
+    }
+
+    public function updateAboutForm() {
+        $this->isAdmin();
+        $about = $this->aboutManager->getAbout();
+        $errors = aboutForm()->updateAbout($_POST);
+        if (count($errors) > 0) {
+            $_SESSION['error'] = $errors;
+            $this->redirect('/admin/editAbout');
         }
-        $user = $this->userManager->getUserById($_GET['id']);
-        $userId = $user->getId();
-        $this->userManager->delateUser($userId);
-        flash()->addSuccess('delateUser', "L'utilisateur a été supprimé");
-        $this->redirect('/admin/user');
+        $this->aboutManager->updateAbout([
+            'society' => $_POST['society'],
+            'status' => $_POST['status'],
+            'INSEE' => $_POST['INSEE'],
+            'zip' => $_POST['zip'],
+            'city' => $_POST['city'],
+            'email' => $_POST['email']
+        ], $about->id);
+        flash()->addSuccess('about', "Les informations du site ont été modifiées");
+        $this->redirect('/admin');
     }
 }

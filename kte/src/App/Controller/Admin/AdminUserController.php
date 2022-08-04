@@ -37,8 +37,8 @@ class AdminUserController extends UserController
         }
         $user = $this->userManager->getUserById($_GET['id']);
         $userId = $user->getId();
-        $this->userManager->delateUser($userId);
-        flash()->addSuccess('delateUser', "L'utilisateur a été supprimé");
+        $this->userManager->deleteUser($userId);
+        flash()->addSuccess('deleteUser', "L'utilisateur a été supprimé");
         $this->redirect('/admin/user');
     }
 }

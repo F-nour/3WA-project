@@ -15,7 +15,7 @@
 	},
 	"require": {
 		"filp/whoops": "^2.14",
-		"ezyang/htmlpurifier": "^4.14"
+		"ext-pdo": "*"
     },
 	"require-dev": {
 		"symfony/var-dumper": "^6.1"

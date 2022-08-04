@@ -164,7 +164,7 @@ CREATE TABLE `users` (
   `firstname` varchar(50) NOT NULL,
   `tel` int NOT NULL,
   `service` varchar(200) DEFAULT NULL,
-  `adress` varchar(200) NOT NULL,
+  `address` varchar(200) NOT NULL,
   `complement` varchar(200) DEFAULT NULL,
   `zip` int NOT NULL,
   `city` varchar(100) NOT NULL,

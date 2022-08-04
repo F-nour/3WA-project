@@ -23,12 +23,10 @@ class Actualities
     private int $id; // id de l'actualité
     private string $title; // titre de l'actualité
     private string $content; // description de l'actualité
-    private ?string $img; // image de l'actualité
+    private ?string $image; // image de l'actualité
+    private ?string $titleImage;
     private string $date; // date d'ajout de l'actualité
     private int $id_category; // id de la catégorie de l'actualité
-
-    public const TITLE_INVALID = "Le titre est invalide";
-    public const CONTENT_INVALID = "Le contenu est invalide";
 
     /**
      * @brief Method to automatically set the data of the actualities table.
@@ -76,9 +74,14 @@ class Actualities
         $this->content = $content;
     }
 
-    public function setImg(?string $img): void
+    private function setImage(string $image): void
     {
-        $this->img = $img;
+        $this->image = $image;
+    }
+
+    private function setTitleImage(string $titleImage): void
+    {
+        $this->titleImage = $titleImage;
     }
 
     // getters
@@ -98,25 +101,18 @@ class Actualities
         return $this->content;
     }
 
-    public function getImg(): string
+    private function getImage(): ?string
     {
-        return $this->img;
+        return $this->image;
+    }
+
+    private function getTitleImage(): ?string
+    {
+        return $this->titleImage;
     }
 
     public function getDate(): DateTime
     {
         return $this->created;
-    }
-
-    // validation
-
-    public function getErrors(): array
-    {
-        return $this->errors;
-    }
-
-    public function isValid(): bool
-    {
-        return empty($this->errors);
     }
 }

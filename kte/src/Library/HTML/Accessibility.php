@@ -4,16 +4,16 @@ namespace Library\HTML;
 
 class Accessibility
 {
-    public function ariaLabel(?string $ariaLabel, ?string $ariaLabelId): string
+    public function ariaLabel(?string $ariaLabel, ?string $arialLabeledBy = null): ?string
     {
-        if ($ariaLabel === null && $ariaLabelId === null) {
+        if ($ariaLabel === null && $arialLabeledBy === null) {
             return '';
         } elseif ($ariaLabel === null) {
-            return 'aria-labelledby="' . $ariaLabelId . '"';
-        } elseif ($ariaLabelId === null) {
+            return 'aria-labelledby="' . $arialLabeledBy . '"';
+        } elseif ($arialLabeledBy === null) {
             return 'aria-label="' . $ariaLabel . '"';
         } else {
-            return 'aria-label="' . $ariaLabel . '" aria-labelledby="' . $ariaLabelId . '"';
+            return null;
         }
     }
 
@@ -24,6 +24,10 @@ class Accessibility
 
     public function srOnly(?string $label): string
     {
-        return '<span class="sr-only">' . $label . '</span>';
+        return <<<HTML
+            <span class="sr-only">
+                $label
+            </span>;
+        HTML;
     }
 }

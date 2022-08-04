@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\Guest\HomepageController;
+use Library\Http\NotFoundException;
 
 class AdminActualityController extends HomepageController
 {
@@ -22,7 +23,7 @@ class AdminActualityController extends HomepageController
         }
         $actuality = $this->actualityManager->getActualityById($_GET['id']);
         if ($actuality === null) {
-            throw new \NotFoundException('Actualité non trouvée');
+            throw new NotFoundException('Actualité non trouvée');
         }
         $this->actualityManager->updateActuality([
             'title' => $_POST['title'],

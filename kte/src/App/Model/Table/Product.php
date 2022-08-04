@@ -15,17 +15,18 @@ class Product
     private DateTime $updated; // date de modification du produit
 
     // propriétés NULL par défault
-    private int $price_halfday; // prix à la demi-journée
-    private int $price_day; // prix à la journée
-    private int $traveling_region; // Frais de déplacement à l'intérieur de la métropole
-    private int $traveling_country; // Frais de déplacement à l'extérieur de la métropole
-    private string $img; // image file
+    private ?int $price_halfday; // prix à la demi-journée
+    private ?int $price_day; // prix à la journée
+    private ?int $traveling_region; // Frais de déplacement à l'intérieur de la métropole
+    private ?int $traveling_country; // Frais de déplacement à l'extérieur de la métropole
+    private ?string $image; // image file
+    private ?string $titleImage;
 
 
-    public const TITLE_INVALID = "Le titre du produit n'est pas valide.";
-    public const CONTENT_INVALID = "Le contenu du produit n'est pas valide.";
-    public const PRICE_INVALID = "Le prix du produit n'est pas valide.";
-    public const IMG_INVALID = "L'image du produit n'est pas valide.";
+    public const PRODUCT_TITLE_INVALID = "Le titre du produit n'est pas valide.";
+    public const PRODUCT_CONTENT_INVALID = "Le contenu du produit n'est pas valide.";
+    public const PRODUCT_PRICE_INVALID = "Le prix du produit n'est pas valide.";
+    public const PRODUCT_iMAGE_INVALID = "L'image du produit n'est pas valide.";
 
     private function hydrate(array $data): void
     {
@@ -46,67 +47,44 @@ class Product
 
     // setters
 
-    private function setTitle(string $title)
+    private function setTitle(string $title): void
     {
-        if (!empty($title)) {
-            $this->title = $title;
-        } else {
-            $this->errors[] = self::TITLE_INVALID;
-        }
+        $this->title = $title;
     }
 
-    private function setContent(string $content)
+    private function setContent(string $content): void
     {
-        if (!empty($content)) {
-            $this->content = $content;
-        } else {
-            $this->errors[] = self::CONTENT_INVALID;
-        }
+        $this->content = $content;
     }
 
-    private function setPrice_halfday(int $price_halfday)
+    private function setPrice_halfday(int $price_halfday): void
     {
-        if (!empty($price_halfday)) {
-            $this->price_halfday = $price_halfday;
-        } else {
-            $this->errors[] = self::PRICE_INVALID;
-        }
+        $this->price_halfday = $price_halfday;
     }
 
-    private function setPrice_day(int $price_day)
+    private function setPrice_day(int $price_day): void
     {
-        if (!empty($price_day)) {
-            $this->price_day = $price_day;
-        } else {
-            $this->errors[] = self::PRICE_INVALID;
-        }
+        $this->price_day = $price_day;
     }
 
-    private function setTraveling_region(int $traveling_region)
+    private function setTraveling_region(int $traveling_region): void
     {
-        if (!empty($traveling_region)) {
-            $this->traveling_region = $traveling_region;
-        } else {
-            $this->errors[] = self::PRICE_INVALID;
-        }
+        $this->traveling_region = $traveling_region;
     }
 
-    private function setTraveling_country(int $traveling_country)
+    private function setTraveling_country(int $traveling_country): void
     {
-        if (!empty($traveling_country)) {
-            $this->traveling_country = $traveling_country;
-        } else {
-            $this->errors[] = self::PRICE_INVALID;
-        }
+        $this->traveling_country = $traveling_country;
     }
 
-    private function setImg(string $img)
+    private function setImage(string $image): void
     {
-        if (!empty($img)) {
-            $this->img = $img;
-        } else {
-            $this->errors[] = self::IMG_INVALID;
-        }
+        $this->image = $image;
+    }
+
+    private function setTitleImage(string $titleImage): void
+    {
+        $this->titleImage = $titleImage;
     }
 
     // getters
@@ -156,15 +134,13 @@ class Product
         return $this->updated;
     }
 
-    public function getImg(): string
+    public function getImage(): string
     {
-        return $this->img;
+        return $this->image;
     }
 
-    // validation
-
-    public function isValid(): bool
+    public function getTitleImage(): string
     {
-        return empty($this->errors);
+        return $this->titleImage;
     }
 }

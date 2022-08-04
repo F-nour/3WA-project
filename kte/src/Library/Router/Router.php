@@ -29,11 +29,11 @@ class Router
      * @variable $method String name of the method.
      * @throws NotFoundException If the route is not found.
      */
-    public function goToRoute()
+    public function goToRoute(): void
     {
-        $routes = require '../config/routes.php';
+        $routes = require '../src/config/routes.php';
         $route = $_SERVER['REQUEST_URI'] ?? url('/');
-        if (! empty($_SERVER['QUERY_STRING'])) {
+        if (!empty($_SERVER['QUERY_STRING'])) {
             $route = substr($route, 0, -strlen($_SERVER['QUERY_STRING']) - 1);
         }
         if (isset($routes[$route])) {

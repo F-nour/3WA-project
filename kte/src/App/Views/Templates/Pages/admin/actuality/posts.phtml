@@ -1,0 +1,53 @@
+<div class="actualitites">
+    <?= form()->formGroup(
+        'addActualityButton',
+        'group-row flex-right admin-add',
+        'Ajouter une actualité',
+        null,
+        form()->onclick(
+            'addActuality',
+            '/admin/addActuality',
+            'btn-add btn-sr',
+            'Ajouter une actualité',
+            true
+        )
+    ); ?>
+    <?php
+    foreach ($actuality
+
+    as $actu) : ?>
+  <div class="actuality">
+    <div class="actuality__title">
+      <h3><?= $actu->title ?></h3>
+    </div>
+    <div class="actuality__date">
+      <p>Actualité du
+          <?= date_create($actu->date)->format('d/m/Y à H:i') ?></p>
+    </div>
+      <?=
+      form()->formGroup(
+          'replaceOrDeleteActuality',
+          'group-row flex-right',
+          'Supprimez ou Remplacez cette actualité',
+          null,
+          form()->onclick(
+              'editActuality',
+              '/admin/replaceActuality/' . $actu->id,
+              'btn-update btn-sr',
+              "Éditer l'actualité",
+              true
+          ) .
+          form()->onclick(
+              'deleteActuality',
+              '/admin/deleteActuality/' . $actu->id,
+              'btn-delete btn-sr',
+              "Supprimer l'actualité",
+              true
+          ),
+          true
+      ) ?>
+      <?php
+      endforeach;
+      ?>
+  </div>
+</div>

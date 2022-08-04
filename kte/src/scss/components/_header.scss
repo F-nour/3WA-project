@@ -4,7 +4,7 @@
 .header {
   @include menu.headerFooter();
   @include menu.styleMenu();
-  z-index: 100;
+  z-index: 50;
   top: 0;
   width: var(--sizeAll);
 }
@@ -22,12 +22,21 @@
   &__link {
     @include flex.flex-row(0, 0, space-evenly);
   }
+
   &__link,
-  &__link a {
-    justify-content: center;
+  &__link a,
+  &__link button {
+    font-family: var(--gentium), var(--font-family-base);
+    font-weight: 700;
+    font-size: var(--menuFontSize);
+    text-align: center;
     width: var(--sizeAll);
     margin: 0;
   }
+}
+
+.header-menu__link.list4 {
+  display: initial;
 }
 
 .logo {
@@ -35,32 +44,61 @@
   background-image: url('../../images/logo/kte.svg');
   background-repeat: no-repeat;
   background-size: contain;
-  left: 0px;
-  top: 0px;
+  left: 0;
+  top: 0;
   cursor: pointer;
+
+  & > a {
+    padding-left: 3rem;
+  }
+}
+
+.user-menu {
+  @include flex.flex-row(0, 0, center);
+  @include menu.styleMenu();
+
+  & li {
+    min-width: var(--sizeAll);
+  }
+
+  & a {
+    text-align: center;
+  }
 }
 
 @media (max-width: 1024px) {
   .header {
-    visibility: hidden;
-    width: 300px;
-    z-index: 100;
-    transition: var(--transitionAll);
+    @if (visibility: visble) {
+      width: 300px;
+    }
+    z-index: 150;
     height: calc(var(--sizeMenu) * var(--sizeGap));
 
     &-menu {
+      overflow: hidden;
+      visibility: hidden;
       &__list {
         @include flex.flex-column(end, start, var(--sizeGap));
+        margin-top: var(--sizeMenu);
       }
 
-      &__link,
-      &__link a {
-        height: var(--sizeMenu);
-        justify-content: start;
-      }
-
-      &__link a {
+      &__link a,
+      &__link button {
         padding: 0 8px 0 var(--sizeMenu);
+        justify-content: start;
+        align-items: center;
+        text-align: left;
+      }
+    }
+  }
+  .user-menu {
+    width: var(--sizeAll);
+
+    & li {
+      padding: 0 1rem;
+
+      & a {
+        text-align: left;
       }
     }
   }

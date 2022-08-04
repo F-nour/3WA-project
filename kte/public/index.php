@@ -12,8 +12,9 @@
 
 $root = dirname(__DIR__);
 $autoload = $root . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php'; // autoload composer
-$helpers = $root . '/config/helpers.php';
-$debug = $root . '/config/debug.php';
+$config = $root . '/src/config';
+$helpers = $config . '/helpers.php';
+$debug = $config . '/debug.php';
 
 require $autoload;
 require $helpers;
@@ -25,14 +26,7 @@ use Library\Router\Router;
 
 /**
  * @brief Create a new Router instance.
- * @var $root: root directory.
- * @var $autoload: autoload file
- * @var $helpers: helpers file
- * @var $debug: debug file
- * @var $router Router : Router instance.
- * @var $nfe NotFoundException : NotFoundException instance.
- * @var pdoe PDOEException : PDOEException instance.
- * */
+ */
 try {
     session_start();
     $router = new Router();
@@ -50,3 +44,5 @@ try {
     $controller->forbidden();
     exit();
 }
+
+

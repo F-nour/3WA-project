@@ -26,6 +26,10 @@ export const visible = (element, visibility) => {
   element.style.visibility = visibility
 }
 
+export const transition = (element, transition) => {
+  element.style.transition = transition
+}
+
 /**
  * @function display
  * @description Change the display of an element
@@ -119,7 +123,7 @@ export const createElement = (tagName, parentElement, className, id) => {
 export const addElement = (tagName, parentElement, className, id) => {
   const parent = document.querySelector (parentElement)
   const element = document.createElement (tagName)
-  element.classList.add (className)
+  element.classList.add(className)
   element.id = id
   parent.appendChild (element)
   return element

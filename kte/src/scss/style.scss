@@ -8,20 +8,31 @@
 @use 'variables/transition';
 
 // reseters for the site
-@use 'reseters/common';
+@use "reseters/common";
 
 // global
 @use 'global/custom';
-@use 'global/accessibility';
 @use 'global/main';
 
-// components
-@use 'components/modals';
-@use 'components/menu';
-@use 'components/header';
-@use 'components/footer';
+// Forms
+@use 'form/button';
+@use 'form/form';
+@use 'form/alert';
 
 // views
 @use 'views/home';
 @use 'views/about';
 @use 'views/legal';
+
+// components
+@use 'components/modal';
+@use 'components/menu';
+@use 'components/header';
+@use 'components/footer';
+@use 'components/icons';
+@use 'components/collapse';
+
+
+// accessibility
+@use 'global/text';
+@use 'global/accessibility';

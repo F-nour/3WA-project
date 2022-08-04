@@ -1,21 +1,37 @@
-<section class="login" id="login">
-  <div class="login title">
-    <h1>Connexion</h1>
-  </div>
-  <div class="login section-content">
-    <div role="form" class="login__form" aria-label="Formulaire de connexion">
-        <?= form()->open(url('/auth'), 'POST') ?>
-        <?= form()->formGroup(
-            null,
-            'Informations de connexion',
-            null,
-            form()->input('email', 'Adresse mail', 'email', null, true, true) .
-            form()->input('password', 'Mot de passe', 'password', null, true, true)
-        ) ?>
-        <?= form()->endFormWithSubmitCancel('btn btn-success', 'Connexion', '/', 'btn btn-cancel', 'Annuler') ?>
+  <div class="popup-content">
+    <div class="popup-header">
+      <h1>Connexion</h1>
     </div>
-    <div class="login__register" aria-labelledby="register">
-      <p id="register">Pas encore inscrit ? <a href="<?= url('/register'); ?>">Inscrivez-vous</a></p>
+    <div class="popup-body">
+      <div role="form" class="login__form" aria-label="Formulaire de connexion">
+          <?= form()->openForm(url('/auth'), 'POST') ?>
+          <?= form()->formGroup(
+              'login',
+              'group-input',
+              'Informations de connexion :',
+              'identifiers',
+              form()->input(
+                  'email',
+                  'addresse mail',
+                  'email',
+                  'email'
+              ) .
+              form()->input(
+                  'password',
+                  'Mot de passe',
+                  'password',
+                  'current-password'
+              )
+          ) ?>
+          <?= form()->endFormWithSubmitCancel(
+                  'loginSubmit',
+                  null, 'Connexion', null, '/', 'Annuler') ?>
+      </div>
+      <div class="popup-footer" aria-labelledby="register">
+        <p id="register" class="center">
+          Pas encore inscrit ?
+        </p>
+          <?= form()->onclick('register-form', '/register', 'btn-no-style btn-register', "S'inscrire") ?>
+      </div>
     </div>
   </div>
-</section>

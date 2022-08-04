@@ -1,19 +1,19 @@
-import { CLASSNAME, ID, STYLES } from '../lib/constants.js'
+import { CLASSNAME, ID, SCREENWIDTH, STYLES } from './constants.js'
 import {
   cancel,
   clickEvent,
   createElement,
   keyEvent,
   size,
-} from '../lib/utilities.js'
+} from './utilities.js'
 
 ('use strict')
 
 // modal
-
 export const createShadow = (action) => {
   const container = document.body
   const shadow = createElement ('div', container, CLASSNAME.SHADOW, ID.SHADOW)
+  container.style.overflow = STYLES.HIDDEN
   shadow.addEventListener ('click', action)
   size (shadow, '100vw', '100vh')
   return shadow
@@ -25,17 +25,19 @@ export const scrollable = (element, overflow) => {
 
 export const closeBtn = (
   parentElement,
-  header,
   className,
   width,
   id,
   action,
 ) => {
-  const closeBtn = createElement ('button', parentElement, className, id)
+  const closeBtn = document.createElement ('button')
+  closeBtn.classList.add ('btn', 'btn-no-style', 'btn-close', className)
+  closeBtn.id = id
+  parentElement.prepend (closeBtn)
   closeBtn.tabIndex = 0
-  closeBtn.style.width = width
+  closeBtn.style.width = `${width}px`
   closeBtn.innerHTML = `<span class="sr-only">Fermer</span>`
-  header.removeAttribute ('style')
+  document.body.removeAttribute ('style')
   parentElement.prepend (closeBtn)
   clickEvent (closeBtn, action)
   keyEvent (closeBtn, action)

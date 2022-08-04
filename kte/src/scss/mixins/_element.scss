@@ -19,7 +19,7 @@
       width: var(--sizeAll);
     }
 
-    & div {
+    & > div {
       gap: var(--sizeGeneral);
     }
   }
