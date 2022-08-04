@@ -6,14 +6,12 @@
  */
 
 /**
- * @namespace App\Controller\Controller
  * @uses \Library\Core\AbstractController : AbstractController class.
  * @uses \App\Model\Manager\AboutManager : AboutManager class.
  */
 
 namespace App\Controller\Guest;
 
-use App\Model\Manager\AboutManager;
 use Library\Core\AbstractController;
 
 /**
@@ -22,6 +20,11 @@ use Library\Core\AbstractController;
  */
 class AboutController extends AbstractController
 {
+
+    public function __construct() {
+        parent::__construct();
+    }
+
     /**
      * @brief Method to get the about page.
      * @method void index
@@ -38,7 +41,6 @@ class AboutController extends AbstractController
      */
     private function getAbout(): object
     {
-        $manager = new AboutManager();
-        return $manager->getAbout();
+        return $this->aboutManager->getAbout();
     }
 }

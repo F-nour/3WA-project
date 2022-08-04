@@ -8,7 +8,7 @@
   gap: #{$gap}rem;
 }
 
-@mixin flex-row($size: 0, $gap: 0, $content, $wrap: wrap) {
+@mixin flex-row($size: 0, $gap: 8, $content: center, $wrap: wrap) {
   @if $size == 0 {
     flex: 1 0;
   } @else {
@@ -19,5 +19,5 @@
   justify-content: $content;
   align-items: center;
   flex-wrap: $wrap;
-  gap: #{$gap}rem;
+  gap: #{$gap}px;
 }

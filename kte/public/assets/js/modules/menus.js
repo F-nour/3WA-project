@@ -2,19 +2,17 @@ import { CLASSNAME, ID, SCREENWIDTH, STYLES } from '../lib/constants.js'
 import {
   cancel,
   clickEvent,
-  createElement,
   keyEvent,
   removeElement,
   size,
   visible,
+  transition,
 } from '../lib/utilities.js'
-import { closeBtn, modalFocus, openModal, scrollable } from './modals.js'
-
-('use strict')
+import { closeBtn, modalFocus, openModal, scrollable } from '../lib/modals.js'
 
 // global variables
 
-const header = document.querySelector ('#header')
+const header = document.querySelector ('header')
 const headerMenu = document.querySelector ('#headerMenu')
 const headerWidth = `300px`
 
@@ -39,10 +37,8 @@ export const initMenu = () => {
  */
 export const displayResponsiveMenu = () => {
   if (window.innerWidth <= SCREENWIDTH.LARGE) {
-    size (header, '0px')
-    visible (header, STYLES.HIDDEN)
+    closeMenu()
     menuIcon ()
-    closeMenu ()
     cancel (closeMenuAction)
   } else {
     size (header, '')
@@ -60,15 +56,14 @@ export const displayResponsiveMenu = () => {
  * @description create the hamberger menu icon
  */
 const menuIcon = () => {
-  const hambergerMenu = createElement (
-    'button',
-    document.body,
-    CLASSNAME.HAMBERGERMENU,
-    ID.HAMBERGERMENU,
-  )
+  const hambergerMenu = document.createElement ('button')
+  hambergerMenu.id = ID.HAMBERGERMENU
+  hambergerMenu.classList.add ('btn', 'btn-no-style', 'btn-menu',
+    'hamberger-menu')
   hambergerMenu.innerHTML = `<span class="sr-only">Ouvrir le menu</span>`
   clickEvent (hambergerMenu, openMenu)
-  keyEvent (hambergerMenu, 'Enter', openMenu)
+  keyEvent (hambergerMenu, 'Enter', ' ', openMenu)
+  document.body.prepend (hambergerMenu)
   return hambergerMenu
 }
 
@@ -78,19 +73,16 @@ const menuIcon = () => {
  * @returns {*}
  */
 const closeMenuIcon = () => {
-  const hambergerMenu = document.getElementById (ID.HAMBERGERMENU)
   const closeMenuIcon = closeBtn (
     headerMenu,
-    hambergerMenu,
-    `${CLASSNAME.CLOSEICON}`,
+    CLASSNAME.CLOSEICON,
     `${headerWidth}`,
     ID.CLOSEMENU,
-    closeMenuAction,
+    closeMenuAction
   )
-  closeMenuIcon.innerHTML = `<span class="sr-only">Ouvrir le menu</span>` // ajoute un texte à l'icône pour l'accessibilité
+  closeMenuIcon.innerHTML = `<span class="sr-only">Fermer le menu</span>` // ajoute un texte à l'icône pour l'accessibilité
   return closeMenuIcon
 }
-
 
 // create events for the menu
 
@@ -99,14 +91,15 @@ const closeMenuIcon = () => {
  * @description open the menu
  */
 const openMenu = () => {
+  transition(header, 'all 0.3s ease-in-out')
   size (header, headerWidth)
   visible (header, STYLES.VISIBLE)
   visible (headerMenu, STYLES.VISIBLE)
   closeMenuIcon ()
   const hambergerMenu = document.getElementById (ID.HAMBERGERMENU)
-  openModal (hambergerMenu, closeMenuAction)
+  openModal (hambergerMenu, closeMenuAction )
   hambergerMenu.removeEventListener ('click', openMenu)
-  headerOnFocus
+  headerOnFocus ()
 }
 
 /**
@@ -129,19 +122,15 @@ const closeMenu = () => {
  * @function closeMenuAction
  * @description actions to do when the menu is closed
  */
-const closeMenuAction = () => {
-  closeMenu ()
+export const closeMenuAction = () => {
   const hambergerMenu = document.getElementById (ID.HAMBERGERMENU)
-  hambergerMenu.removeAttribute ('style')
-  hambergerMenu.addEventListener ('click', openMenu)
+  if (headerMenu.getAttribute ('style') !== null && (hambergerMenu !== null || headerMenu === undefined)) {
+    transition(header, 'all 0.3s ease-in-out')
+    closeMenu ()
+    hambergerMenu.removeAttribute ('style')
+    hambergerMenu.addEventListener ('click', openMenu)
+  }
 }
-
-/**
- * @function cance
- * @param closeMenuAction()
- * @description close the menu when the user keypresses escape
- */
-cancel (closeMenuAction)
 
 /**
  * @function headerOnFocus
@@ -158,12 +147,12 @@ const headerOnFocus = () => {
  * @param menus
  * @param action
  */
-const getActualClass = (menus, action = null) => {
+const getActualClass = (menus, action) => {
   for (let i = 0; i < menus.length; i += 1) {
     const menu = menus[i]
-    const link = menu.querySelector ('a')
+    const link = menu.querySelector ('a') || menu.querySelector ('button')
     menu.classList.remove (CLASSNAME.ACTUAL)
-    if (link.href === window.location.href) {
+    if (link.href === window.location.href || link === null) {
       menu.classList.add (CLASSNAME.ACTUAL)
       action
     }

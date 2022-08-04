@@ -1,54 +1,28 @@
-<section class="home" id="home" name="home">
-  <div class="home section-title" id="homeTitle" name="homeTitle">
-    <h1>Bienvenue sur le site de Kiff Ton Écharpe</h1>
+<div class="home section-title" id="homeTitle">
+  <h1>Bienvenue sur le site de Kiff Ton Écharpe</h1>
+</div>
+<div class="home section-content" id="homeContent">
+  <div class="actualitites">
+    <h2 class="center">
+      <span>Dernières actualités</span>
+    </h2>
   </div>
-  <div class="home section-content" id="homeContent" name="homeContent">
-    <?php if (auth()->isAdmin()) :
-      require 'admin/index.phtml';
-    endif; ?>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae natus
-      dolores ad molestias quidem quisquam labIioriosam in unde deserunt amet.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos numquam rerum
-      tenetur eveniet fugit, at ea consequatur veniam illo iure?
-    </p>
-
-    <div class="actuality-container">
-        <?php
-        foreach ($actuality as $actu) : ?>
-          <div class="actuality">
+      <?php
+      foreach ($actuality as $actu) : ?>
+        <div class="actuality">
+          <div class="actuality-container">
             <div class="actuality__title">
-              <h2><?= $actu->title ?></h2>
+              <h3><?= $actu->title ?></h3>
             </div>
             <div class="actuality__content">
-                <?php
-                if ($actu->img !== null) : ?>
-                  <div class="actuality__image">
-                    <img src="<?= $actu->img ?>" alt="<?= $actu->title ?>">
-                  </div>
-                <?php
-                endif; ?>
               <p><?= $actu->content ?></p>
             </div>
             <div class="actuality__date">
               <p>Actualité du
                   <?= date_create($actu->date)->format('d/m/Y à H:i') ?></p>
             </div>
-              <?php
-              if (auth()->isAdmin()) : ?>
-                <div class="actuality__edit">
-                  <?= form()->formGroup(null, 'Modifier ou supprimer ' . $actu->title, null,
-                    form()->button('/admin/editActuality?id=' . $actu->id, 'Modifier', 'btn btn-primary', "Modifier l'actualité") .
-                    form()->button('//admin/deleteActuality?id=' . $actu->id, 'Supprimer', 'btn btn-danger', "Supprimer l'actualité")
-                ) ?>
-                </div>
-              <?php
-              endif; ?>
           </div>
-        <?php
-        endforeach; ?>
-    </div>
-  </div>
-</section>
+        </div>
+      <?php
+      endforeach; ?>
+</div>

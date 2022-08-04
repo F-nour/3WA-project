@@ -3,25 +3,34 @@
 <html lang="fr">
 
 <?php
-require 'Templates/Components/_head.phtml'; ?>
+require 'Templates/Partials/_head.phtml'; ?>
 
 <!-- Début du body -->
 
 <body>
 <header class="header" id="header">
     <?php
-    require 'Templates/Components/_nav.phtml';
+    require 'Templates/Partials/_nav.phtml';
     ?>
 </header>
 <div class="container">
-
   <main class="main" id="main">
       <?php
-      require $template; ?>
-  </main>
-  <footer class=" footer" id="footer">
+      if ($alert) : ?>
+        <section role="alert">
+            <?= $alert; ?>
+        </section>
       <?php
-      require 'Templates/Components/_footer.phtml'; ?>
+      endif ?>
+    <section id="<?= $view ?>" class="<?= $view ?>" name="<?= $name ?>" role="main">
+        <?php
+        require $template;
+        ?>
+    </section>
+  </main>
+  <footer class="footer" id="footer" role="contentinfo">
+      <?php
+      require 'Templates/Partials/_footer.phtml'; ?>
   </footer>
 </div>
 </body>

@@ -30,7 +30,7 @@ class UserManager extends AbstractManager
     public function getAllUsers(): array
     {
         $users = $this->db->getResults(
-            'SELECT id, role_id, INSEE, lastname, firstname, service, adress, complement, zip, city, email, role_id 
+            'SELECT id, role_id, INSEE, lastname, firstname, service, address, complement, zip, city, email, role_id 
                 FROM ' . SELF::USERS . ' u 
                 INNER JOIN ' . SELF::ROLE . ' r ON u.role_id = r.id
                 ORDER BY id ASC'
@@ -47,7 +47,7 @@ class UserManager extends AbstractManager
     public function getUserById(int $id): ?User
     {
         $userById = $this->db->getResult(
-            'SELECT u.id, society, lastname, firstname, service, adress, complement, zip, city, email, password, r.role 
+            'SELECT u.id, society, lastname, firstname, service, address, complement, zip, city, email, password, r.role 
             FROM ' . self::USERS . ' u 
             INNER JOIN ' . SELF::ROLE . ' r ON u.role_id = r.id
             WHERE u.id = :id',
@@ -58,14 +58,14 @@ class UserManager extends AbstractManager
         if ($userById === null) {
             return null;
         }
-            $this->table->createDataRow((array) $userById);
-            return $this->table;
+        $this->table->createDataRow((array)$userById);
+        return $this->table;
     }
 
     public function getUserByMail(string $email): ?User
     {
         $userByMail = $this->db->getResult(
-            'SELECT u.id, role_id, society, lastname, firstname, service, adress, complement, zip, city, email, password, role 
+            'SELECT u.id, role_id, society, lastname, firstname, service, address, complement, zip, city, email, password, role 
             FROM ' . SELF::USERS . ' u 
             INNER JOIN ' . SELF::ROLE . ' r ON u.role_id = r.id
             WHERE email = :email',
@@ -76,14 +76,14 @@ class UserManager extends AbstractManager
         if ($userByMail === null) {
             return null;
         }
-        $this->table->createDataRow((array) $userByMail);
+        $this->table->createDataRow((array)$userByMail);
         return $this->table;
     }
 
     public function getUserByRole(int $id): ?User
     {
         $userByRole = $this->db->getResult(
-            'SELECT u.id, u.role_id, society, lastname, firstname, service, adress, complement, zip, city, email, password, r.role 
+            'SELECT u.id, u.role_id, society, lastname, firstname, service, address, complement, zip, city, email, password, r.role 
             FROM ' . self::USERS . ' u 
             INNER JOIN ' . SELF::ROLE . ' r ON u.role_id = r.id
             WHERE u.id = :id',
@@ -94,27 +94,28 @@ class UserManager extends AbstractManager
         if ($userByRole === null) {
             return null;
         }
-        $this->table->createDataRow((array) $userByRole);
+        $this->table->createDataRow((array)$userByRole);
         return $this->table;
     }
 
     public function insertUser(array $data): ?int
     {
         $userId = $this->db->execute(
-            'INSERT INTO ' . self::USERS . ' (society, lastname, firstname, service, adress, complement, zip, city, email, password)
-            VALUE (:society, :lastname, :firstname, :service, :adress, :complement, :zip, :city, :email, :password)',
+            'INSERT INTO ' . self::USERS . ' (society, lastname, firstname, service, address, complement, zip, city, email, password)
+            VALUE (:society, :lastname, :firstname, :service, :address, :complement, :zip, :city, :email, :password)',
             [
                 'society' => $data['society'],
                 'lastname' => $data['lastname'],
                 'firstname' => $data['firstname'],
                 'service' => $data['service'],
-                'adress' => $data['adress'],
+                'address' => $data['address'],
                 'complement' => $data['complement'],
                 'zip' => $data['zip'],
                 'city' => $data['city'],
                 'email' => $data['email'],
                 'password' => $data['password']
-            ]);
+            ]
+        );
         if ($userId === null) {
             return null;
         }
@@ -125,7 +126,7 @@ class UserManager extends AbstractManager
     {
         $userId = $this->db->execute(
             'UPDATE ' . self::USERS .
-            ' SET society = :society, lastname = :lastname, firstname = :firstname, service = :service, adress = :adress, complement = :complement, zip = :zip, city = :city, email = :email 
+            ' SET society = :society, lastname = :lastname, firstname = :firstname, service = :service, address = :address, complement = :complement, zip = :zip, city = :city, email = :email 
             WHERE id = :id',
             [
                 'id' => $id,
@@ -133,7 +134,7 @@ class UserManager extends AbstractManager
                 'lastname' => $data['lastname'],
                 'firstname' => $data['firstname'],
                 'service' => $data['service'],
-                'adress' => $data['adress'],
+                'address' => $data['address'],
                 'complement' => $data['complement'],
                 'zip' => $data['zip'],
                 'city' => $data['city'],
@@ -146,7 +147,8 @@ class UserManager extends AbstractManager
         return $userId;
     }
 
-    public function updatePassword(array $data, int $id): ?int {
+    public function updatePassword(array $data, int $id): ?int
+    {
         $userId = $this->db->execute(
             'UPDATE ' . self::USERS .
             ' SET password = :password  
@@ -162,7 +164,8 @@ class UserManager extends AbstractManager
         return $userId;
     }
 
-    public function updateRole(array $data, int $id): ?int {
+    public function updateRole(array $data, int $id): ?int
+    {
         $userId = $this->db->execute(
             'UPDATE ' . self::USERS .
             ' SET role_id = :role_id  

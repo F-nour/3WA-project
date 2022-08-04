@@ -2,7 +2,7 @@
   "name": "3wa-project_kte",
   "version": "1.0.0",
   "description": "Projet de fin de formation à la 3WA. Site de l'auto-entreprise \"kiff ton écharpe\"",
-  "main": "/public/js/script.js",
+  "main": "/public/js/app.js",
   "scripts": {
     "test": "console.log(\"test\")"
   },

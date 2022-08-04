@@ -1,0 +1,62 @@
+<div class="popup-header">
+  <h1>Mettre à jour les informations du site</h1>
+</div>
+<div class="popup-body">
+    <?= form()->openForm(url('/admin/updateAboutForm'), 'POST', 'updateAboutForm') ?>
+    <?= form()->formGroup(
+        null,
+        'group-input',
+        'Informations du site',
+        'aboutInfosLegend',
+        form()->input(
+            'society',
+            'Société',
+            'text',
+            null,
+            $about->society,
+        ) .
+        form()->input(
+            'status',
+            'Statut',
+            'text',
+            null,
+            $about->status,
+        ) .
+        form()->input(
+            'INSEE',
+            'Numéro INSEE',
+            'text',
+            null,
+            $about->INSEE
+        ) .
+        form()->input(
+            'zip',
+            'Code postal',
+            'text',
+            null,
+            $about->zip
+        ) .
+        form()->input(
+            'city',
+            'Ville',
+            'text',
+            null,
+            $about->city
+        ) .
+        form()->input(
+            'email',
+            'Email',
+            'email',
+            null,
+            $about->mail
+        )
+    ) ?>
+    <?= form()->endFormWithSubmitCancel(
+        'updateAboutSubmit',
+        null,
+        'Mettre à jour',
+        null,
+        '/admin',
+        'Annuler'
+    ) ?>
+</div>

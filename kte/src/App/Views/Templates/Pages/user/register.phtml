@@ -1,26 +1,48 @@
-<section class="registrer" id="registrer">
-  <div class="registrer title">
-    <h1>Inscription</h1>
+  <div class="popup-content">
+    <div class="popup-header">
+      <h1>Inscription</h1>
+    </div>
+    <div class="popup-body">
+      <div class="register-form">
+          <?= form()->openForm(url('/create'), 'POST') ?>
+          <?= form()->formGroup(
+              'identity',
+              'group-input',
+              'Identité',
+              'identityLegend',
+              form()->input('society', 'Société', 'text', 'organisation', null, false) .
+              form()->input('firstname', 'Prénom', 'text', 'given-name') .
+              form()->input('lastname', 'Nom', 'text', 'family-name')
+          ) ?>
+          <?= form()->formGroup(
+              'coordinates',
+              'group-input',
+              'Coordonnées',
+              'coordinatesLegend',
+              form()->input('service', 'Service', 'text', null, null, false) .
+              form()->input('address', 'addresse', 'text', 'address-line1') .
+              form()->input('complement', 'Complément', 'text', null, null, false) .
+              form()->input('zip', 'Code postal', 'text', 'postal-code') .
+              form()->input('city', 'Ville', 'text')
+          ) ?>
+          <?= form()->formGroup(
+              'connexion',
+              'group-input',
+              'Informations de connexion*',
+              'loginLegend',
+              form()->input('email', 'addresse mail', 'email', 'email') .
+              form()->input('password', 'Mot de passe', 'password') .
+              form()->input('password_confirm', 'Confirmation du mot de passe', 'password')
+          ) ?>
+          <?= form()->endFormWithAllButtons(
+              'registerButtons',
+              null,
+              "S'inscrire",
+              '/account',
+              'btn-back',
+              "retour",
+              null,
+              "Effacer"
+          ) ?>
+    </div>
   </div>
-  <div class="registrer_content">
-    <?= form()->open(url('/create'), 'POST') ?>
-      <?= form()->formGroup(null, 'group-input', 'Identité', null,
-      form()->input('society', 'Société', 'text', null, false) .
-      form()->input('firstname', 'Prénom', 'text', null, true) .
-      form()->input('lastname', 'Nom', 'text', null, true)
-      ) ?>
-      <?= form()->formGroup(null, 'group-input', 'Coordonnées', 'coordinates',
-        form()->input('service', 'Service', 'text', null, false) .
-        form()->input('address', 'Adresse', 'text', null, true) .
-        form()->input('complement', 'Complément', 'text', null, false) .
-        form()->input('zip', 'Code postal', 'text', null, true) .
-        form()->input('city', 'Ville', 'text', null, true)
-        ) ?>
-      <?= form()->formGroup(null, 'group-input', 'Informations de connexion', 'login',
-        form()->input('email', 'Adresse mail', 'email', null, true) .
-        form()->input('password', 'Mot de passe', 'password', null, true) .
-        form()->input('password_confirm', 'Confirmation du mot de passe', 'password', null, true)
-        ) ?>
-      <?= form()->endFormWithAllButtons('btn btn-submit', "S'inscrire", 'cancel', '/login', 'btn btn-cancel', "Annuler", 'btn btn-reset', "Effacer") ?>
-  </div>
-</section>

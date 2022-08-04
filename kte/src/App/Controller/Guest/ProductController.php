@@ -2,20 +2,13 @@
 
 namespace App\Controller\Guest;
 
-use App\Model\Manager\ProductManager;
-use App\Model\Table\Product;
 use Library\Core\AbstractController;
 
 class ProductController extends AbstractController
 {
 
-    protected $productManager;
-    protected $product;
-
-    public function __construct()
-    {
-        $this->productManager = new ProductManager();
-        $this->product = new Product();
+    public function __construct() {
+        parent::__construct();
     }
 
     /**

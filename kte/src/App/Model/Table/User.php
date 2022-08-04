@@ -11,7 +11,7 @@ class User
     private string $lastname; // mot de passe
     private string $firstname;
     private string $service;
-    private string $adress;
+    private string $address;
     private string $complement;
     private int $zip;
     private string $city;
@@ -65,9 +65,9 @@ class User
         $this->service = $service;
     }
 
-    private function setAdress(string $adress): void
+    private function setaddress(string $address): void
     {
-        $this->adress = $adress;
+        $this->address = $address;
     }
 
     private function setcomplement(string $complement): void
@@ -127,9 +127,9 @@ class User
         return $this->service;
     }
 
-    public function getAdress(): string
+    public function getaddress(): string
     {
-        return $this->adress;
+        return $this->address;
     }
 
     public function getComplement(): string

@@ -1,55 +1,3 @@
-.bold {
-  font-weight: bold;
-}
-
-.italic {
-  font-style: italic;
-}
-
-.underline {
-  text-decoration: underline;
-}
-
-.normal {
-  font-weight: normal;
-  text-decoration: none;
-}
-
-.relative {
-  position: relative;
-}
-
-.absolute {
-  position: absolute;
-}
-
-.center {
-  @if (display: flex) {
-    align-items: center;
-  }
-    @else {
-    text-align: center;
-  }
-}
-
-.right {
-  @if (display: flex) {
-    align-items: flex-end;
-  }
-    @else {
-    text-align: right;
-  }
-}
-
-.left {
-  @if (display: flex) {
-    align-items: flex-start;
-  }
-    @else {
-    text-align: left;
-  }
-}
-
 /* fix responsive bugs */
 
 *:not(head, meta, title, link, script, style,
@@ -57,23 +5,11 @@ table, tbody, tfoot, thead, tr, td, th,
 label, input, textarea, select, option,
 p, br, hr, blockquote, q, code, span, strong, em,
 h1, h2, h3, h4, h5, h6,
-img, a, li, dd, dt),
-:after,
-:before,
+img, a, li, dd, dt, i,
+li, dd, dt),
 .flex-column {
   display: flex;
   flex-direction: column;
-}
-
-li, dd, dt
-.flex-row {
-  display: flex;
-  flex-direction: row;
-}
-
-.flex-row {
-  display: flex;
-  flex-direction: row;
 }
 
 html {

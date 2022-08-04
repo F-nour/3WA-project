@@ -2,19 +2,13 @@
 
 namespace App\Controller\Guest;
 
-use App\Model\Manager\UserManager;
-use App\Model\Table\User;
 use Library\Core\AbstractController;
 
 class UserController extends AbstractController
 {
-    protected $userManager;
-    protected $user;
 
-    public function __construct()
-    {
-        $this->userManager = new UserManager();
-        $this->user = new User();
+    public function __construct() {
+        parent::__construct();
     }
 
     public function register(): void
@@ -33,10 +27,11 @@ class UserController extends AbstractController
         $errors = userForm()->createUser($_POST);
         $user = $this->userManager->getUserByMail(auth()->isAuthenticated());
         if (!empty($user)) {
-            flash()->addError('username', 'Un utilisateur utilise déjà cette adresse mail');
+            flash()->addError('email', 'Un utilisateur utilise déjà cette addresse mail');
         }
         if (count($errors) > 0) {
-            $_SESSION['error'] = $errors;
+            $_SESSION['error'] = $errors;;
+            dd($_SESSION);
             $this->redirect('/register');
         }
         $this->userManager->insertUser([
@@ -44,7 +39,7 @@ class UserController extends AbstractController
             'lastname' => $_POST['lastname'],
             'firstname' => $_POST['firstname'],
             'service' => $_POST['service'],
-            'adress' => $_POST['adress'],
+            'address' => $_POST['address'],
             'complement' => $_POST['complement'],
             'zip' => $_POST['zip'],
             'city' => $_POST['city'],
@@ -68,7 +63,12 @@ class UserController extends AbstractController
     {
         // Récupération de l'utilisateur a partir de son email
         $user = $this->userManager->getUserByMail($_POST['email']);
-        $password = password_verify($_POST['password'], $user->getPassword());
+        $password = '';
+        if ($user === null) {
+            $_SESSION['error'] = 'email';
+        } else {
+            $password = password_verify($_POST['password'], $user->getPassword());
+        }
         $errors = userForm()->authUser($user, $password);
         // S'il y a des erreurs
         if (count($errors) > 0) {
@@ -78,7 +78,7 @@ class UserController extends AbstractController
         // Si tout est ok, on connecte l'utilisateur avec $_SESSION
         auth()->login($user->getId());
         flash()->addSuccess('isConnected', 'Vous venez de vous connecter.');
-        if ($user->getRole_id() == 1) {
+        if ($user->getRole_id() === 1) {
             $_SESSION['admin'] = true;
             $this->redirect('/admin');
         }
@@ -114,17 +114,20 @@ class UserController extends AbstractController
         if (!auth()->isAuthenticated()) {
             $this->redirect('/login');
         }
+        $user = $this->userManager->getUserById(auth()->isAuthenticated());
         $errors = userForm()->modifyUser($_POST);
         if (count($errors) > 0) {
             $_SESSION['error'] = $errors;
+            dump($errors);
             $this->redirect('/modify');
         }
         $this->userManager->updateUser([
+            'id' => $user,
             'society' => $_POST['society'],
             'lastname' => $_POST['lastname'],
             'firstname' => $_POST['firstname'],
             'service' => $_POST['service'],
-            'adress' => $_POST['adress'],
+            'address' => $_POST['address'],
             'complement' => $_POST['complement'],
             'zip' => $_POST['zip'],
             'city' => $_POST['city'],
@@ -154,14 +157,14 @@ class UserController extends AbstractController
             $this->redirect('/login');
         }
         $user = $this->userManager->getUserById(auth()->isAuthenticated());
-        $password = password_verify($_POST['actualPassword'], $user->getPassword());
+        $password = password_verify($_POST['actual_password'], $user->getPassword());
         $errors = userForm()->updatePwd($_POST, $password);
         if (count($errors) > 0) {
             $_SESSION['error'] = $errors;
             $this->redirect('/updatePassword');
         }
         $this->userManager->updatePassword([
-            'newPassword' => (password_hash($_POST['newPassword'], PASSWORD_ARGON2ID))
+            'newPassword' => (password_hash($_POST['new_password'], PASSWORD_ARGON2ID))
         ],
             auth()->isAuthenticated());
         flash()->addSuccess('modifyPwd', 'Votre mot de passe a été modifié');
@@ -173,6 +176,6 @@ class UserController extends AbstractController
     {
         auth()->logout();
         flash()->addSuccess('logout', 'Vous êtes déconnecté. Vous pouvez vous reconnecter si vous le souhaitez. Sinon, à très bientôt !');
-        $this->redirect('/login');
+        $this->redirect('/');
     }
 }

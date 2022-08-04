@@ -1,0 +1,66 @@
+<nav role="navigation" class="header-menu flex-row" id="headerMenu">
+  <ul class=" header-menu__list flex-row" id="menuList">
+    <li data-menus class="header-menu__link internal logo" id="logo">
+      <a href="<?= url('/') ?>" title="Accueil" class="flex-row">
+        Kiff Ton Écharpe
+
+      </a>
+    </li>
+    <li data-menus class="header-menu__link internal list1">
+      <a href="<?= url('/products') ?>" title="Produits" class="flex-row">
+        Mes services
+      </a>
+    </li>
+    <li data-menus class="header-menu__link internal list2">
+      <a href="<?= url('/about') ?>" title="A propos" class="flex-row">
+        Mieux me connaître
+      </a>
+    </li>
+    <li data-menus class="header-menu__link internal list3">
+      <a href="<?= url('/contact') ?>" title="Contact" class="flex-row">
+        Me contacter
+      </a>
+    </li>
+      <?php
+      if (auth()->isAuthenticated()) : ?>
+        <li data-menus class="header-menu__link no-flex internal list4">
+            <?= form()->button('btn-no-style btn-navbar btn-collapse', 'user-area', null, 'Mon compte') ?>
+          <ul class="user-menu collapse" id="userMenu">
+            <li data-menus class="header-menu__link internal list4a">
+              <a href="<?= url('/account') ?>" title="Mon compte" class="flex-row">Espace personnel</a>
+            </li>
+              <?php
+              if (auth()->isAdmin()) : ?>
+                <li data-menus class="header-menu__link internal list4b">
+                  <a href="<?= url('/admin') ?>" title="Administration" class="flex-row">Espace administrateur</a>
+                </li>
+                <li data-menus class="header-menu__link internal list4c">
+                  <a href="<?= url('/admin/posts') ?>" title="Gérer les actus" class="flex-row">Gérer les actus</a>
+                </li>
+                <li data-menus class="header-menu__link internal list4d">
+                  <a href="<?= url('/admin/products') ?>" title="Gérer les produits" class="flex-row">Gérer les produits</a>
+                </li>
+                <li data-menus class="header-menu__link internal list4e">
+                  <a href="<?= url('/admin/users') ?>" title="Gérer les utilisateurs" class="flex-row">Gérer les utilisateurs</a>
+                </li>
+                <li data-menus class="header-menu__link internal list4f">
+                  <a href="<?= url('/admin/contacts') ?>" title="Demandes de contact" class="flex-row">Demandes de contact</a>
+                </li>
+              <?php
+              endif; ?>
+            <li data-menus class="header-menu__link internal list4g">
+              <a href="<?= url('/logout') ?>"
+                      title="Déconnexion"
+                      class="btn btn-no-style btn-navbar btn-logout flex-row">Déconnexion</a>
+            </li>
+          </ul>
+        </li>
+      <?php
+      else: ?>
+        <li data-menus class="header-menu__link internal list4">
+          <a href="<?= url('/login') ?>" class="btn btn-no-style btn-navbar btn-login flex-row">Connexion</a>
+        </li>
+      <?php
+      endif; ?>
+  </ul>
+</nav>

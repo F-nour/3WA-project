@@ -61,12 +61,12 @@ return [
         '\App\Controller\Admin\AdminController',
         'index'
     ],
-    url('/admin/editActuality') => [
-        '\App\Controller\Admin\AdminActualityController',
-        'editActuality'
+    url('/admin/editAbout') => [
+        '\App\Controller\Admin\AdminController',
+        'editAbout'
     ],
-    url('/admin/user') => [
-        '\App\Controller\Admin\AdminUserController',
-        'index'
+    url('/admin/updateAboutForm') => [
+        '\App\Controller\Admin\AdminController',
+        'updateAboutForm'
     ],
 ];

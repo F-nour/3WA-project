@@ -2,8 +2,6 @@
 
 namespace Library\Auth;
 
-use App\Model\Manager\UserManager;
-
 class Authentifier
 {
     public function __construct()
@@ -29,8 +27,17 @@ class Authentifier
         return isset($_SESSION['user_id']);
     }
 
-    public function isAdmin(): bool {
+    public function isAdmin(): bool
+    {
         $this->isAuthenticated();
         return isset($_SESSION['admin']);
+    }
+
+    public function getRole(): string {
+        if ($this->isAdmin()) {
+            return 'administrateur';
+        } else {
+            return 'utilisateur';
+        }
     }
 }

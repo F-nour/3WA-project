@@ -19,11 +19,9 @@ Il a été édité à l'aide des IDE :
 
 Les extensions VSCode utilisées sont :
 
-- accessibility-snippets.accessibility-snippets,
 - DavidAnson.vscode-markdownlint,
 - EditorConfig.EditorConfig,
 - esbenp.prettier-vscode,
-- firefox-devtools.vscode-firefox-debug,
 - formulahendry.auto-rename-tag,
 - GitHub.codespaces,
 - GitHub.copilot,
@@ -114,6 +112,8 @@ distinct de l'espace administrateur.
 - Permettre des actions différenciées qu'on soit utilisateur ou administrateur.
 - Rendre la SPA dynamique en implémentant un routeur en ajax combiné à celui en php.
 - Utilisation probable des framworks Synfony (php) et VueJS ou React (js)
+
+Certaines améliorations en cours sont stockées dans les branches correspondantes.
 
 #### A  plus long terme :
 

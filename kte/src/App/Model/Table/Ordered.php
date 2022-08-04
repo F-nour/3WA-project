@@ -19,7 +19,7 @@ class Ordered
     const ID_USER_INVALID = "L'utilisateur sélectionné n'est pas reconnu.";
     const ID_PRODUCT_INVALID = "Le produit sélectionné n'est pas reconnu.";
     const QUANTITY_INVALID = "La quantité commandée doit être supérieure ou égal à 1.";
-    const PRICE_INVALID = "Le prix total de la commande doit être supérieur à 0 euros.";
+    const PRODUCT_PRICE_INVALID = "Le prix total de la commande doit être supérieur à 0 euros.";
     const STATUS_INVALID = "Le statut de la commande n'est pas valide.";
 
     private function hydrate(array $data): void
@@ -123,17 +123,4 @@ class Ordered
     {
         return $this->status;
     }
-
-    // validation
-
-    public function getErrors(): array
-    {
-        return $this->errors;
-    }
-
-    public function isValid(): bool
-    {
-        return empty($this->errors);
-    }
-
 }

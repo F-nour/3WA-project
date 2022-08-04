@@ -5,33 +5,6 @@ namespace Library\Session;
 class Flashbag
 {
 
-    public function getError(string $field): ?string
-    {
-        if (!isset($_SESSION['error'][$field])) {
-            return null;
-        }
-
-        $message = $_SESSION['error'][$field];
-        unset($_SESSION['error'][$field]);
-
-        return <<<HTML
-            <div class="alert-error">
-                <small class="text-danger">{$message}</small>
-            </div>;
-        HTML;
-    }
-
-    public function displayErrors(): ?string {
-        if (!isset($_SESSION['error'])) {
-            return null;
-        }
-        return <<<HTML
-                <div class="alert alert-errors">
-                    <small class="text-danger">Un ou plusieurs éléments sont invalides</small>
-                </div>
-        HTML;
-    }
-
     public function hasError(string $field): bool
     {
         return isset($_SESSION['error'][$field]);
@@ -52,6 +25,32 @@ class Flashbag
         $_SESSION['success'][$field] = $message;
     }
 
+    public function getError(string $field): ?string
+    {
+        if (!isset($_SESSION['error'][$field])) {
+            return null;
+        }
+
+        $message = $_SESSION['error'][$field];
+        return <<<HTML
+            <div class="alert-error">
+                <small class="text-danger">$message</small>
+            </div>
+        HTML;
+    }
+
+    public function displayErrors(): ?string
+    {
+        if (!isset($_SESSION['error'])) {
+            return null;
+        }
+        return <<<HTML
+                <div class="alert alert-errors">
+                    <p class="text-dangers">Un ou plusieurs champs sont invalides.</p>
+                </div>
+        HTML;
+    }
+
     public function getSuccess(string $field): ?string
     {
         if (!isset($_SESSION['success'][$field])) {
@@ -59,12 +58,25 @@ class Flashbag
         }
 
         $message = $_SESSION['success'][$field];
+        unset($_SESSION['error']);
         unset($_SESSION['success'][$field]);
-
         return <<<HTML
             <div class="alert alert-success">
-                <p class="text-success">{$message}</p>
+                <p class="text-success">$message</p>
             </div>
         HTML;
+    }
+
+    public function display(): ?string
+    {
+        if (!empty($_SESSION['success'])) {
+            foreach ($_SESSION['success'] as $field => $message) {
+                return $this->getSuccess($field);
+            }
+        }
+        if (!empty($_SESSION['error'])) {
+            return $this->displayErrors();
+        }
+        return null;
     }
 }
